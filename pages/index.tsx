@@ -1,17 +1,11 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import useNodeRunnerStats from "../hooks/useNodeRunnerStats";
-import useNodeRunnerParams from "../hooks/useNodeRunnerParams";
-import usePoktPrice from "../hooks/usePoktPrice";
+import useCalculateNodeRunnerData from "../hooks/useCalculateNodeRunnerData";
 
 const Home: NextPage = () => {
-  const stats = useNodeRunnerStats();
-  const params = useNodeRunnerParams();
-  const price = usePoktPrice();
-  console.log("stats", stats);
-  console.log("params", params);
-  console.log("price", price);
+  const data = useCalculateNodeRunnerData()
+  console.log("data", data);
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>

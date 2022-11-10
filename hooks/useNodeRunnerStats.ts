@@ -2,20 +2,16 @@ import { useEffect, useState } from "react";
 import useSWR from 'swr'
 
 export interface NodeStat {
-  avg_last_24_hrs: number
-  avg_last_48_hrs: number
-  avg_last_6_hrs: number
+  avg_last_24_hours: number
+  avg_last_48_hours: number
+  avg_last_6_hours: number
   runner_domain: string
 }
 
-export interface NodeStats {
-  [key: string]: NodeStat
-}
-
-export default function useNodeRunnerStats(): NodeStats | undefined{
+export default function useNodeRunnerStats(){
   const apiUrl = "https://pokt-stats.sendnodes.io/v1/runners-perf";
   const request = { method: "GET"}
-  const { data, error } = useSWR<NodeStats, unknown>(
+  const { data, error } = useSWR<NodeStat[], unknown>(
     [apiUrl, request],
     async (url: string, request: RequestInit) => {
       const response = await window.fetch(url, {
@@ -35,5 +31,9 @@ export default function useNodeRunnerStats(): NodeStats | undefined{
 
   
   
-  return data
+  return {
+    data,
+    error,
+    isLoading: !error && !data
+  }
 }

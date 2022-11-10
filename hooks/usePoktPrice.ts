@@ -1,6 +1,6 @@
 import useSWR from 'swr'
 
-export interface poktPriceData {
+export interface PoktPriceData {
   pokt7dAvg: number
   pokt30dAvg: number
   pokt30dMax: number
@@ -26,7 +26,7 @@ export default function usePoktPrice(){
     body: raw,
     redirect: "follow",
   }
-  const { data, error } = useSWR<poktPriceData, unknown>(
+  const { data, error } = useSWR<PoktPriceData, unknown>(
     [apiUrl, request],
     async (url: string, request: RequestInit) => {
       const response = await window.fetch(url, {

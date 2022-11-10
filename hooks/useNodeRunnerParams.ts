@@ -36,14 +36,11 @@ function parseSheetData(data: SheetData):NodeParams[] {
       const key = keys[ri];
       if (val === "FALSE") {
         formatted[key] = false
-      }
-      if (val === "TRUE") {
+      } else if (val === "TRUE") {
         formatted[key] = true
-      }
-      if (!isNaN(parseFloat(val))) {
+      } else if (!isNaN(parseFloat(val))) {
         formatted[key] = parseFloat(val)
-      }
-      if (val && !formatted[key]) {
+      } else if (val && !formatted[key]) {
         formatted[key] = val
       }
     }
@@ -62,7 +59,7 @@ export default function useNodeRunnerParams(){
     },
     redirect: "follow",
   }
-  const { data, error } = useSWR<unknown, unknown>(
+  const { data, error } = useSWR<NodeParams[], unknown>(
     [apiUrl, request],
     async (url: string, request: RequestInit) => {
       const response = await window.fetch(url, {
