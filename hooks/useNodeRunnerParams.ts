@@ -2,34 +2,21 @@ import useSWR from 'swr'
 
 export interface NodeParams {
   name: string
-  runnerDomain: string
-  monthlyFee?: number
-  feePerStakeBucket?: number
-  rewardShare: number
-  oneTimeFee?: number
-  minStake: number
-  autoCompounding: boolean
-  insuranceProviderName?: string
-  insuranceProviderUrl?: string
+  runner_domain: string
+  monthly_fee?: number
+  fee_per_stake_bucket?: number
+  reward_share: number
+  one_time_fee?: number
+  min_stake: number
+  reward_period: number
+  auto_compounding: boolean
+  insurance_provider_name?: string
+  insurance_provider_url?: string
   url: string
-  logoUrl?: string
+  logo_url?: string
   kyc: boolean
-}
-
-const SheetKeyMap: {[key: string]: string} = {
-  'name': 'name',
-  'runner_domain': 'runnerDomain',
-  'monthly_fee': 'monthlyFee',
-  'fee_per_stake_bucket': 'feePerStakeBucket',
-  'reward_share': 'rewardShare',
-  'one_time_fee': 'oneTimeFee',
-  'min_stake': 'minStake',
-  'auto_compounding': 'autoCompounding',
-  'insurance_provider_name': 'insuranceProviderName',
-  'insurance_provider_url': 'insuranceProviderUrl',
-  'url': 'url',
-  'logoUrl': 'logoUrl',
-  'kyc': 'kyc'
+  net_rewards?: number // used for manual input from sheet
+  gross_rewards?: number // used for manual input from sheet
 }
 
 interface SheetData {
@@ -48,16 +35,16 @@ function parseSheetData(data: SheetData):NodeParams[] {
       const val = row[ri];
       const key = keys[ri];
       if (val === "FALSE") {
-        formatted[SheetKeyMap[key]] = false
+        formatted[key] = false
       }
       if (val === "TRUE") {
-        formatted[SheetKeyMap[key]] = true
+        formatted[key] = true
       }
       if (!isNaN(parseFloat(val))) {
-        formatted[SheetKeyMap[key]] = parseFloat(val)
+        formatted[key] = parseFloat(val)
       }
-      if (val && !formatted[SheetKeyMap[key]]) {
-        formatted[SheetKeyMap[key]] = val
+      if (val && !formatted[key]) {
+        formatted[key] = val
       }
     }
     result.push(formatted as NodeParams)
