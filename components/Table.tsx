@@ -61,9 +61,9 @@ export default function Table() {
       <div className="mt-8 flex flex-col items-center">
         <div className="-my-2 overflow-x-auto max-w-[90vw] sm:max-w-full">
           <div className="inline-block min-w-full py-2 align-middle px-1">
-            <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+            <div className="overflow-x-hidden overflow-y-auto shadow ring-1 ring-black ring-opacity-5 md:rounded-lg max-h-[80vh]">
               <table className="min-w-full divide-y divide-gray-300">
-                <thead className="bg-gray-50 dark:bg-gray-700">
+                <thead className="bg-gray-50 dark:bg-indigo-800 sticky top-0">
                   <tr>
                     <th
                       scope="col"
@@ -73,7 +73,7 @@ export default function Table() {
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
+                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
                     >
                       <span title="24h Avg. Net POKT Rewards per 15,000 POKT">
                         24h Net (POKT)
@@ -81,7 +81,7 @@ export default function Table() {
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
+                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
                     >
                       <span title="6h Avg. Gross POKT Rewards per 15,000 POKT">
                         6h Gross (POKT)
@@ -89,7 +89,7 @@ export default function Table() {
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
+                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
                     >
                       <span title="24h Avg. Gross POKT Rewards per 15,000 POKT">
                         24h Gross (POKT)
@@ -97,7 +97,7 @@ export default function Table() {
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
+                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
                     >
                       <span title="48h Avg. Gross POKT Rewards per 15,000 POKT">
                         48h Gross (POKT)
@@ -106,25 +106,25 @@ export default function Table() {
 
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
+                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
                     >
                       Minimum Staking Amount (POKT)
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
+                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
                     >
                       Monthly Fee (USD)
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
+                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
                     >
                       Reward Share %
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 bg-white dark:bg-slate-900">
+                <tbody className="divide-y divide-gray-200 bg-white dark:bg-slate-700">
                   {data
                     .sort((a, b) => b.net - a.net)
                     .map(({ net, params, stats }, idx) => (
@@ -137,7 +137,7 @@ export default function Table() {
                               </span>
                               <div className="w-12 flex-shrink-0 items-center">
                                 {!!params.logo_url && (
-                                  <div className="w-12   bg-slate-500 p-2 rounded-full">
+                                  <div className="w-12 bg-slate-500 dark:bg-violet-500 p-2 rounded-full">
                                     <img
                                       className="w-full rounded-full"
                                       src={params.logo_url}
@@ -153,7 +153,7 @@ export default function Table() {
                               </div>
                             </div>
                           </a>
-                          <p className="mt-2">
+                          <p className="mt-2 flex gap-x-2">
                             {params.auto_compounding && (
                               <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">
                                 Auto-compounding
@@ -172,10 +172,10 @@ export default function Table() {
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
                           {stats?.avg_last_6_hours.toFixed(2) ?? "N/A"}
                         </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
+                        <td className="whitespace-nowrap text-center px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
                           {stats?.avg_last_24_hours.toFixed(2) ?? "N/A"}
                         </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
+                        <td className="whitespace-nowrap text-center px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
                           {stats?.avg_last_48_hours.toFixed(2) ?? "N/A"}
                         </td>
 
