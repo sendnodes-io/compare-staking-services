@@ -138,16 +138,19 @@ export default function Table() {
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {data
-                    .sort((d) => d.net)
-                    .map(({ net, params, stats }) => (
+                    .sort((a, b) => b.net - a.net)
+                    .map(({ net, params, stats }, idx) => (
                       <tr key={`tr-${JSON.stringify(params)}`}>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 ">
                           <a href={params.url} target="_blank" rel="nofollow">
                             <div className="flex items-center">
-                              <div className="w-10 flex-shrink-0 items-center">
+                              <span className="text-xl font-black inline-block mr-2">
+                                {idx + 1}.
+                              </span>
+                              <div className="w-14 flex-shrink-0 items-center">
                                 {!!params.logo_url && (
                                   <img
-                                    className="w-10 rounded-full"
+                                    className="w-14 rounded-full  bg-slate-500 p-2"
                                     src={params.logo_url}
                                     alt={params.name}
                                   />
