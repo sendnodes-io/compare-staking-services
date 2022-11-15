@@ -46,18 +46,6 @@ export default function Table() {
 
   return (
     <div className="px-4 sm:px-6 lg:px-8">
-      <div className="sm:flex sm:items-center">
-        <div className="sm:flex-auto">
-          <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-            Pocket Network Staking Services
-          </h1>
-          <p className="mt-2 text-sm text-gray-700 dark:text-gray-100">
-            A list of all Pocket Network staking services. This list breaks down
-            the services by their staking rewards, staking fees, and staking
-            minimums.
-          </p>
-        </div>
-      </div>
       <div className="mt-8 flex flex-col items-center">
         <div className="-my-2 overflow-x-auto max-w-[90vw] sm:max-w-full">
           <div className="inline-block min-w-full py-2 align-middle px-1">
@@ -167,23 +155,29 @@ export default function Table() {
                           </p>
                         </td>
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
-                          {net.toFixed(2) ?? "N/A"}
+                          {net.toFixed(2).toLocaleString() ?? "N/A"}
                         </td>
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
-                          {stats?.avg_last_6_hours.toFixed(2) ?? "N/A"}
+                          {stats?.avg_last_6_hours
+                            .toFixed(2)
+                            .toLocaleString() ?? "N/A"}
                         </td>
                         <td className="whitespace-nowrap text-center px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
-                          {stats?.avg_last_24_hours.toFixed(2) ?? "N/A"}
+                          {stats?.avg_last_24_hours
+                            .toFixed(2)
+                            .toLocaleString() ?? "N/A"}
                         </td>
                         <td className="whitespace-nowrap text-center px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
-                          {stats?.avg_last_48_hours.toFixed(2) ?? "N/A"}
+                          {stats?.avg_last_48_hours
+                            .toFixed(2)
+                            .toLocaleString() ?? "N/A"}
                         </td>
 
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
-                          {params.min_stake}
+                          {params.min_stake.toLocaleString()}
                         </td>
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
-                          ${params.monthly_fee}
+                          ${params.monthly_fee?.toLocaleString() ?? "N/A"}
                         </td>
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
                           {params.reward_share}%

@@ -1,8 +1,9 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
+import Description from "../components/Description";
+import Footer from "../components/Footer";
+import Header from "../components/Header";
 import Table from "../components/Table";
-import useCalculateNodeRunnerData from "../hooks/useCalculateNodeRunnerData";
 
 const Home: NextPage = () => {
   return (
@@ -29,18 +30,25 @@ const Home: NextPage = () => {
           </picture>
         </div>
       </div>
+
       <Head>
         <title>Compare Pocket Network Staking Services</title>
         <link rel="icon" href="/favicon.ico" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
+      <Header />
+
       <main className="w-full mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <Table />
+
+        <div className="mt-4 md:mt-8 lg:mt-12">
+          <Description />
+        </div>
       </main>
 
-      <footer className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-        {/* Content goes here */}
+      <footer className="w-full">
+        <Footer />
       </footer>
     </div>
   );
