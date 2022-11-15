@@ -33,7 +33,7 @@ const Home: NextPage = () => {
 
       <Head>
         <title>Compare Pocket Network Staking Services</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/logoart3x.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
