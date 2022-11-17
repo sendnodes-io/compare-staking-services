@@ -113,7 +113,7 @@ export function Example() {
                   For more info
                   <br />
                   <a
-                    href="https://t.me/poktrunners"
+                    href="https://t.me/CompareStakingServices"
                     className="inline-flex items-center rounded-md border border-transparent bg-[#1E91D6] px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                   >
                     <Icon icon="bxl:telegram" width={32} height={32} />
