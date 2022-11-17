@@ -106,7 +106,7 @@ export default function Table() {
                               </span>
                               <div className="w-12 flex-shrink-0 items-center">
                                 {!!params.logo_url && (
-                                  <div className="w-12 bg-slate-500 dark:bg-violet-500 p-2 rounded-full">
+                                  <div className="w-12 bg-slate-500 dark:bg-sky-500 p-2 rounded-full">
                                     <img
                                       className="w-full rounded-full"
                                       src={params.logo_url}

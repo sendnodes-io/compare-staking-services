@@ -29,7 +29,7 @@ export default function Description() {
                   y={0}
                   width={4}
                   height={4}
-                  className="text-gray-200 dark:text-violet-500 dark:opacity-50"
+                  className="text-gray-200 dark:text-sky-500 dark:opacity-50"
                   fill="currentColor"
                 />
               </pattern>
@@ -61,7 +61,7 @@ export default function Description() {
                   y={0}
                   width={4}
                   height={4}
-                  className="text-gray-200 dark:text-violet-500 dark:opacity-50"
+                  className="text-gray-200 dark:text-sky-500 dark:opacity-50"
                   fill="currentColor"
                 />
               </pattern>
@@ -93,7 +93,7 @@ export default function Description() {
                   y={0}
                   width={4}
                   height={4}
-                  className="text-gray-200 dark:text-violet-500 dark:opacity-50"
+                  className="text-gray-200 dark:text-sky-500 dark:opacity-50"
                   fill="currentColor"
                 />
               </pattern>
