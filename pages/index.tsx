@@ -8,29 +8,6 @@ import Table from "../components/Table";
 const Home: NextPage = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
-      <div className="absolute z-20 top-0 inset-x-0 flex justify-center overflow-hidden pointer-events-none">
-        <div className="w-[108rem] flex-none flex justify-end">
-          <picture>
-            <source srcSet="bg-light.avif" type="image/avif" />
-            <img
-              src="bg-light.png"
-              alt=""
-              className="w-[71.75rem] flex-none max-w-none dark:hidden"
-              decoding="async"
-            />
-          </picture>
-          <picture>
-            <source srcSet="bg-dark.png" type="image/avif" />
-            <img
-              src="bg-dark.png"
-              alt=""
-              className="w-[90rem] flex-none max-w-none hidden dark:block"
-              decoding="async"
-            />
-          </picture>
-        </div>
-      </div>
-
       <Head>
         <title>
           Compare Staking Services | Pocket Network Staking Services

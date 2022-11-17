@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 body {
-  @apply bg-sky-50 dark:bg-black  text-slate-300;
+  @apply bg-amber-50 dark:bg-black  text-neutral-300;
 }
 
 ::selection {
-  @apply bg-slate-500 text-white;
+  @apply bg-neutral-500 text-white;
 }
 
 /* width */
@@ -30,6 +30,6 @@ body::-webkit-scrollbar {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  @apply bg-gradient-to-b from-capri to-aqua hover:from-aqua hover:to-aqua;
+  @apply bg-gradient-to-b from-primary to-secondary hover:from-secondary hover:to-secondary;
   border-radius: 0.667rem;
 }

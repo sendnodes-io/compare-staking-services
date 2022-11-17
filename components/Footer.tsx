@@ -2,7 +2,7 @@ import { Icon } from "@iconify/react";
 
 export default function Footer() {
   return (
-    <footer className="bg-white dark:bg-slate-900">
+    <footer className="bg-white dark:bg-neutral-900">
       <div className="mx-auto max-w-7xl overflow-hidden py-12 px-4 sm:px-6 lg:px-8">
         <nav
           className="-mx-5 -my-2 flex flex-wrap justify-center items-center"

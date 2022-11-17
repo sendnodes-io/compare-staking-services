@@ -74,20 +74,20 @@ const faqs = [
 
 export default function Faq() {
   return (
-    <div className="bg-white dark:bg-slate-900 max-w-7xl mx-auto">
+    <div className="bg-white dark:bg-neutral-900 max-w-7xl mx-auto">
       <div className="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:py-20 lg:px-8">
         <div className="lg:grid lg:grid-cols-3 lg:gap-8">
           <div>
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
               Frequently asked questions
             </h2>
-            <div className="mt-4 text-lg  text-gray-500 dark:text-sky-100">
+            <div className="mt-4 text-lg  text-gray-500 dark:text-white">
               <p>
                 Information is incorrect? Can’t find the answer you’re looking
                 for? Reach out to our{" "}
                 <a
                   href={process.env.NEXT_PUBLIC_TELEGRAM_URL!}
-                  className="font-medium text-sky-600 hover:text-sky-500"
+                  className="font-medium text-amber-600 hover:text-amber-500"
                 >
                   customer support
                 </a>{" "}
@@ -130,7 +130,7 @@ export default function Faq() {
                   <dt className="text-lg font-medium leading-6 text-gray-900 dark:text-white">
                     {faq.question}
                   </dt>
-                  <dd className="mt-2 text-base text-gray-500 dark:text-sky-100">
+                  <dd className="mt-2 text-base text-gray-500 dark:text-white">
                     {faq.answer}
                   </dd>
                 </div>

@@ -48,7 +48,7 @@ export default function Table() {
           <div className="inline-block min-w-full py-2 align-middle px-1">
             <div className="overflow-x-hidden overflow-y-auto shadow ring-1 ring-black ring-opacity-5 md:rounded-lg max-h-[80vh]">
               <table className="min-w-full divide-y divide-gray-300">
-                <thead className="bg-gray-50 dark:bg-sky-800 sticky top-0">
+                <thead className="bg-gray-50 dark:bg-emerald-900 sticky top-0">
                   <tr>
                     <th
                       scope="col"
@@ -93,7 +93,7 @@ export default function Table() {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 bg-white dark:bg-slate-700">
+                <tbody className="divide-y divide-gray-200 bg-white dark:bg-neutral-700">
                   {data
                     .sort((a, b) => b.net - a.net)
                     .map(({ net, params, stats }, idx) => (
@@ -106,7 +106,7 @@ export default function Table() {
                               </span>
                               <div className="w-12 flex-shrink-0 items-center">
                                 {!!params.logo_url && (
-                                  <div className="w-12 bg-slate-500 dark:bg-sky-500 p-2 rounded-full">
+                                  <div className="w-12 bg-neutral-500 dark:bg-emerald-500 p-2 rounded-full">
                                     <img
                                       className="w-full rounded-full"
                                       src={params.logo_url}
