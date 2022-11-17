@@ -3,6 +3,33 @@
 @tailwind utilities;
 
 body {
-  /* @apply bg-indigo-50 text-slate-800 dark:bg-slate-900  dark:text-slate-300; */
-  @apply bg-slate-900  text-slate-300;
+  @apply bg-sky-50 dark:bg-black  text-slate-300;
+}
+
+::selection {
+  @apply bg-slate-500 text-white;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+  scrollbar-gutter: stable both-edges;
+}
+
+body::-webkit-scrollbar {
+  width: 0;
+  scrollbar-width: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 1px var(--eerie-black);
+  border-radius: 10px;
+  @apply cursor-pointer;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-capri to-aqua hover:from-aqua hover:to-aqua;
+  border-radius: 0.667rem;
 }

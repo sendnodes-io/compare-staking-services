@@ -7,7 +7,7 @@ import Table from "../components/Table";
 
 const Home: NextPage = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
+    <div className="flex min-h-screen flex-col items-center justify-center">
       <div className="absolute z-20 top-0 inset-x-0 flex justify-center overflow-hidden pointer-events-none">
         <div className="w-[108rem] flex-none flex justify-end">
           <picture>
@@ -32,17 +32,17 @@ const Home: NextPage = () => {
       </div>
 
       <Head>
-        <title>Compare Node Runners | Pocket Network Staking Services</title>
+        <title>
+          Compare Staking Services | Pocket Network Staking Services
+        </title>
         <link rel="icon" href="/logoart3x.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <Header />
+      <main className="w-full mx-auto">
+        <Header />
 
-      <main className="w-full mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-        <Table />
-
-        <div className="mt-4 md:mt-8 lg:mt-12">
+        <div className="">
           <Description />
         </div>
       </main>

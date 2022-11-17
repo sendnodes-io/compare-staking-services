@@ -2,7 +2,7 @@ import Faq from "./Faq";
 
 export default function Description() {
   return (
-    <div className="relative overflow-hidden bg-indigo-50 dark:bg-slate-900 py-16">
+    <div className="relative overflow-hidden bg-sky-50 dark:bg-slate-900 py-16">
       <div className="hidden lg:absolute lg:inset-y-0 lg:block lg:h-full lg:w-full lg:[overflow-anchor:none]">
         <div
           className="relative mx-auto h-full max-w-prose text-lg"
@@ -109,7 +109,7 @@ export default function Description() {
       <div className="relative px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-prose text-lg">
           <h1>
-            <span className="block text-center text-lg font-semibold text-indigo-600 dark:text-indigo-200">
+            <span className="block text-center text-lg font-semibold text-sky-600 dark:text-sky-200">
               Introducing
             </span>
             <span className="mt-2 block text-center text-3xl font-bold leading-8 tracking-tight text-gray-900 dark:text-white sm:text-4xl">
@@ -122,7 +122,7 @@ export default function Description() {
             DApps and their users with unstoppable Web3 access.
           </p>
         </div>
-        <div className="prose prose-lg prose-indigo mx-auto mt-6 text-gray-500 dark:text-gray-300">
+        <div className="prose prose-lg prose-sky mx-auto mt-6 text-gray-500 dark:text-gray-300">
           <Faq />
         </div>
       </div>

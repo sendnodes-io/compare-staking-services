@@ -13,11 +13,10 @@ const people = [
 
 export default function Table() {
   const { data, isLoading, error } = useCalculateNodeRunnerData();
-  console.log("data", data);
 
   if (error) {
     return (
-      <div className="rounded-md bg-yellow-50 p-8">
+      <div className="rounded-md bg-yellow-50 p-8 max-w-xl mx-auto mt-8">
         <div className="flex">
           <div className="flex-shrink-0">
             <ExclamationTriangleIcon
@@ -35,7 +34,7 @@ export default function Table() {
               <pre className="opacity-50 max-w-full overflow-x-auto py-4">
                 <span>// for the devs</span>
                 <br />
-                {error.toString()}
+                {error?.toString()}
               </pre>
             </div>
           </div>
@@ -44,14 +43,22 @@ export default function Table() {
     );
   }
 
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-64 mt-8">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900 dark:border-white"></div>
+      </div>
+    );
+  }
+
   return (
-    <div className="px-4 sm:px-6 lg:px-8">
+    <div className="px-4 sm:px-0">
       <div className="mt-8 flex flex-col items-center">
-        <div className="-my-2 overflow-x-auto max-w-[90vw] sm:max-w-full">
+        <div className="-my-2 overflow-x-auto sm:max-w-full">
           <div className="inline-block min-w-full py-2 align-middle px-1">
             <div className="overflow-x-hidden overflow-y-auto shadow ring-1 ring-black ring-opacity-5 md:rounded-lg max-h-[80vh]">
               <table className="min-w-full divide-y divide-gray-300">
-                <thead className="bg-gray-50 dark:bg-indigo-800 sticky top-0">
+                <thead className="bg-gray-50 dark:bg-sky-800 sticky top-0">
                   <tr>
                     <th
                       scope="col"
@@ -71,24 +78,8 @@ export default function Table() {
                       scope="col"
                       className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
                     >
-                      <span title="6h Avg. Gross POKT Rewards per 15,000 POKT">
-                        6h Gross (POKT)
-                      </span>
-                    </th>
-                    <th
-                      scope="col"
-                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
-                    >
                       <span title="24h Avg. Gross POKT Rewards per 15,000 POKT">
                         24h Gross (POKT)
-                      </span>
-                    </th>
-                    <th
-                      scope="col"
-                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
-                    >
-                      <span title="48h Avg. Gross POKT Rewards per 15,000 POKT">
-                        48h Gross (POKT)
                       </span>
                     </th>
 
@@ -157,22 +148,11 @@ export default function Table() {
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
                           {net.toFixed(2).toLocaleString() ?? "N/A"}
                         </td>
-                        <td className="whitespace-nowrap  text-center px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
-                          {stats?.avg_last_6_hours
-                            .toFixed(2)
-                            .toLocaleString() ?? "N/A"}
-                        </td>
                         <td className="whitespace-nowrap text-center px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
                           {stats?.avg_last_24_hours
                             .toFixed(2)
                             .toLocaleString() ?? "N/A"}
                         </td>
-                        <td className="whitespace-nowrap text-center px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
-                          {stats?.avg_last_48_hours
-                            .toFixed(2)
-                            .toLocaleString() ?? "N/A"}
-                        </td>
-
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
                           {params.min_stake.toLocaleString()}
                         </td>
