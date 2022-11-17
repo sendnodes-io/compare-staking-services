@@ -81,16 +81,18 @@ export default function Faq() {
             <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
               Frequently asked questions
             </h2>
-            <p className="mt-4 text-lg  text-gray-500 dark:text-sky-100">
-              Information is incorrect? Can’t find the answer you’re looking
-              for? Reach out to our{" "}
-              <a
-                href={process.env.NEXT_PUBLIC_TELEGRAM_URL!}
-                className="font-medium text-sky-600 hover:text-sky-500"
-              >
-                customer support
-              </a>{" "}
-              team below.
+            <div className="mt-4 text-lg  text-gray-500 dark:text-sky-100">
+              <p>
+                Information is incorrect? Can’t find the answer you’re looking
+                for? Reach out to our{" "}
+                <a
+                  href={process.env.NEXT_PUBLIC_TELEGRAM_URL!}
+                  className="font-medium text-sky-600 hover:text-sky-500"
+                >
+                  customer support
+                </a>{" "}
+                team below.
+              </p>
               <div className="flex gap-4 justify-center mt-4">
                 <a
                   href={process.env.NEXT_PUBLIC_TWITTER_URL!}
@@ -119,7 +121,7 @@ export default function Faq() {
                   <Icon icon="bxl:telegram" width={32} height={32} />
                 </a>
               </div>
-            </p>
+            </div>
           </div>
           <div className="mt-12 lg:col-span-2 lg:mt-0">
             <dl className="space-y-12">
