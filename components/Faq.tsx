@@ -74,7 +74,7 @@ const faqs = [
 
 export default function Faq() {
   return (
-    <div className="">
+    <div className="bg-white dark:bg-slate-900 max-w-7xl mx-auto">
       <div className="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:py-20 lg:px-8">
         <div className="lg:grid lg:grid-cols-3 lg:gap-8">
           <div>
