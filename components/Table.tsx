@@ -1,16 +1,6 @@
 import useCalculateNodeRunnerData from "../hooks/useCalculateNodeRunnerData";
 import { ExclamationTriangleIcon } from "@heroicons/react/20/solid";
 
-const people = [
-  {
-    name: "Lindsay Walton",
-    title: "Front-end Developer",
-    email: "lindsay.walton@example.com",
-    role: "Member",
-  },
-  // More people...
-];
-
 export default function Table() {
   const { data, isLoading, error } = useCalculateNodeRunnerData();
 
