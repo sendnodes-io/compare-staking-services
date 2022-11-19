@@ -12,7 +12,18 @@ const Home: NextPage = () => {
         <title>
           Compare Staking Services | Pocket Network Staking Services
         </title>
-        <link rel="icon" href="/logoart3x.png" />
+        <link rel="icon" href="/favicon.svg" />
+        <meta
+          property="og:title"
+          content="Compare Staking Services | Pocket Network Staking Services"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://comparestakingservices.com/" />
+        <meta
+          property="og:image"
+          content="https://comparestakingservices.com/logo-dual.svg"
+        />
+
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
