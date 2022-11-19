@@ -60,6 +60,7 @@ const faqs = [
           <li>Minimum Stake Amount</li>
           <li>Custodial vs Non-custodial</li>
           <li>Ease-of-staking and KYC</li>
+          <li>Insurance</li>
         </ul>
         <p className="my-2">
           Once you have decided on a staking service provider, you can click

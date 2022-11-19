@@ -1,5 +1,58 @@
 import Table from "./Table";
 
+const features = [
+  {
+    key: "feature_quick_unstake",
+    name: "Quick Unstake",
+    color: "bg-gray-100 text-gray-800",
+  },
+  {
+    key: "feature_non_custodial",
+    name: "Non-Custodial",
+    color: "bg-amber-100 text-amber-800",
+  },
+  {
+    key: "feature_one_click_staking",
+    name: "One-Click Staking",
+    color: "bg-lime-100 text-lime-800",
+  },
+  {
+    key: "feature_quick_unstake",
+    name: "Quick Unstake",
+    color: "bg-rose-100 text-rose-800",
+  },
+  {
+    key: "feature_transfer_stake",
+    name: "Transfer Stake",
+    color: "bg-sky-100 text-sky-800",
+  },
+  {
+    key: "feature_liquid_stake",
+    name: "Liquid Stake",
+    color: "bg-indigo-100 text-indigo-800",
+  },
+  {
+    key: "feature_dedicated_infra",
+    name: "Dedicated Infra",
+    color: "bg-purple-100 text-purple-800",
+  },
+  {
+    key: "feature_pool",
+    name: "Pool",
+    color: "bg-pink-100 text-pink-800",
+  },
+  {
+    key: "auto_compounding",
+    name: "Auto Compounding",
+    color: "bg-teal-100 text-teal-800",
+  },
+  {
+    key: "insurance",
+    name: "Insurance",
+    color: "bg-emerald-100 text-emerald-800",
+  },
+];
+
 export default function Header() {
   return (
     <div className="relative bg-white dark:bg-black w-full">
@@ -42,50 +95,50 @@ export default function Header() {
         />
       </div>
 
-      <div className="z-30 relative py-8 px-4 sm:py-6 md:py-24 min-h-[100vh] flex flex-col">
-        <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 sm:py-6 flex flex-col md:flex-row justify-between  items-center gap-x-12">
-          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl flex-shrink">
+      <div className="z-30 relative py-4 px-4 sm:py-4 min-h-[100vh] flex flex-col">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-x-12 gap-y-4">
+          <h1 className="text-4xl font-bold tracking-tight text-white flex-shrink">
             <svg
               width="364"
               height="163"
               viewBox="0 0 364 163"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="max-w-full"
+              className="max-w-full "
             >
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M110.301 50.0461C100.858 59.489 100.858 74.7989 110.301 84.2418L112.738 86.6784C114.934 88.8753 118.496 88.8753 120.693 86.6784C122.89 84.4816 122.89 80.9199 120.693 78.723L118.256 76.2864C113.207 71.2372 113.207 63.0508 118.256 58.0015L124.671 51.5872L116.715 43.6318L110.301 50.0461Z"
                 fill="url(#paint0_linear_16_15)"
               />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M123.046 37.3009C132.489 27.858 147.799 27.858 157.242 37.3009L159.678 39.7375C161.875 41.9343 161.875 45.496 159.678 47.6929C157.482 49.8897 153.92 49.8897 151.723 47.6929L149.286 45.2563C144.237 40.207 136.051 40.207 131.002 45.2563L124.587 51.6706L116.632 43.7152L123.046 37.3009Z"
                 fill="url(#paint1_linear_16_15)"
               />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M253.699 71.6635C263.142 62.2206 263.142 46.9107 253.699 37.4678L251.263 35.0312C249.066 32.8343 245.504 32.8343 243.307 35.0312C241.11 37.228 241.11 40.7897 243.307 42.9866L245.744 45.4232C250.793 50.4724 250.793 58.6589 245.744 63.7081L239.33 70.1224L247.285 78.0778L253.699 71.6635Z"
                 fill="url(#paint2_linear_16_15)"
               />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M240.954 84.4088C231.511 93.8517 216.201 93.8517 206.758 84.4088L204.322 81.9722C202.125 79.7754 202.125 76.2136 204.322 74.0168C206.519 71.82 210.08 71.82 212.277 74.0168L214.714 76.4534C219.763 81.5027 227.949 81.5027 232.999 76.4534L239.413 70.0391L247.368 77.9945L240.954 84.4088Z"
                 fill="url(#paint3_linear_16_15)"
               />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M188.589 45.883C198.032 36.4401 213.342 36.4401 222.785 45.883L229.345 52.443C231.542 54.6399 231.542 58.2016 229.345 60.3984C227.148 62.5953 223.587 62.5953 221.39 60.3984L214.83 53.8384C209.78 48.7891 201.594 48.7891 196.545 53.8384L185.965 64.4178L178.01 56.4624L188.589 45.883Z"
                 className="dark:fill-[#D2ECFE] fill-neutral-900"
               />
               <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
+                fillRule="evenodd"
+                clipRule="evenodd"
                 d="M175.456 74.9555C166.013 84.3984 150.703 84.3984 141.261 74.9555L134.659 68.3537C132.462 66.1569 132.462 62.5952 134.659 60.3983C136.856 58.2015 140.417 58.2015 142.614 60.3983L149.216 67.0001C154.265 72.0493 162.452 72.0493 167.501 67.0001L178.08 56.4206L186.036 64.376L175.456 74.9555Z"
                 className="dark:fill-[#D2ECFE] fill-neutral-900"
               />
@@ -110,8 +163,8 @@ export default function Header() {
                   y2="90.6561"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#FDD64B" />
-                  <stop offset="1" stop-color="#FDC04B" />
+                  <stop stopColor="#FDD64B" />
+                  <stop offset="1" stopColor="#FDC04B" />
                 </linearGradient>
                 <linearGradient
                   id="paint1_linear_16_15"
@@ -121,8 +174,8 @@ export default function Header() {
                   y2="90.6561"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#FDD64B" />
-                  <stop offset="1" stop-color="#FDC04B" />
+                  <stop stopColor="#FDD64B" />
+                  <stop offset="1" stopColor="#FDC04B" />
                 </linearGradient>
                 <linearGradient
                   id="paint2_linear_16_15"
@@ -132,8 +185,8 @@ export default function Header() {
                   y2="91.491"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#3E936F" />
-                  <stop offset="1" stop-color="#389E98" />
+                  <stop stopColor="#3E936F" />
+                  <stop offset="1" stopColor="#389E98" />
                 </linearGradient>
                 <linearGradient
                   id="paint3_linear_16_15"
@@ -143,20 +196,36 @@ export default function Header() {
                   y2="91.491"
                   gradientUnits="userSpaceOnUse"
                 >
-                  <stop stop-color="#3E936F" />
-                  <stop offset="1" stop-color="#389E98" />
+                  <stop stopColor="#3E936F" />
+                  <stop offset="1" stopColor="#389E98" />
                 </linearGradient>
               </defs>
             </svg>
           </h1>
-          <p className="mt-6 max-w-sm flex-shrink text-xl text-neutral-900 dark:text-white">
+          <p className="max-w-sm flex-shrink md:text-xl text-neutral-900 dark:text-white">
             A list of all Pocket Network staking services. This list breaks down
             the services by their staking rewards, staking fees, and staking
             minimums.
           </p>
         </div>
 
-        <div className="flex-1 flex-grow flex items-center justify-center w-full py-12 max-w-[1920px] mx-auto">
+        <div className="flex-1 flex-grow flex flex-col items-center justify-center w-full py-6 max-w-[1920px] mx-auto">
+          {/* <h2 className="text-lg my-2 text-neutral-900 dark:text-white">
+            Key Features
+          </h2>
+          <div className="max-w-3xl mx-auto sm:px-6 lg:px-8 ">
+            <ul className="flex flex-wrap gap-x-2 md:gap-x-3 gap-y-2 md:gap-y-3 items-center justify-center">
+              {features.map(({ key, name, color }) => (
+                <span
+                  key={key}
+                  className={`inline-flex items-center rounded px-2 py-0.5 text-xs md:text-md md:rounded-md md:px-4 md:py-2 font-medium ${color}`}
+                >
+                  {name}
+                </span>
+              ))}
+            </ul>
+          </div> */}
+
           <Table />
         </div>
       </div>

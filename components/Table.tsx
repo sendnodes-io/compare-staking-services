@@ -42,9 +42,9 @@ export default function Table() {
   }
 
   return (
-    <div className="px-4 sm:px-0">
-      <div className="mt-8 flex flex-col items-center">
-        <div className="-my-2 overflow-x-auto max-w-[90vw] sm:max-w-full">
+    <div className="px-4 sm:px-0 w-full">
+      <div className="mt-8 flex flex-col items-center w-full">
+        <div className="-my-2 overflow-x-auto max-w-[90vw] sm:max-w-full w-full md:max-w-7xl">
           <div className="inline-block min-w-full py-2 align-middle px-1">
             <div className="overflow-x-hidden overflow-y-auto shadow ring-1 ring-black ring-opacity-5 md:rounded-lg max-h-[80vh]">
               <table className="min-w-full divide-y divide-gray-300">
