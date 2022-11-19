@@ -1,0 +1,12 @@
+
+# pokt wallet is now send wallet
+[[redirects]]
+  from = "https://comparenoderunners.com/*"
+  to = "https://comparestakingservices.com/:splat"
+  status = 301
+  force = true
+[[redirects]]
+  from = "https://www.comparenoderunners.com/*"
+  to = "https://comparestakingservices.com/:splat"
+  status = 301
+  force = true
