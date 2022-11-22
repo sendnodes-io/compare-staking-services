@@ -13,7 +13,12 @@ export const features = [
     color: "bg-emerald-100 text-emerald-800",
     format(params: NodeParams) {
       return (
-        <a href={params.insurance_provider_url} target="_blank" rel="nofollow">
+        <a
+          href={params.insurance_provider_url}
+          target="_blank"
+          rel="nofollow"
+          className="underline"
+        >
           Insured by {params.insurance_provider_name}
         </a>
       );

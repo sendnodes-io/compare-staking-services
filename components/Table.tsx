@@ -53,19 +53,25 @@ export default function Table() {
                   <tr>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
+                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
                     >
-                      Name
+                      #
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
+                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
+                    >
+                      <span className="ml-12">Name</span>
+                    </th>
+                    <th
+                      scope="col"
+                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100"
                     >
                       Features
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
+                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100"
                     >
                       <span title="24h Avg. Net POKT Rewards per 15,000 POKT">
                         24h Net (POKT)
@@ -73,7 +79,7 @@ export default function Table() {
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
+                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100"
                     >
                       <span title="24h Avg. Gross POKT Rewards per 15,000 POKT">
                         24h Gross (POKT)
@@ -82,19 +88,19 @@ export default function Table() {
 
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
+                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100"
                     >
                       Minimum Staking Amount (POKT)
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
+                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100"
                     >
                       Monthly Fee (USD)
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
+                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-center text-sm font-semibold text-gray-900 dark:text-gray-100"
                     >
                       Reward Share %
                     </th>
@@ -106,11 +112,13 @@ export default function Table() {
                     .map(({ net, params, stats }, idx) => (
                       <tr key={`tr-${JSON.stringify(params)}`}>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-100 ">
+                          <span className="text-xl font-black inline-block mr-2">
+                            {idx + 1}.
+                          </span>
+                        </td>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-100 ">
                           <a href={params.url} target="_blank" rel="nofollow">
                             <div className="flex items-center justify-start gap-x-2">
-                              <span className="text-xl font-black inline-block mr-2">
-                                {idx + 1}.
-                              </span>
                               <div className="h-full w-12 flex-shrink-0 items-center">
                                 {!!params.logo_url && (
                                   <div className="h-10 w-10 bg-neutral-500 dark:bg-gray-500 rounded-full flex justify-center items-center">
@@ -131,7 +139,7 @@ export default function Table() {
                           </a>
                         </td>
                         <td className="whitespace-nowrap  text-left px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
-                          <p className="mt-2 flex gap-x-2 justify-end items-center">
+                          <p className="mt-2 flex gap-x-2 justify-center items-center">
                             {features.map(
                               ({ key, name, color, format }) =>
                                 key in params &&
