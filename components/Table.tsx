@@ -107,11 +107,11 @@ export default function Table() {
                       <tr key={`tr-${JSON.stringify(params)}`}>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500 dark:text-gray-100 ">
                           <a href={params.url} target="_blank" rel="nofollow">
-                            <div className="flex items-center">
+                            <div className="flex items-center justify-start gap-x-2">
                               <span className="text-xl font-black inline-block mr-2">
                                 {idx + 1}.
                               </span>
-                              <div className="h-full w-12 mx-auto flex-shrink-0 items-center">
+                              <div className="h-full w-12 flex-shrink-0 items-center">
                                 {!!params.logo_url && (
                                   <div className="h-10 w-10 bg-neutral-500 dark:bg-gray-500 rounded-full flex justify-center items-center">
                                     <img
@@ -122,7 +122,7 @@ export default function Table() {
                                   </div>
                                 )}
                               </div>
-                              <div className="ml-4">
+                              <div className="">
                                 <div className="font-medium text-gray-900 dark:text-gray-100">
                                   {params.name}
                                 </div>
@@ -133,7 +133,7 @@ export default function Table() {
                         <td className="whitespace-nowrap  text-left px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
                           <p className="mt-2 flex gap-x-2 justify-end items-center">
                             {features.map(
-                              ({ key, name, color }) =>
+                              ({ key, name, color, format }) =>
                                 key in params &&
                                 !!(params as any)[key] && (
                                   <div className="relative flex flex-col items-center group cursor-pointer">
@@ -142,11 +142,12 @@ export default function Table() {
                                       className={` inline-flex items-center rounded-full py-2 px-2 text-[0.5rem] font-medium ${color}`}
                                       title={name}
                                     ></span>
-                                    <div className="absolute bottom-0 flex-col items-center hidden mb-6 group-hover:flex ">
+                                    <div className="absolute bottom-0 flex-col items-center hidden mb-4 group-hover:flex ">
                                       <span
                                         className={`relative z-10 p-2 text-xs leading-none whitespace-no-wrap rounded-md shadow-lg ${color}`}
                                       >
-                                        {name}
+                                        {format && format(params)}
+                                        {!format && name}
                                       </span>
                                       <div
                                         className={`w-3 h-3 -mt-2 rotate-45 ${color}`}

@@ -10,6 +10,7 @@ export interface NodeParams {
   min_stake: number;
   reward_period: number;
   auto_compounding: boolean;
+  feature_insurance: boolean;
   insurance_provider_name?: string;
   insurance_provider_url?: string;
   url: string;

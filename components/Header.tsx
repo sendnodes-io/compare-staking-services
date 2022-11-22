@@ -1,4 +1,4 @@
-import { NodeParams } from "@/hooks/useNodeRunnerParams";
+import type { NodeParams } from "@/hooks/useNodeRunnerParams";
 import Table from "./Table";
 
 export const features = [
@@ -6,6 +6,18 @@ export const features = [
     key: "feature_quick_unstake",
     name: "Quick Unstake",
     color: "bg-gray-100 text-gray-800",
+  },
+  {
+    key: "feature_insurance",
+    name: "Insurance",
+    color: "bg-emerald-100 text-emerald-800",
+    format(params: NodeParams) {
+      return (
+        <a href={params.insurance_provider_url} target="_blank" rel="nofollow">
+          Insured by {params.insurance_provider_name}
+        </a>
+      );
+    },
   },
   {
     key: "feature_non_custodial",
@@ -41,11 +53,6 @@ export const features = [
     key: "auto_compounding",
     name: "Auto Compounding",
     color: "bg-teal-100 text-teal-800",
-  },
-  {
-    key: "insurance",
-    name: "Insurance",
-    color: "bg-emerald-100 text-emerald-800",
   },
 ];
 
