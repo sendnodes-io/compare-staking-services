@@ -1,6 +1,7 @@
+import { NodeParams } from "@/hooks/useNodeRunnerParams";
 import Table from "./Table";
 
-const features = [
+export const features = [
   {
     key: "feature_quick_unstake",
     name: "Quick Unstake",
@@ -12,14 +13,9 @@ const features = [
     color: "bg-amber-100 text-amber-800",
   },
   {
-    key: "feature_one_click_staking",
-    name: "One-Click Staking",
+    key: "feature_dapp_integration",
+    name: "Dapp Integration",
     color: "bg-lime-100 text-lime-800",
-  },
-  {
-    key: "feature_quick_unstake",
-    name: "Quick Unstake",
-    color: "bg-rose-100 text-rose-800",
   },
   {
     key: "feature_transfer_stake",
@@ -210,7 +206,7 @@ export default function Header() {
         </div>
 
         <div className="flex-1 flex-grow flex flex-col items-center justify-center w-full py-6 max-w-[1920px] mx-auto">
-          {/* <h2 className="text-lg my-2 text-neutral-900 dark:text-white">
+          <h2 className="text-lg my-2 text-neutral-900 dark:text-white">
             Key Features
           </h2>
           <div className="max-w-3xl mx-auto sm:px-6 lg:px-8 ">
@@ -224,7 +220,7 @@ export default function Header() {
                 </span>
               ))}
             </ul>
-          </div> */}
+          </div>
 
           <Table />
         </div>

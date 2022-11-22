@@ -1,5 +1,6 @@
 import useCalculateNodeRunnerData from "../hooks/useCalculateNodeRunnerData";
 import { ExclamationTriangleIcon } from "@heroicons/react/20/solid";
+import { features } from "./Header";
 
 export default function Table() {
   const { data, isLoading, error } = useCalculateNodeRunnerData();
@@ -47,14 +48,20 @@ export default function Table() {
         <div className="-my-2 overflow-x-auto max-w-[90vw] sm:max-w-full w-full md:max-w-7xl">
           <div className="inline-block min-w-full py-2 align-middle px-1">
             <div className="overflow-x-hidden overflow-y-auto shadow ring-1 ring-black ring-opacity-5 md:rounded-lg max-h-[80vh]">
-              <table className="min-w-full divide-y divide-gray-300">
-                <thead className="bg-gray-50 dark:bg-emerald-900 sticky top-0">
+              <table className="min-w-full divide-y divide-gray-300 relative z-10">
+                <thead className="bg-gray-50 dark:bg-gray-900 sticky top-0 z-10">
                   <tr>
                     <th
                       scope="col"
                       className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
                     >
                       Name
+                    </th>
+                    <th
+                      scope="col"
+                      className="sticky top-0 z-10 py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 dark:text-gray-100 sm:pl-6"
+                    >
+                      Features
                     </th>
                     <th
                       scope="col"
@@ -104,11 +111,11 @@ export default function Table() {
                               <span className="text-xl font-black inline-block mr-2">
                                 {idx + 1}.
                               </span>
-                              <div className="w-12 flex-shrink-0 items-center">
+                              <div className="h-full w-12 mx-auto flex-shrink-0 items-center">
                                 {!!params.logo_url && (
-                                  <div className="w-12 bg-neutral-500 dark:bg-emerald-500 p-2 rounded-full">
+                                  <div className="h-10 w-10 bg-neutral-500 dark:bg-gray-500 rounded-full flex justify-center items-center">
                                     <img
-                                      className="w-full rounded-full"
+                                      className="h-8 w-8 m-auto rounded-full object-center object-contain"
                                       src={params.logo_url}
                                       alt={params.name}
                                     />
@@ -122,16 +129,31 @@ export default function Table() {
                               </div>
                             </div>
                           </a>
-                          <p className="mt-2 flex gap-x-2">
-                            {params.auto_compounding && (
-                              <span className="inline-flex items-center rounded-full bg-green-100 px-2.5 py-0.5 text-xs font-medium text-green-800">
-                                Auto-compounding
-                              </span>
-                            )}
-                            {params.kyc && (
-                              <span className="inline-flex items-center rounded-full bg-yellow-100 px-2.5 py-0.5 text-xs font-medium text-yellow-800">
-                                Needs KYC
-                              </span>
+                        </td>
+                        <td className="whitespace-nowrap  text-left px-3 py-4 text-sm text-gray-900 dark:text-gray-100">
+                          <p className="mt-2 flex gap-x-2 justify-end items-center">
+                            {features.map(
+                              ({ key, name, color }) =>
+                                key in params &&
+                                !!(params as any)[key] && (
+                                  <div className="relative flex flex-col items-center group cursor-pointer">
+                                    <span
+                                      key={key}
+                                      className={` inline-flex items-center rounded-full py-2 px-2 text-[0.5rem] font-medium ${color}`}
+                                      title={name}
+                                    ></span>
+                                    <div className="absolute bottom-0 flex-col items-center hidden mb-6 group-hover:flex ">
+                                      <span
+                                        className={`relative z-10 p-2 text-xs leading-none whitespace-no-wrap rounded-md shadow-lg ${color}`}
+                                      >
+                                        {name}
+                                      </span>
+                                      <div
+                                        className={`w-3 h-3 -mt-2 rotate-45 ${color}`}
+                                      ></div>
+                                    </div>
+                                  </div>
+                                )
                             )}
                           </p>
                         </td>
