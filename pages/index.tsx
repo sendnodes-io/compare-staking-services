@@ -7,7 +7,7 @@ import Table from "../components/Table";
 
 const Home: NextPage = () => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center">
+    <div className="flex min-h-screen flex-col items-center justify-center relative">
       <Head>
         <title>
           Compare Staking Services | Pocket Network Staking Services
@@ -34,6 +34,8 @@ const Home: NextPage = () => {
           <Description />
         </div>
       </main>
+
+      <div className="fixed z-50 bottom-4 right-2"></div>
 
       <footer className="w-full">
         <Footer />

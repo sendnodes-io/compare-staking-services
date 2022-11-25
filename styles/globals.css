@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-amber-50 dark:bg-black  text-neutral-300;
+  @apply bg-[#ECEBE8] dark:bg-black  text-neutral-600 dark:text-neutral-200;
 }
 
 ::selection {
@@ -32,4 +32,51 @@ body::-webkit-scrollbar {
 ::-webkit-scrollbar-thumb {
   @apply bg-gradient-to-b from-primary to-secondary hover:from-secondary hover:to-secondary;
   border-radius: 0.667rem;
+}
+
+.tl_main_logo_wrap {
+  max-width: 44px;
+  margin: 0 auto;
+  padding: 20px 0 20px;
+}
+a.tl_main_logo {
+  display: block;
+  line-height: 0;
+  text-decoration: none !important;
+}
+svg.tl_main_logo,
+image.tl_main_logo,
+img.tl_main_logo {
+  display: block;
+  width: 44px;
+  height: 44px;
+  margin: 0 auto;
+}
+div.tl_main_logo {
+  display: block;
+  width: 44px;
+  height: 44px;
+  margin: -8px auto;
+  animation: 500ms steps(30) both;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+div.tl_main_logo.play {
+  animation-name: t-logo-play;
+}
+@-webkit-keyframes t-logo-play {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 0%;
+  }
+}
+@keyframes t-logo-play {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 0%;
+  }
 }
