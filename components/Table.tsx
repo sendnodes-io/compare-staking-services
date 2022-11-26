@@ -47,7 +47,7 @@ export default function Table() {
       <div className="mt-8 flex flex-col items-center w-full">
         <div className="-my-2 overflow-x-auto  sm:max-w-full sm:px-8 w-full max-w-[90vw] ">
           <div className="inline-block min-w-full py-2 align-middle px-1">
-            <div className="overflow-x-hidden overflow-y-auto shadow ring-1 ring-black ring-opacity-5 md:rounded-lg max-h-[80vh]">
+            <div className="overflow-x-hidden overflow-y-auto shadow ring-1 ring-black ring-opacity-5 rounded-lg max-h-[80vh]">
               <table className="min-w-full divide-y divide-gray-300 relative z-10">
                 <thead className="bg-gray-50 dark:bg-gray-900 sticky top-0 z-10 rounded-t-lg">
                   <tr>
@@ -118,12 +118,6 @@ export default function Table() {
                     >
                       Insurance
                     </th>
-                    <th
-                      scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold "
-                    >
-                      Features
-                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 ">
@@ -157,6 +151,48 @@ export default function Table() {
                                 <div className="font-medium ">
                                   {params.name}
                                 </div>
+                                <p className="mt-2 flex gap-x-2 items-center">
+                                  {features
+                                    .filter(
+                                      (f) =>
+                                        ![
+                                          "feature_dedicated_infra",
+                                          "feature_insurance",
+                                        ].includes(f.key)
+                                    )
+                                    .map(
+                                      ({
+                                        key,
+                                        name,
+                                        color,
+                                        format,
+                                        initials,
+                                      }) =>
+                                        key in params &&
+                                        !!(params as any)[key] && (
+                                          <div className="relative flex flex-col items-center group cursor-pointer">
+                                            <span
+                                              key={key}
+                                              className={` inline-flex items-center justify-center rounded-full h-5 w-5 text-[0.5rem] font-bold ${color}`}
+                                              title={name}
+                                            >
+                                              {initials}
+                                            </span>
+                                            <div className="absolute bottom-0 flex-col items-center hidden mb-4 group-hover:flex ">
+                                              <span
+                                                className={`relative z-10 p-2 text-xs leading-none whitespace-no-wrap rounded-md shadow-lg ${color}`}
+                                              >
+                                                {format && format(params)}
+                                                {!format && name}
+                                              </span>
+                                              <div
+                                                className={`w-3 h-3 -mt-2 rotate-45 ${color}`}
+                                              ></div>
+                                            </div>
+                                          </div>
+                                        )
+                                    )}
+                                </p>
                               </div>
                             </div>
                           </a>
@@ -196,44 +232,6 @@ export default function Table() {
                         <td className="whitespace-nowrap  text-left px-3 py-4 text-sm ">
                           <p className="mt-2 flex gap-x-2 justify-center items-center">
                             <SimpleCheck enabled={params.feature_insurance} />
-                          </p>
-                        </td>
-                        <td className="whitespace-nowrap  text-left px-3 py-4 text-sm ">
-                          <p className="mt-2 flex gap-x-2 justify-center items-center">
-                            {features
-                              .filter(
-                                (f) =>
-                                  ![
-                                    "feature_dedicated_infra",
-                                    "feature_insurance",
-                                  ].includes(f.key)
-                              )
-                              .map(
-                                ({ key, name, color, format, initials }) =>
-                                  key in params &&
-                                  !!(params as any)[key] && (
-                                    <div className="relative flex flex-col items-center group cursor-pointer">
-                                      <span
-                                        key={key}
-                                        className={` inline-flex items-center justify-center rounded-full h-5 w-5 text-center text-[0.5rem] font-bold ${color}`}
-                                        title={name}
-                                      >
-                                        {initials}
-                                      </span>
-                                      <div className="absolute bottom-0 flex-col items-center hidden mb-4 group-hover:flex ">
-                                        <span
-                                          className={`relative z-10 p-2 text-xs leading-none whitespace-no-wrap rounded-md shadow-lg ${color}`}
-                                        >
-                                          {format && format(params)}
-                                          {!format && name}
-                                        </span>
-                                        <div
-                                          className={`w-3 h-3 -mt-2 rotate-45 ${color}`}
-                                        ></div>
-                                      </div>
-                                    </div>
-                                  )
-                              )}
                           </p>
                         </td>
                       </tr>
