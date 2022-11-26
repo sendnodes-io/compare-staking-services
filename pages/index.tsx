@@ -17,6 +17,10 @@ const Home: NextPage = () => {
           property="og:title"
           content="Compare Staking Services | Pocket Network Staking Services"
         />
+        <meta
+          property="og:description"
+          content="A comparison of Pocket Network staking services. This list breaks down the services by their staking rewards, staking fees, and staking minimums."
+        />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://comparestakingservices.com/" />
         <meta
