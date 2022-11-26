@@ -5,13 +5,14 @@ export const features = [
   {
     key: "feature_quick_unstake",
     name: "Quick Unstake",
-    color: "bg-gray-100 dark:bg-gray-200 text-gray-800 dark:text-gray-900",
+    initials: "QU",
+    color: "bg-gray-200 text-gray-800 dark:text-gray-900",
   },
   {
     key: "feature_insurance",
     name: "Insurance",
-    color:
-      "bg-emerald-100 dark:bg-emerald-200 text-emerald-800 dark:text-emerald-900",
+    initials: "IN",
+    color: "bg-emerald-200 text-emerald-800 dark:text-emerald-900",
     format(params: NodeParams) {
       return (
         <a
@@ -28,45 +29,50 @@ export const features = [
   {
     key: "feature_non_custodial",
     name: "Non-Custodial",
-    color: "bg-amber-100 dark:bg-amber-200 text-amber-800 dark:text-amber-900",
+    initials: "NC",
+    color: "bg-amber-200 text-amber-800 dark:text-amber-900",
   },
   {
     key: "feature_dapp_integration",
     name: "Dapp Integration",
-    color: "bg-lime-100 dark:bg-lime-200 text-lime-800 dark:text-lime-900",
+    initials: "DI",
+    color: "bg-lime-200 text-lime-800 dark:text-lime-900",
   },
   {
     key: "feature_transfer_stake",
     name: "Transfer Stake",
-    color: "bg-sky-100 dark:bg-sky-200 text-sky-800 dark:text-sky-900",
+    initials: "TS",
+    color: "bg-sky-200 text-sky-800 dark:text-sky-900",
   },
   {
     key: "feature_liquid_stake",
     name: "Liquid Stake",
-    color:
-      "bg-indigo-100 dark:bg-indigo-200 text-indigo-800 dark:text-indigo-900",
+    initials: "LS",
+    color: "bg-indigo-200 text-indigo-800 dark:text-indigo-900",
   },
   {
     key: "feature_dedicated_infra",
     name: "Dedicated Infra",
-    color:
-      "bg-purple-100 dark:bg-purple-200 text-purple-800 dark:text-purple-900",
+    initials: "IA",
+    color: "bg-purple-200 text-purple-800 dark:text-purple-900",
   },
   {
     key: "feature_pool",
     name: "Pool",
-    color: "bg-pink-100 dark:bg-pink-200 text-pink-800 dark:text-pink-900",
+    initials: "P",
+    color: "bg-pink-200 text-pink-800 dark:text-pink-900",
   },
   {
     key: "auto_compounding",
     name: "Auto Compounding",
-    color: "bg-teal-100 dark:bg-teal-200 text-teal-800 dark:text-teal-900",
+    initials: "AC",
+    color: "bg-teal-200 text-teal-800 dark:text-teal-900",
   },
 ];
 
 export default function Header() {
   return (
-    <div className="relative bg-[#ECEBE8] dark:bg-zinc-900 w-full">
+    <div className="relative bg-[#ECEBE8] dark:bg-zinc-900 w-full ">
       <div className="absolute inset-0 w-screen">
         {/* <div className="absolute inset-x-0 top-[-10rem] z-20 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
           <svg
@@ -107,7 +113,7 @@ export default function Header() {
       </div>
 
       <div className="z-30 relative min-h-[100vh] flex flex-col">
-        <div className="bg-zinc-100 dark:bg-zinc-700 rounded-b-xl">
+        <div className="bg-zinc-100 dark:bg-zinc-700 rounded-b-xl shadow-lg">
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-between items-center sm:gap-x-12 gap-y-4 py-2">
             <h1 className="text-4xl font-bold tracking-tight text-white flex-shrink">
               <svg

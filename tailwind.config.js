@@ -9,6 +9,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      // variants: {
+      //   backgroundColor: ["even"]
+      // },
       fontFamily: {
         sans: ["Poppins", ...defaultTheme.fontFamily.sans],
         serif: ["Merriweather", "serif"],

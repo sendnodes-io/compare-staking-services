@@ -7,7 +7,7 @@ body {
 }
 
 ::selection {
-  @apply bg-neutral-500 text-white;
+  @apply bg-secondary bg-opacity-30 text-white;
 }
 
 /* width */
@@ -30,7 +30,7 @@ body::-webkit-scrollbar {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  @apply bg-gradient-to-b from-primary to-secondary hover:from-secondary hover:to-secondary;
+  @apply bg-gradient-to-b from-secondary to-[#ECEBE8] hover:from-secondary hover:to-secondary;
   border-radius: 0.667rem;
 }
 

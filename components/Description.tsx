@@ -29,7 +29,7 @@ export default function Description() {
                   y={0}
                   width={4}
                   height={4}
-                  className="text-yellow-500"
+                  className="text-yellow-300 dark:text-yellow-500"
                   fill="currentColor"
                 />
               </pattern>
@@ -61,7 +61,7 @@ export default function Description() {
                   y={0}
                   width={4}
                   height={4}
-                  className="text-yellow-500"
+                  className="text-yellow-300 dark:text-yellow-500"
                   fill="currentColor"
                 />
               </pattern>
@@ -93,7 +93,7 @@ export default function Description() {
                   y={0}
                   width={4}
                   height={4}
-                  className="text-yellow-500"
+                  className="text-yellow-300 dark:text-yellow-500"
                   fill="currentColor"
                 />
               </pattern>
