@@ -66,7 +66,7 @@ export const features = [
 
 export default function Header() {
   return (
-    <div className="relative bg-[#ECEBE8] dark:bg-zinc-700 w-full">
+    <div className="relative bg-[#ECEBE8] dark:bg-zinc-900 w-full">
       <div className="absolute inset-0 w-screen">
         {/* <div className="absolute inset-x-0 top-[-10rem] z-20 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
           <svg
@@ -107,7 +107,7 @@ export default function Header() {
       </div>
 
       <div className="z-30 relative min-h-[100vh] flex flex-col">
-        <div className="bg-zinc-100 dark:bg-zinc-500 rounded-b-xl">
+        <div className="bg-zinc-100 dark:bg-zinc-700 rounded-b-xl">
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-between items-center sm:gap-x-12 gap-y-4 py-2">
             <h1 className="text-4xl font-bold tracking-tight text-white flex-shrink">
               <svg
@@ -234,8 +234,8 @@ export default function Header() {
         </div>
 
         <div className="flex-1 flex-grow items-center justify-between w-full py-6 max-w-[1920px] mx-auto">
-          <div className="flex flex-col sm:flex-row justify-between divide-x-2 divide-solid divide-neutral-400 max-w-7xl mx-auto">
-            <div className="sm:w-1/2 mx-auto sm:px-6 lg:px-8 flex-shrink">
+          <div className="flex flex-col sm:flex-row justify-between divide-x-2 divide-solid divide-neutral-400 max-w-7xl mx-auto py-4 md:py-6">
+            <div className="sm:w-1/2 mx-auto sm:px-6 lg:px-8  flex-shrink">
               <h2 className="text-lg sm:text-xl my-2 font-bold">
                 <img
                   src="/pokt-icon.png"
