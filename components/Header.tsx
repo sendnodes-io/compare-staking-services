@@ -184,8 +184,8 @@ export default function Header() {
                       y2="32.0289"
                       gradientUnits="userSpaceOnUse"
                     >
-                      <stop stop-color="#FDD64B" />
-                      <stop offset="1" stop-color="#FDC04B" />
+                      <stop stopColor="#FDD64B" />
+                      <stop offset="1" stopColor="#FDC04B" />
                     </linearGradient>
                     <linearGradient
                       id="paint1_linear_25_313"
@@ -195,8 +195,8 @@ export default function Header() {
                       y2="32.0289"
                       gradientUnits="userSpaceOnUse"
                     >
-                      <stop stop-color="#FDD64B" />
-                      <stop offset="1" stop-color="#FDC04B" />
+                      <stop stopColor="#FDD64B" />
+                      <stop offset="1" stopColor="#FDC04B" />
                     </linearGradient>
                     <linearGradient
                       id="paint2_linear_25_313"
@@ -206,8 +206,8 @@ export default function Header() {
                       y2="32.3237"
                       gradientUnits="userSpaceOnUse"
                     >
-                      <stop stop-color="#3E936F" />
-                      <stop offset="1" stop-color="#389E98" />
+                      <stop stopColor="#3E936F" />
+                      <stop offset="1" stopColor="#389E98" />
                     </linearGradient>
                     <linearGradient
                       id="paint3_linear_25_313"
@@ -217,8 +217,8 @@ export default function Header() {
                       y2="32.3237"
                       gradientUnits="userSpaceOnUse"
                     >
-                      <stop stop-color="#3E936F" />
-                      <stop offset="1" stop-color="#389E98" />
+                      <stop stopColor="#3E936F" />
+                      <stop offset="1" stopColor="#389E98" />
                     </linearGradient>
                   </defs>
                 </svg>

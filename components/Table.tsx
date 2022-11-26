@@ -97,7 +97,7 @@ export default function Table() {
                       scope="col"
                       className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold "
                     >
-                      Reward Share (POKT) % per Tranche
+                      Commission (POKT) % per Tranche
                     </th>
 
                     <th
