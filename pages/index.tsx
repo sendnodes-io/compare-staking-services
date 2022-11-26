@@ -3,7 +3,6 @@ import Head from "next/head";
 import Description from "../components/Description";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import Table from "../components/Table";
 
 const Home: NextPage = () => {
   return (
