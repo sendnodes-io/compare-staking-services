@@ -114,7 +114,7 @@ export default function Header() {
 
       <div className="z-30 relative min-h-[100vh] flex flex-col">
         <div className="bg-zinc-100 notdark:bg-zinc-700 rounded-b-xl shadow-lg">
-          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-between items-center sm:gap-x-12 gap-y-4 py-2">
+          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-between items-center sm:gap-x-12 gap-y-4 py-4">
             <a
               href="/"
               className="flex items-center justify-self-center ml-auto mr-4 sm:m-0"
@@ -126,6 +126,7 @@ export default function Header() {
                   viewBox="0 0 367 43"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  className="w-4/5 max-w-xs h-auto"
                 >
                   <path
                     fill-rule="evenodd"
