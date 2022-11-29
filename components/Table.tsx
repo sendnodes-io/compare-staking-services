@@ -1,5 +1,8 @@
 import useCalculateNodeRunnerData from "../hooks/useCalculateNodeRunnerData";
-import { ExclamationTriangleIcon } from "@heroicons/react/20/solid";
+import {
+  ExclamationTriangleIcon,
+  ArrowTopRightOnSquareIcon,
+} from "@heroicons/react/20/solid";
 import { features } from "./Header";
 
 export default function Table() {
@@ -37,7 +40,7 @@ export default function Table() {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-64 mt-8">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900 dark:border-white"></div>
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900 notdark:border-white"></div>
       </div>
     );
   }
@@ -49,13 +52,13 @@ export default function Table() {
           <div className="inline-block min-w-full py-2 align-middle px-1">
             <div className="overflow-x-hidden overflow-y-auto shadow ring-1 ring-black ring-opacity-5 rounded-lg max-h-[80vh]">
               <table className="min-w-full divide-y divide-gray-300 relative z-10">
-                <thead className="bg-gray-50 dark:bg-gray-900 sticky top-0 z-10 rounded-t-lg">
+                <thead className="bg-gray-50 notdark:bg-gray-900 sticky top-0 z-10 rounded-t-lg">
                   <tr>
                     <th
                       scope="col"
                       className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-left text-sm font-bold "
                     >
-                      #
+                      &nbsp;
                     </th>
                     <th
                       scope="col"
@@ -66,7 +69,7 @@ export default function Table() {
 
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-[#3A9C90] dark:text-[#3A9C90]"
+                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-[#3A9C90] notdark:text-[#3A9C90]"
                     >
                       <span title="24h Avg. Net POKT Rewards per 15,000 POKT">
                         24h Net (POKT)
@@ -126,76 +129,71 @@ export default function Table() {
                     .map(({ net, params, stats }, idx) => (
                       <tr
                         key={`tr-${JSON.stringify(params)}`}
-                        className="odd:bg-white even:bg-[#FAFAF7] dark:odd:bg-zinc-800 dark:even:bg-neutral-900"
+                        className="odd:bg-white even:bg-[#FAFAF7] notdark:odd:bg-zinc-800 notdark:even:bg-neutral-900"
                       >
                         <td className="bg-inherit whitespace-nowrap px-3 py-4 text-sm ">
-                          <span className="text-xl font-black inline-block mr-2">
-                            {idx + 1}.
-                          </span>
+                          <a href={params.url} target="_blank" rel="nofollow">
+                            <span className="text-xl font-black inline-block mr-2">
+                              <ArrowTopRightOnSquareIcon
+                                className="h-5 w-5 text-neutral-400"
+                                aria-hidden="true"
+                              />
+                            </span>
+                          </a>
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm ">
-                          <a href={params.url} target="_blank" rel="nofollow">
-                            <div className="flex items-center justify-start gap-x-2">
-                              <div className="h-full w-12 flex-shrink-0 items-center">
-                                {!!params.logo_url && (
-                                  <div className="h-12 w-12 bg-neutral-500 rounded-full flex justify-center items-center">
-                                    <img
-                                      className="h-10 w-10 m-auto rounded-full object-center object-contain"
-                                      src={params.logo_url}
-                                      alt={params.name}
-                                    />
-                                  </div>
-                                )}
-                              </div>
-                              <div className="">
-                                <div className="font-medium ">
-                                  {params.name}
+                          <div className="flex items-center justify-start gap-x-2">
+                            <div className="h-full w-12 flex-shrink-0 items-center">
+                              {!!params.logo_url && (
+                                <div className="h-12 w-12 bg-neutral-500 rounded-full flex justify-center items-center">
+                                  <img
+                                    className="h-10 w-10 m-auto rounded-full object-center object-contain"
+                                    src={params.logo_url}
+                                    alt={params.name}
+                                  />
                                 </div>
-                                <p className="mt-2 flex gap-x-2 items-center">
-                                  {features
-                                    .filter(
-                                      (f) =>
-                                        ![
-                                          "feature_dedicated_infra",
-                                          "feature_insurance",
-                                        ].includes(f.key)
-                                    )
-                                    .map(
-                                      ({
-                                        key,
-                                        name,
-                                        color,
-                                        format,
-                                        initials,
-                                      }) =>
-                                        key in params &&
-                                        !!(params as any)[key] && (
-                                          <div className="relative flex flex-col items-center group cursor-pointer">
-                                            <span
-                                              key={key}
-                                              className={` inline-flex items-center justify-center rounded-full h-5 w-5 text-[0.5rem] font-bold ${color}`}
-                                              title={name}
-                                            >
-                                              {initials}
-                                            </span>
-                                            <div className="absolute bottom-0 flex-col items-center hidden mb-4 group-hover:flex ">
-                                              <span
-                                                className={`relative z-10 p-2 text-xs leading-none whitespace-no-wrap rounded-md shadow-lg ${color}`}
-                                              >
-                                                {format && format(params)}
-                                                {!format && name}
-                                              </span>
-                                              <div
-                                                className={`w-3 h-3 -mt-2 rotate-45 ${color}`}
-                                              ></div>
-                                            </div>
-                                          </div>
-                                        )
-                                    )}
-                                </p>
-                              </div>
+                              )}
                             </div>
-                          </a>
+                            <div className="">
+                              <div className="font-medium ">{params.name}</div>
+                              <p className="mt-2 flex gap-x-2 items-center">
+                                {features
+                                  .filter(
+                                    (f) =>
+                                      ![
+                                        "feature_dedicated_infra",
+                                        "feature_insurance",
+                                      ].includes(f.key)
+                                  )
+                                  .map(
+                                    ({ key, name, color, format, initials }) =>
+                                      key in params &&
+                                      !!(params as any)[key] && (
+                                        <div className="relative flex flex-col items-center group cursor-pointer">
+                                          <span
+                                            key={key}
+                                            className={` inline-flex items-center justify-center rounded-full h-5 w-5 text-[0.5rem] font-bold ${color}`}
+                                            title={name}
+                                          >
+                                            {initials}
+                                          </span>
+                                          <div className="absolute bottom-0 flex-col items-center hidden mb-4 group-hover:flex ">
+                                            <span
+                                              className={`relative z-10 p-2 text-xs leading-none whitespace-no-wrap rounded-md shadow-lg ${color}`}
+                                            >
+                                              {format && format(params)}
+                                              {!format && name}
+                                            </span>
+                                            <div
+                                              className={`w-3 h-3 -mt-2 rotate-45 ${color}`}
+                                            ></div>
+                                          </div>
+                                        </div>
+                                      )
+                                  )}
+                              </p>
+                            </div>
+                          </div>
                         </td>
 
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-sm ">

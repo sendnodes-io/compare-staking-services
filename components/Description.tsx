@@ -2,7 +2,7 @@ import Faq from "./Faq";
 
 export default function Description() {
   return (
-    <div className="relative overflow-hidden bg-[#ECEBE8] dark:bg-zinc-900 py-16">
+    <div className="relative overflow-hidden bg-[#ECEBE8] notdark:bg-zinc-900 py-16">
       <div className="hidden lg:absolute lg:inset-y-0 lg:block lg:h-full lg:w-full lg:[overflow-anchor:none]">
         <div
           className="relative mx-auto h-full max-w-prose text-lg"
@@ -29,7 +29,7 @@ export default function Description() {
                   y={0}
                   width={4}
                   height={4}
-                  className="text-yellow-300 dark:text-yellow-500"
+                  className="text-yellow-300 notdark:text-yellow-500"
                   fill="currentColor"
                 />
               </pattern>
@@ -61,7 +61,7 @@ export default function Description() {
                   y={0}
                   width={4}
                   height={4}
-                  className="text-yellow-300 dark:text-yellow-500"
+                  className="text-yellow-300 notdark:text-yellow-500"
                   fill="currentColor"
                 />
               </pattern>
@@ -93,7 +93,7 @@ export default function Description() {
                   y={0}
                   width={4}
                   height={4}
-                  className="text-yellow-300 dark:text-yellow-500"
+                  className="text-yellow-300 notdark:text-yellow-500"
                   fill="currentColor"
                 />
               </pattern>

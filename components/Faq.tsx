@@ -107,7 +107,7 @@ const faqs = [
 
 export default function Faq() {
   return (
-    <div className="bg-[#ECEBE8] dark:bg-zinc-900 max-w-7xl mx-auto">
+    <div className="bg-[#ECEBE8] notdark:bg-zinc-900 max-w-7xl mx-auto">
       <div className="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:py-20 lg:px-8 relative">
         <div className="lg:grid lg:grid-cols-3 lg:gap-8 relative ">
           <div className="">

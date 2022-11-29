@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 body {
-  @apply bg-[#ECEBE8] dark:bg-zinc-900  text-neutral-600 dark:text-neutral-200;
+  /* notdark:bg-zinc-900 notdark:text-neutral-200 */
+  @apply bg-[#ECEBE8] text-neutral-600;
 }
 
 ::selection {
