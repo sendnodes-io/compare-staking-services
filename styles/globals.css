@@ -3,6 +3,81 @@
 @tailwind utilities;
 
 body {
-  /* @apply bg-indigo-50 text-slate-800 dark:bg-slate-900  dark:text-slate-300; */
-  @apply bg-neutral-900  text-slate-300;
+  /* notdark:bg-zinc-900 notdark:text-neutral-200 */
+  @apply bg-[#ECEBE8] text-neutral-600;
+}
+
+::selection {
+  @apply bg-secondary bg-opacity-30 text-white;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+  scrollbar-gutter: stable both-edges;
+}
+
+body::-webkit-scrollbar {
+  width: 0;
+  scrollbar-width: 0;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 1px var(--eerie-black);
+  border-radius: 10px;
+  @apply cursor-pointer;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-gradient-to-b from-secondary to-[#ECEBE8] hover:from-secondary hover:to-secondary;
+  border-radius: 0.667rem;
+}
+
+.tl_main_logo_wrap {
+  max-width: 44px;
+  margin: 0 auto;
+  padding: 20px 0 20px;
+}
+a.tl_main_logo {
+  display: block;
+  line-height: 0;
+  text-decoration: none !important;
+}
+svg.tl_main_logo,
+image.tl_main_logo,
+img.tl_main_logo {
+  display: block;
+  width: 44px;
+  height: 44px;
+  margin: 0 auto;
+}
+div.tl_main_logo {
+  display: block;
+  width: 44px;
+  height: 44px;
+  margin: -8px auto;
+  animation: 500ms steps(30) both;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+div.tl_main_logo.play {
+  animation-name: t-logo-play;
+}
+@-webkit-keyframes t-logo-play {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 0%;
+  }
+}
+@keyframes t-logo-play {
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 0%;
+  }
 }

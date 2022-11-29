@@ -28,6 +28,11 @@ const faqs = [
     question: "How do I stake with Pocket Network?",
     answer: (
       <>
+        <p className="my-2">
+          POKT staking is a process that allows you to earn rewards for serving
+          relays on the Pocket Network. You can either stake your POKT on your
+          own node or with a staking service provider of your choice.
+        </p>
         <div className="rounded-md bg-yellow-50 p-4 my-2">
           <div className="flex">
             <div className="flex-shrink-0">
@@ -60,6 +65,7 @@ const faqs = [
           <li>Minimum Stake Amount</li>
           <li>Custodial vs Non-custodial</li>
           <li>Ease-of-staking and KYC</li>
+          <li>Insurance</li>
         </ul>
         <p className="my-2">
           Once you have decided on a staking service provider, you can click
@@ -69,28 +75,57 @@ const faqs = [
       </>
     ),
   },
+  {
+    question: "Whats the difference between gross and net rewards?",
+    answer: (
+      <>
+        <p>
+          Gross rewards are the rewards that the staking service provider earns
+          from their nodes.
+        </p>
+        <p>
+          Net rewards are the rewards that the staking service provider actually
+          pays out to the staker per tranche.
+        </p>
+      </>
+    ),
+  },
+  {
+    question: "Why are some staking services not listed?",
+    answer: (
+      <>
+        <p>
+          We included the top staking services that we could find. If you think
+          a staking service should be included, please reach out to us on
+          Telegram.
+        </p>
+      </>
+    ),
+  },
   // More questions...
 ];
 
 export default function Faq() {
   return (
-    <div className="bg-white dark:bg-slate-900">
-      <div className="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:py-20 lg:px-8">
-        <div className="lg:grid lg:grid-cols-3 lg:gap-8">
-          <div>
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
+    <div className="bg-[#ECEBE8] notdark:bg-zinc-900 max-w-7xl mx-auto">
+      <div className="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:py-20 lg:px-8 relative">
+        <div className="lg:grid lg:grid-cols-3 lg:gap-8 relative ">
+          <div className="">
+            <h2 className="text-3xl font-bold tracking-tight ">
               Frequently asked questions
             </h2>
-            <p className="mt-4 text-lg  text-gray-500 dark:text-indigo-100">
-              Information is incorrect? Can’t find the answer you’re looking
-              for? Reach out to our{" "}
-              <a
-                href={process.env.NEXT_PUBLIC_TELEGRAM_URL!}
-                className="font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                customer support
-              </a>{" "}
-              team below.
+            <div className="mt-4 text-lg  ">
+              <p>
+                Information is incorrect? Can’t find the answer you’re looking
+                for? Reach out to our{" "}
+                <a
+                  href={process.env.NEXT_PUBLIC_TELEGRAM_URL!}
+                  className="font-medium text-yellow-500 hover:text-yellow-600"
+                >
+                  customer support
+                </a>{" "}
+                team below.
+              </p>
               <div className="flex gap-4 justify-center mt-4">
                 <a
                   href={process.env.NEXT_PUBLIC_TWITTER_URL!}
@@ -119,18 +154,16 @@ export default function Faq() {
                   <Icon icon="bxl:telegram" width={32} height={32} />
                 </a>
               </div>
-            </p>
+            </div>
           </div>
           <div className="mt-12 lg:col-span-2 lg:mt-0">
             <dl className="space-y-12">
               {faqs.map((faq) => (
                 <div key={faq.question}>
-                  <dt className="text-lg font-medium leading-6 text-gray-900 dark:text-white">
+                  <dt className="text-lg font-medium leading-6">
                     {faq.question}
                   </dt>
-                  <dd className="mt-2 text-base text-gray-500 dark:text-indigo-100">
-                    {faq.answer}
-                  </dd>
+                  <dd className="mt-2 text-base">{faq.answer}</dd>
                 </div>
               ))}
             </dl>

@@ -36,8 +36,12 @@ export default function useCalculateNodeRunnerData() {
       const param = params.data[i];
       const stat = statMap.get(param.runner_domain);
       if (param.net_rewards) {
+        if (stat && param.gross_rewards) {
+          stat.avg_last_24_hours = param.gross_rewards
+        }
         data.push({
           net: param.net_rewards,
+          stats: stat,
           params: param,
         });
       } else if (stat) {
