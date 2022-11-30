@@ -17,7 +17,7 @@ Information is incorrect? Can’t find the answer you’re looking for? Reach ou
 
 ## 👩🏻‍💻 Contributing
 
-SendNodes, Inc. is looking for amazing contributors to make SendWallet the best browser extension wallet. Feel free to fork the repo and start shipping code! For the latest news on our roadmap and milestones, please join our Discord server.
+SendNodes, Inc. is looking for amazing contributors. Feel free to fork the repo and start shipping code! For the latest news on our roadmap and milestones, please join our Discord server.
 
 ## 👷‍♀️ Building
 
