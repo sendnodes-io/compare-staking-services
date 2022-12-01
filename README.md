@@ -1,27 +1,33 @@
-# Next.js + Tailwind CSS Example
+<img src="public/logo-dual.svg" width="760" alt="Compare Staking Services" />
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.2)](https://tailwindcss.com/blog/tailwindcss-v3-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+# Compare Staking Services
 
-## Deploy your own
+Pocket Network Staking Services
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+A comparison of Pocket Network staking services. This list breaks down the services by their staking rewards, staking fees, and staking minimums.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+> 💁‍♀️ Learn more about Pocket Network at [pokt.network](https://pokt.network).
 
-## How to use
+## 🙋‍♀️ First time here?
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+Information is incorrect? Can’t find the answer you’re looking for? Reach out to our customer support team below.
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
+- [Twitter](https://t.me/CompareStakingServices)
+- [Discord](https://discord.gg/TmfYqaXzGb)
+
+## 👩🏻‍💻 Contributing
+
+SendNodes, Inc. is looking for amazing contributors. Feel free to fork the repo and start shipping code! For the latest news on our roadmap and milestones, please join our Discord server.
+
+## 👷‍♀️ Building
+
+You'll need a few tools to get started.
+
+- NodeJS LTS
+- PNPM
+
+```sh
+npm i -g pnpm
+pnpm i
+pnpm dev
 ```
-
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).

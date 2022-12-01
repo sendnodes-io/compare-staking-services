@@ -205,7 +205,7 @@ export default function Table() {
                             .toLocaleString() ?? "N/A"}
                         </td>
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-sm ">
-                          {params.min_stake.toLocaleString()}
+                          {params.min_stake?.toLocaleString()}
                         </td>
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-sm ">
                           ${params.monthly_fee?.toLocaleString() ?? "N/A"}
