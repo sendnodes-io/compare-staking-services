@@ -211,8 +211,9 @@ export default function Table() {
                           ${params.monthly_fee?.toLocaleString() ?? "N/A"}
                         </td>
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-sm ">
-                          {params.reward_share && `${params.reward_share}%`}
-                          {!params.reward_share && "N/A"}
+                          {params.reward_share !== undefined &&
+                            `${params.reward_share}%`}
+                          {params.reward_share === undefined && "N/A"}
                         </td>
 
                         <td className="whitespace-nowrap  text-left px-3 py-4 text-sm ">
