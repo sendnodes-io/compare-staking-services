@@ -208,7 +208,9 @@ export default function Table() {
                           {params.min_stake?.toLocaleString()}
                         </td>
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-sm ">
-                          ${params.monthly_fee?.toLocaleString() ?? "N/A"}
+                          {params.monthly_fee !== undefined &&
+                            `\$${params.monthly_fee?.toLocaleString()}`}
+                          {params.monthly_fee === undefined && "N/A"}
                         </td>
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-sm ">
                           {params.reward_share !== undefined &&
