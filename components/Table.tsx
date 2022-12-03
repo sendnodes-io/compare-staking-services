@@ -376,7 +376,7 @@ function VerifiedBadge({verified}: { verified: boolean }) {
                                             <span
                                                 className={`relative z-10 p-2 text-xs leading-none whitespace-no-wrap rounded-md shadow-lg ${verified && `bg-green-100`} ${!verified && `bg-gray-100`}`}
                                             >
-                                              {verified ? 'Verified' : 'Unverified'}
+                                              {verified ? 'Verified' : 'Data not verified'}
                                             </span>
                 <div
                     className={`w-3 h-3 -mt-2 rotate-45 ${verified && `bg-green-100`} ${!verified && `bg-gray-100`}`}
@@ -392,7 +392,7 @@ function VerifiedBadge({verified}: { verified: boolean }) {
             </div>
             <div className="mt-3 text-center sm:mt-5">
                 <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                    {verified ? 'Verified' : 'Unverified'}
+                    {verified ? 'Verified' : 'Data not verified'}
                 </Dialog.Title>
                 <div className="mt-2">
                     <p className="text-sm text-gray-500">
