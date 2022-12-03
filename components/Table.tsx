@@ -2,8 +2,14 @@ import useCalculateNodeRunnerData from "../hooks/useCalculateNodeRunnerData";
 import {
   ExclamationTriangleIcon,
   ArrowTopRightOnSquareIcon,
+  CheckBadgeIcon,
 } from "@heroicons/react/20/solid";
-import { features } from "./Header";
+import { Feature, features } from "./Header";
+import { useState } from "react";
+import Modal from "@/components/Modal";
+import { Dialog } from "@headlessui/react";
+import { NodeParams } from "@/hooks/useNodeRunnerParams";
+import QuestionMarkCircleIcon from "@heroicons/react/24/outline/QuestionMarkCircleIcon";
 
 export default function Table() {
   const { data, isLoading, error } = useCalculateNodeRunnerData();
@@ -72,7 +78,7 @@ export default function Table() {
                       className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-[#3A9C90] notdark:text-[#3A9C90]"
                     >
                       <span title="24h Avg. Net POKT Rewards per 15,000 POKT">
-                        24h Net (POKT)
+                        24h Avg. Net POKT Rewards per 15,000 POKT
                       </span>
                     </th>
                     <th
@@ -80,7 +86,7 @@ export default function Table() {
                       className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold "
                     >
                       <span title="24h Avg. Gross POKT Rewards per 15,000 POKT">
-                        24h Gross (POKT)
+                        24h Avg. Gross POKT Rewards per 15,000 POKT
                       </span>
                     </th>
 
@@ -155,7 +161,12 @@ export default function Table() {
                               )}
                             </div>
                             <div className="">
-                              <div className="font-medium ">{params.name}</div>
+                              <div className="font-medium flex items-center capitalize">
+                                {params.name}
+                                <VerifiedBadge
+                                  verified={params.feature_verified}
+                                />
+                              </div>
                               <p className="mt-2 flex gap-x-2 items-center">
                                 {features
                                   .filter(
@@ -166,29 +177,13 @@ export default function Table() {
                                       ].includes(f.key)
                                   )
                                   .map(
-                                    ({ key, name, color, format, initials }) =>
-                                      key in params &&
-                                      !!(params as any)[key] && (
-                                        <div className="relative flex flex-col items-center group cursor-pointer">
-                                          <span
-                                            key={key}
-                                            className={` inline-flex items-center justify-center rounded-full h-5 w-5 text-[0.5rem] font-bold ${color}`}
-                                            title={name}
-                                          >
-                                            {initials}
-                                          </span>
-                                          <div className="absolute bottom-0 flex-col items-center hidden mb-4 group-hover:flex ">
-                                            <span
-                                              className={`relative z-10 p-2 text-xs leading-none whitespace-no-wrap rounded-md shadow-lg ${color}`}
-                                            >
-                                              {format && format(params)}
-                                              {!format && name}
-                                            </span>
-                                            <div
-                                              className={`w-3 h-3 -mt-2 rotate-45 ${color}`}
-                                            ></div>
-                                          </div>
-                                        </div>
+                                    (feature) =>
+                                      feature.key in params &&
+                                      !!(params as any)[feature.key] && (
+                                        <FeatureItem
+                                          feature={feature}
+                                          params={params}
+                                        />
                                       )
                                   )}
                               </p>
@@ -316,5 +311,138 @@ function SimpleCheck({ enabled }: { enabled: boolean }) {
         fill="#FF5D02"
       />
     </svg>
+  );
+}
+
+function FeatureItem({
+  feature,
+  params,
+}: {
+  feature: Feature;
+  params: NodeParams;
+}) {
+  const { key, name, color, description, initials, format } = feature;
+  const [showModal, setShowModal] = useState(false);
+  return (
+    <>
+      <div className="relative flex flex-col items-center group cursor-pointer">
+        <button
+          type="button"
+          key={key}
+          onClick={() => setShowModal(true)}
+          className={` inline-flex items-center justify-center rounded-full h-5 w-5 text-[0.5rem] font-bold ${color}`}
+          title={name}
+        >
+          {initials}
+        </button>
+        <div className="absolute bottom-0 flex-col items-center hidden mb-4 group-hover:flex ">
+          <span
+            className={`relative z-10 p-2 text-xs leading-none whitespace-no-wrap rounded-md shadow-lg ${color}`}
+          >
+            {format && format(params)}
+            {!format && name}
+          </span>
+          <div className={`w-3 h-3 -mt-2 rotate-45 ${color}`}></div>
+        </div>
+      </div>
+
+      {description && showModal && (
+        <Modal open={showModal} setOpen={setShowModal}>
+          <div className="mt-3 text-center sm:mt-5">
+            <Dialog.Title
+              as="h3"
+              className="text-lg font-medium leading-6 text-gray-900"
+            >
+              {name}
+            </Dialog.Title>
+            <div className="mt-2">
+              <p className="text-sm text-gray-500">{description}</p>
+            </div>
+          </div>
+        </Modal>
+      )}
+    </>
+  );
+}
+
+function VerifiedBadge({ verified }: { verified?: string }) {
+  const [showModal, setShowModal] = useState(false);
+  return (
+    <>
+      <div className="flex-inline cursor-pointer">
+        <div className="relative flex flex-col items-center group cursor-pointer ml-1">
+          <button
+            type="button"
+            onClick={() => setShowModal(true)}
+            className={` inline-flex items-center justify-center rounded-full h-5 w-5 text-[0.5rem] font-bold`}
+            title={verified ? "Verified" : "Unverified"}
+          >
+            {verified && (
+              <CheckBadgeIcon className="h-5 w-5 inline-flex align-top text-[#3A9C90] notdark:text-[#3A9C90]" />
+            )}
+            {!verified && (
+              <QuestionMarkCircleIcon className="h-5 w-5 inline-flex align-top text-gray-500 notdark:text-gray-500" />
+            )}
+          </button>
+          <div className="absolute bottom-0 flex-col items-center hidden mb-4 group-hover:flex ">
+            <span
+              className={`relative z-10 p-2 text-xs leading-none whitespace-no-wrap rounded-md shadow-lg ${
+                verified && `bg-green-100`
+              } ${!verified && `bg-gray-100`}`}
+            >
+              {verified ? "Verified" : "Data not verified"}
+            </span>
+            <div
+              className={`w-3 h-3 -mt-2 rotate-45 ${
+                verified && `bg-green-100`
+              } ${!verified && `bg-gray-100`}`}
+            ></div>
+          </div>
+        </div>
+        <Modal open={showModal} setOpen={setShowModal}>
+          <div
+            className={`mx-auto flex h-12 w-12 items-center justify-center rounded-full ${
+              verified && `bg-green-100`
+            }`}
+          >
+            {verified && (
+              <CheckBadgeIcon className="h-10 w-10 text-[#3A9C90] notdark:text-[#3A9C90]" />
+            )}
+            {!verified && (
+              <QuestionMarkCircleIcon className="h-10 w-10 text-gray-500 notdark:text-gray-500" />
+            )}
+          </div>
+          <div className="mt-3 text-center sm:mt-5">
+            <Dialog.Title
+              as="h3"
+              className="text-lg font-medium leading-6 text-gray-900 capitalize"
+            >
+              {verified && verified}
+              {!verified && "Data not verified"}
+            </Dialog.Title>
+            <div className="mt-2">
+              <p className="text-sm text-gray-500">
+                {verified &&
+                  verified !== "Verified Through Dashboard" &&
+                  "This staking service provider has been verified."}
+                {verified === "Verified Through Dashboard" && (
+                  <span className="block">
+                    This staking service provider has been verified through the
+                    provider's dashboard.
+                  </span>
+                )}
+                {!verified && (
+                  <p>
+                    This staking service provider has not been verified. Please
+                    reach out to us on Telegram to verify this staking service
+                    provider.
+                  </p>
+                )}
+              </p>
+            </div>
+          </div>
+        </Modal>
+      </div>
+    </>
   );
 }

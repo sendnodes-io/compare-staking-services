@@ -1,12 +1,26 @@
 import type { NodeParams } from "@/hooks/useNodeRunnerParams";
 import Table from "./Table";
+import { Dialog } from "@headlessui/react";
+import CheckIcon from "@heroicons/react/20/solid/CheckIcon";
+import { useState } from "react";
+import Modal from "@/components/Modal";
 
-export const features = [
+export type Feature = {
+  key: string
+  name: string,
+  initials: string,
+  color: string,
+  description?: string
+  format?: (params: NodeParams) => React.ReactNode
+}
+
+export const features: Feature[] = [
   {
     key: "feature_quick_unstake",
     name: "Quick Unstake",
     initials: "QU",
     color: "bg-gray-200 text-gray-800 notdark:text-gray-900",
+    description: "As stakes come in, unstakers are paid off through new stakes. Instead of having to wait 21-24 days to get their POKT back, unstakers get the chance at receiving their stakes in less than 72 hours. Essentially new stakers take the place of unstakers."
   },
   {
     key: "feature_insurance",
@@ -24,53 +38,62 @@ export const features = [
           Insured by {params.insurance_provider_name}
         </a>
       );
-    },
+    }
   },
   {
     key: "feature_non_custodial",
     name: "Non-Custodial",
     initials: "NC",
     color: "bg-amber-200 text-amber-800 notdark:text-amber-900",
+    "description": "The process of having the operator of the node be a different account from the account that receives the rewards.\n" +
+      "Another benefit to non-custodial staking is the ability to pool rewards into a single account."
   },
   {
     key: "feature_dapp_integration",
     name: "Dapp Integration",
     initials: "DI",
     color: "bg-lime-200 text-lime-800 notdark:text-lime-900",
+    description: "Similar to executing transactions in metamask or sendwallet, this makes the staking process easier and on-chain. There are no emails to send, sheets to fill out, or representatives to contact. Everything is done through the decentralized application."
   },
   {
     key: "feature_transfer_stake",
     name: "Transfer Stake",
     initials: "TS",
     color: "bg-sky-200 text-sky-800 notdark:text-sky-900",
+    description: "If you have 100k you want to stake, and someone has 100k they want to unstake, your staking provider will facilitate the transfer of positions between the two parties thus eliminating the 21 day waiting period for the unstaker"
   },
   {
     key: "feature_liquid_stake",
     name: "Liquid Stake",
     initials: "LS",
     color: "bg-indigo-200 text-indigo-800 notdark:text-indigo-900",
+    description: "Liquid staking solves the illiquidity problem. A liquid staking provider takes token deposits, stakes them, and gives the depositor a receipt which is redeemable for the staked tokens.\n" +
+      "The receipt is a representation of those staked tokens that can be traded."
   },
   {
     key: "feature_dedicated_infra",
     name: "Dedicated Infra",
     initials: "IA",
-    color: "bg-purple-200 text-purple-800 notdark:text-purple-900",
+    color: "bg-purple-200 text-purple-800 notdark:text-purple-900"
   },
   {
     key: "feature_pool",
     name: "Pool",
     initials: "P",
     color: "bg-pink-200 text-pink-800 notdark:text-pink-900",
+    description: "Staking pools allow multiple stakeholders to combine their stakes. This helps lower the staking minimums. In the case of $pokt, stakers can stake to pools even if they have less than the 15,000 pokt needed to stake a node."
   },
   {
     key: "auto_compounding",
     name: "Auto Compounding",
     initials: "AC",
     color: "bg-teal-200 text-teal-800 notdark:text-teal-900",
-  },
+    description: "This is when your staking rewards are automatically re-added to your pool to earn higher APY. Some staking services compound every block, day, 3 days, or per week."
+  }
 ];
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
   return (
     <div className="relative bg-[#ECEBE8] notdark:bg-zinc-900 w-full ">
       <div className="absolute inset-0 w-screen">
@@ -114,7 +137,8 @@ export default function Header() {
 
       <div className="z-30 relative min-h-[100vh] flex flex-col">
         <div className="bg-zinc-100 notdark:bg-zinc-700 rounded-b-xl shadow-lg">
-          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-between items-center sm:gap-x-12 gap-y-4 py-4">
+          <div
+            className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-between items-center sm:gap-x-12 gap-y-4 py-4">
             <a
               href="/"
               className="flex items-center justify-self-center ml-auto mr-4 sm:m-0"
@@ -238,7 +262,7 @@ export default function Header() {
                 </span>
                 <div
                   className="tl_main_logo play"
-                  style={{ backgroundImage: 'url("/t_logo_sprite.svg")' }}
+                  style={{ backgroundImage: "url(\"/t_logo_sprite.svg\")" }}
                 />
               </a>
             </div>
@@ -246,7 +270,8 @@ export default function Header() {
         </div>
 
         <div className="flex-1 flex-grow items-center justify-between w-full py-6 max-w-[1920px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between md:divide-x-2 divide-solid md:divide-neutral-400 max-w-7xl mx-auto py-4 md:py-6 px-4 sm:px-6 lg:px-8">
+          <div
+            className="flex flex-col md:flex-row justify-between md:divide-x-2 divide-solid md:divide-neutral-400 max-w-7xl mx-auto py-4 md:py-6 px-4 sm:px-6 lg:px-8">
             <div className="md:w-1/2 mx-auto  flex-shrink px-4">
               <h2 className="text-lg sm:text-xl my-2 font-bold">
                 <img
@@ -272,16 +297,11 @@ export default function Header() {
                     (f) =>
                       ![
                         "feature_dedicated_infra",
-                        "feature_insurance",
+                        "feature_insurance"
                       ].includes(f.key)
                   )
-                  .map(({ key, name, color }) => (
-                    <span
-                      key={key}
-                      className={`inline-flex items-center rounded px-2 py-0.5 text-xs md:text-md md:rounded-md md:px-4 md:py-2 font-medium ${color}`}
-                    >
-                      {name}
-                    </span>
+                  .map((feature) => (
+                    <FeatureItem feature={feature} />
                   ))}
               </ul>
             </div>
@@ -292,4 +312,32 @@ export default function Header() {
       </div>
     </div>
   );
+}
+
+function FeatureItem({ feature }: { feature: Feature }) {
+  const { key, name, color, description } = feature;
+  const [showModal, setShowModal] = useState(false);
+  return <>
+    <button
+      type="button"
+      key={key}
+      className={`inline-flex items-center rounded px-2 py-0.5 text-xs md:text-md md:rounded-md md:px-4 md:py-2 font-medium ${color}`}
+      onClick={() => setShowModal(true)}
+    >
+      {name}
+    </button>
+
+    {description && showModal && <Modal open={showModal} setOpen={setShowModal}>
+      <div className="mt-3 text-center sm:mt-5">
+        <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
+          {name}
+        </Dialog.Title>
+        <div className="mt-2">
+          <p className="text-sm text-gray-500">
+            {description}
+          </p>
+        </div>
+      </div>
+    </Modal>}
+  </>;
 }
