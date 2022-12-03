@@ -64,16 +64,16 @@ export default function useNodeRunnerParams() {
   const request = {
     method: "GET",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "application/json"
     },
-    redirect: "follow",
+    redirect: "follow"
   };
   const { data, error } = useSWR<NodeParams[], unknown>(
     [apiUrl, request],
     async (url: string, request: RequestInit) => {
       const response = await window.fetch(url, {
         headers: { "Content-Type": "application/json" },
-        ...request,
+        ...request
       });
 
       if (!response.ok) {
@@ -89,6 +89,6 @@ export default function useNodeRunnerParams() {
   return {
     data,
     error,
-    isLoading: !error && !data,
+    isLoading: !error && !data
   };
 }
