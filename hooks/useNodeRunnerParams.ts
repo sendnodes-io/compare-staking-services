@@ -24,8 +24,9 @@ export interface NodeParams {
   feature_transfer_stake?: boolean;
   feature_liquid_stake?: boolean;
   feature_dedicated_infra?: boolean;
-  feature_pool?: boolean;
+  feature_verified?: boolean;
 }
+
 
 interface SheetData {
   values: string[][];
