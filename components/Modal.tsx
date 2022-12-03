@@ -14,6 +14,9 @@ const confirmations = [
     "Understood",
     "Sure!",
     "That Makes Sense",
+    "Okay!",
+    "Perfect",
+    "Great!",
 ]
 
 export default function Modal({ open, setOpen, children }: { open: boolean, setOpen: (open: boolean) => void, children: React.ReactNode }) {
