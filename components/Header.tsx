@@ -332,7 +332,8 @@ export default function Header() {
                           target={"_blank"}
                         >
                           CompareStakingServices
-                        </a>
+                        </a>{" "}
+                        to chat with us!
                       </p>
                     </div>
                   </div>
