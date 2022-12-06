@@ -380,10 +380,13 @@ function VerifiedBadge({ verified }: { verified?: string }) {
             type="button"
             onClick={() => setShowModal(true)}
             className={` inline-flex items-center justify-center rounded-full h-5 w-5 text-[0.5rem] font-bold`}
-            title={verified ? "Verified" : "Unverified"}
+            title={verified ? verified : "Unverified"}
           >
-            {verified && (
+            {verified && verified !== "Verified Through Dashboard" && (
               <CheckBadgeIcon className="h-5 w-5 inline-flex align-top text-[#3A9C90] notdark:text-[#3A9C90]" />
+            )}
+            {verified && verified === "Verified Through Dashboard" && (
+              <CheckBadgeIcon className="h-5 w-5 inline-flex align-top text-gray-500 notdark:text-gray-500" />
             )}
             {!verified && (
               <QuestionMarkCircleIcon className="h-5 w-5 inline-flex align-top text-gray-500 notdark:text-gray-500" />
@@ -392,14 +395,28 @@ function VerifiedBadge({ verified }: { verified?: string }) {
           <div className="absolute bottom-0 flex-col items-center hidden mb-4 group-hover:flex ">
             <span
               className={`relative z-10 p-2 text-xs leading-none whitespace-no-wrap rounded-md shadow-lg ${
-                verified && `bg-green-100`
+                verified &&
+                verified !== "Verified Through Dashboard" &&
+                `bg-green-100`
+              }
+              ${
+                verified &&
+                verified === "Verified Through Dashboard" &&
+                `bg-gray-100`
               } ${!verified && `bg-gray-100`}`}
             >
-              {verified ? "Verified" : "Data not verified"}
+              {verified ? verified : "Data not verified"}
             </span>
             <div
               className={`w-3 h-3 -mt-2 rotate-45 ${
-                verified && `bg-green-100`
+                verified &&
+                verified !== "Verified Through Dashboard" &&
+                `bg-green-100`
+              }
+              ${
+                verified &&
+                verified === "Verified Through Dashboard" &&
+                `bg-gray-100`
               } ${!verified && `bg-gray-100`}`}
             ></div>
           </div>
@@ -407,14 +424,24 @@ function VerifiedBadge({ verified }: { verified?: string }) {
         <Modal open={showModal} setOpen={setShowModal}>
           <div
             className={`mx-auto flex h-12 w-12 items-center justify-center rounded-full ${
-              verified && `bg-green-100`
-            }`}
+              verified &&
+              verified !== "Verified Through Dashboard" &&
+              `bg-green-100`
+            }
+              ${
+                verified &&
+                verified === "Verified Through Dashboard" &&
+                `bg-gray-100`
+              } ${!verified && `bg-gray-100`}`}
           >
-            {verified && (
-              <CheckBadgeIcon className="h-10 w-10 text-[#3A9C90] notdark:text-[#3A9C90]" />
+            {verified && verified !== "Verified Through Dashboard" && (
+              <CheckBadgeIcon className="h-10 w-10  text-[#3A9C90] notdark:text-[#3A9C90]" />
+            )}
+            {verified && verified === "Verified Through Dashboard" && (
+              <CheckBadgeIcon className="h-10 w-10  text-gray-500 notdark:text-gray-500" />
             )}
             {!verified && (
-              <QuestionMarkCircleIcon className="h-10 w-10 text-gray-500 notdark:text-gray-500" />
+              <QuestionMarkCircleIcon className="h-10 w-10  text-gray-500 notdark:text-gray-500" />
             )}
           </div>
           <div className="mt-3 text-center sm:mt-5">
