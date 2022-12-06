@@ -4,15 +4,17 @@ import { Dialog } from "@headlessui/react";
 import CheckIcon from "@heroicons/react/20/solid/CheckIcon";
 import { useState } from "react";
 import Modal from "@/components/Modal";
+import { QuestionMarkCircleIcon } from "@heroicons/react/20/solid";
+import useFeatureDescriptions from "@/hooks/useFeatureDescriptions";
 
 export type Feature = {
-  key: string
-  name: string,
-  initials: string,
-  color: string,
-  description?: string
-  format?: (params: NodeParams) => React.ReactNode
-}
+  key: string;
+  name: string;
+  initials: string;
+  color: string;
+  description?: string;
+  format?: (params: NodeParams) => React.ReactNode;
+};
 
 export const features: Feature[] = [
   {
@@ -20,7 +22,8 @@ export const features: Feature[] = [
     name: "Quick Unstake",
     initials: "QU",
     color: "bg-gray-200 text-gray-800 notdark:text-gray-900",
-    description: "As stakes come in, unstakers are paid off through new stakes. Instead of having to wait 21-24 days to get their POKT back, unstakers get the chance at receiving their stakes in less than 72 hours. Essentially new stakers take the place of unstakers."
+    description:
+      "As stakes come in, unstakers are paid off through new stakes. Instead of having to wait 21-24 days to get their POKT back, unstakers get the chance at receiving their stakes in less than 72 hours. Essentially new stakers take the place of unstakers.",
   },
   {
     key: "feature_insurance",
@@ -38,62 +41,69 @@ export const features: Feature[] = [
           Insured by {params.insurance_provider_name}
         </a>
       );
-    }
+    },
   },
   {
     key: "feature_non_custodial",
     name: "Non-Custodial",
     initials: "NC",
     color: "bg-amber-200 text-amber-800 notdark:text-amber-900",
-    "description": "The process of having the operator of the node be a different account from the account that receives the rewards.\n" +
-      "Another benefit to non-custodial staking is the ability to pool rewards into a single account."
+    description:
+      "The process of having the operator of the node be a different account from the account that receives the rewards.\n" +
+      "Another benefit to non-custodial staking is the ability to pool rewards into a single account.",
   },
   {
     key: "feature_dapp_integration",
     name: "Dapp Integration",
     initials: "DI",
     color: "bg-lime-200 text-lime-800 notdark:text-lime-900",
-    description: "Similar to executing transactions in metamask or sendwallet, this makes the staking process easier and on-chain. There are no emails to send, sheets to fill out, or representatives to contact. Everything is done through the decentralized application."
+    description:
+      "Similar to executing transactions in metamask or sendwallet, this makes the staking process easier and on-chain. There are no emails to send, sheets to fill out, or representatives to contact. Everything is done through the decentralized application.",
   },
   {
     key: "feature_transfer_stake",
     name: "Transfer Stake",
     initials: "TS",
     color: "bg-sky-200 text-sky-800 notdark:text-sky-900",
-    description: "If you have 100k you want to stake, and someone has 100k they want to unstake, your staking provider will facilitate the transfer of positions between the two parties thus eliminating the 21 day waiting period for the unstaker"
+    description:
+      "If you have 100k you want to stake, and someone has 100k they want to unstake, your staking provider will facilitate the transfer of positions between the two parties thus eliminating the 21 day waiting period for the unstaker",
   },
   {
     key: "feature_liquid_stake",
     name: "Liquid Stake",
     initials: "LS",
     color: "bg-indigo-200 text-indigo-800 notdark:text-indigo-900",
-    description: "Liquid staking solves the illiquidity problem. A liquid staking provider takes token deposits, stakes them, and gives the depositor a receipt which is redeemable for the staked tokens.\n" +
-      "The receipt is a representation of those staked tokens that can be traded."
+    description:
+      "Liquid staking solves the illiquidity problem. A liquid staking provider takes token deposits, stakes them, and gives the depositor a receipt which is redeemable for the staked tokens.\n" +
+      "The receipt is a representation of those staked tokens that can be traded.",
   },
   {
     key: "feature_dedicated_infra",
     name: "Dedicated Infra",
     initials: "IA",
-    color: "bg-purple-200 text-purple-800 notdark:text-purple-900"
+    color: "bg-purple-200 text-purple-800 notdark:text-purple-900",
   },
   {
     key: "feature_pool",
     name: "Pool",
     initials: "P",
     color: "bg-pink-200 text-pink-800 notdark:text-pink-900",
-    description: "Staking pools allow multiple stakeholders to combine their stakes. This helps lower the staking minimums. In the case of $pokt, stakers can stake to pools even if they have less than the 15,000 pokt needed to stake a node."
+    description:
+      "Staking pools allow multiple stakeholders to combine their stakes. This helps lower the staking minimums. In the case of $pokt, stakers can stake to pools even if they have less than the 15,000 pokt needed to stake a node.",
   },
   {
     key: "auto_compounding",
     name: "Auto Compounding",
     initials: "AC",
     color: "bg-teal-200 text-teal-800 notdark:text-teal-900",
-    description: "This is when your staking rewards are automatically re-added to your pool to earn higher APY. Some staking services compound every block, day, 3 days, or per week."
-  }
+    description:
+      "This is when your staking rewards are automatically re-added to your pool to earn higher APY. Some staking services compound every block, day, 3 days, or per week.",
+  },
 ];
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const [showFeatureInfoModal, setShowFeatureInfoModal] = useState(false);
+
   return (
     <div className="relative bg-[#ECEBE8] notdark:bg-zinc-900 w-full ">
       <div className="absolute inset-0 w-screen">
@@ -137,8 +147,7 @@ export default function Header() {
 
       <div className="z-30 relative min-h-[100vh] flex flex-col">
         <div className="bg-zinc-100 notdark:bg-zinc-700 rounded-b-xl shadow-lg">
-          <div
-            className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-between items-center sm:gap-x-12 gap-y-4 py-4">
+          <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-between items-center sm:gap-x-12 gap-y-4 py-4">
             <a
               href="/"
               className="flex items-center justify-self-center ml-auto mr-4 sm:m-0"
@@ -262,7 +271,7 @@ export default function Header() {
                 </span>
                 <div
                   className="tl_main_logo play"
-                  style={{ backgroundImage: "url(\"/t_logo_sprite.svg\")" }}
+                  style={{ backgroundImage: 'url("/t_logo_sprite.svg")' }}
                 />
               </a>
             </div>
@@ -270,8 +279,7 @@ export default function Header() {
         </div>
 
         <div className="flex-1 flex-grow items-center justify-between w-full py-6 max-w-[1920px] mx-auto">
-          <div
-            className="flex flex-col md:flex-row justify-between md:divide-x-2 divide-solid md:divide-neutral-400 max-w-7xl mx-auto py-4 md:py-6 px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between md:divide-x-2 divide-solid md:divide-neutral-400 max-w-7xl mx-auto py-4 md:py-6 px-4 sm:px-6 lg:px-8">
             <div className="md:w-1/2 mx-auto  flex-shrink px-4">
               <h2 className="text-lg sm:text-xl my-2 font-bold">
                 <img
@@ -289,15 +297,58 @@ export default function Header() {
             </div>
             <div className="md:w-1/2 mx-auto flex-shrink px-4">
               <h3 className="mx-auto text-lg sm:text-xl my-2 font-bold">
-                Key Features
+                Key Features{" "}
+                <button
+                  type="button"
+                  onClick={() => setShowFeatureInfoModal(true)}
+                  title="Click me for help!"
+                  className="group"
+                >
+                  <QuestionMarkCircleIcon className="inline-block align-middle mb-1 h-5 w-5 animate-bounce " />{" "}
+                  <span className="w-0 opacity-0 transition-all group-hover:w-full group-hover:opacity-100 text-xs">
+                    Click me for help!
+                  </span>
+                </button>
+                <Modal
+                  open={showFeatureInfoModal}
+                  setOpen={setShowFeatureInfoModal}
+                >
+                  <div className="mt-3 text-center sm:mt-5">
+                    <Dialog.Title
+                      as="h3"
+                      className="text-lg font-medium leading-6 text-gray-900"
+                    >
+                      Need some help? 🤷‍♀️
+                    </Dialog.Title>
+                    <div className="mt-2">
+                      <p className="text-sm text-gray-500">
+                        Wherever you see this icon,{" "}
+                        <QuestionMarkCircleIcon className="inline-block align-middle mb-1 h-5 w-5" />
+                        , click it to learn more! You can always join our
+                        Telegram channel{" "}
+                        <a
+                          href={process.env.NEXT_PUBLIC_TELEGRAM_URL!}
+                          className="text-blue-600 underline"
+                          target={"_blank"}
+                        >
+                          CompareStakingServices
+                        </a>{" "}
+                        to chat with us!
+                      </p>
+                    </div>
+                  </div>
+                </Modal>
               </h3>
+              <p className="text-sm mb-2">
+                Click a feature below to learn more about it.
+              </p>
               <ul className="flex flex-wrap gap-x-2 md:gap-x-3 gap-y-2 md:gap-y-3 items-center">
                 {features
                   .filter(
                     (f) =>
                       ![
                         "feature_dedicated_infra",
-                        "feature_insurance"
+                        "feature_insurance",
                       ].includes(f.key)
                   )
                   .map((feature) => (
@@ -315,29 +366,41 @@ export default function Header() {
 }
 
 function FeatureItem({ feature }: { feature: Feature }) {
+  const { data: descriptionsData } = useFeatureDescriptions();
+  const descriptions = descriptionsData || ({} as Record<string, string>);
   const { key, name, color, description } = feature;
   const [showModal, setShowModal] = useState(false);
-  return <>
-    <button
-      type="button"
-      key={key}
-      className={`inline-flex items-center rounded px-2 py-0.5 text-xs md:text-md md:rounded-md md:px-4 md:py-2 font-medium ${color}`}
-      onClick={() => setShowModal(true)}
-    >
-      {name}
-    </button>
 
-    {description && showModal && <Modal open={showModal} setOpen={setShowModal}>
-      <div className="mt-3 text-center sm:mt-5">
-        <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-          {name}
-        </Dialog.Title>
-        <div className="mt-2">
-          <p className="text-sm text-gray-500">
-            {description}
-          </p>
-        </div>
-      </div>
-    </Modal>}
-  </>;
+  return (
+    <>
+      <button
+        type="button"
+        key={key}
+        className={`inline-flex items-center rounded px-2 py-0.5 text-xs md:text-md md:rounded-md md:px-4 md:py-2 font-medium ${color} group`}
+        onClick={() => setShowModal(true)}
+        title={`${name} - ${description}`}
+      >
+        {name}{" "}
+        <QuestionMarkCircleIcon className="group-hover:opacity-100 opacity-0 w-0 transition-all ml-2 h-5 group-hover:w-5" />
+      </button>
+
+      {(descriptions[key] || description) && showModal && (
+        <Modal open={showModal} setOpen={setShowModal}>
+          <div className="mt-3 text-center sm:mt-5">
+            <Dialog.Title
+              as="h3"
+              className="text-lg font-medium leading-6 text-gray-900"
+            >
+              {name}
+            </Dialog.Title>
+            <div className="mt-2">
+              <p className="text-sm text-gray-500">
+                {descriptions[key] || description}
+              </p>
+            </div>
+          </div>
+        </Modal>
+      )}
+    </>
+  );
 }
