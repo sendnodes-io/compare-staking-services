@@ -10,6 +10,7 @@ import Modal from "@/components/Modal";
 import { Dialog } from "@headlessui/react";
 import { NodeParams } from "@/hooks/useNodeRunnerParams";
 import QuestionMarkCircleIcon from "@heroicons/react/24/outline/QuestionMarkCircleIcon";
+import useFeatureDescriptions from "@/hooks/useFeatureDescriptions";
 
 export default function Table() {
   const { data, isLoading, error } = useCalculateNodeRunnerData();
@@ -321,6 +322,8 @@ function FeatureItem({
   feature: Feature;
   params: NodeParams;
 }) {
+  const { data: descriptionsData } = useFeatureDescriptions();
+  const descriptions = descriptionsData || ({} as Record<string, string>);
   const { key, name, color, description, initials, format } = feature;
   const [showModal, setShowModal] = useState(false);
   return (
@@ -346,7 +349,7 @@ function FeatureItem({
         </div>
       </div>
 
-      {description && showModal && (
+      {(descriptions[key] || description) && showModal && (
         <Modal open={showModal} setOpen={setShowModal}>
           <div className="mt-3 text-center sm:mt-5">
             <Dialog.Title
@@ -356,7 +359,9 @@ function FeatureItem({
               {name}
             </Dialog.Title>
             <div className="mt-2">
-              <p className="text-sm text-gray-500">{description}</p>
+              <p className="text-sm text-gray-500">
+                {descriptions[key] || description}
+              </p>
             </div>
           </div>
         </Modal>

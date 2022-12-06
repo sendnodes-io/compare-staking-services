@@ -5,6 +5,7 @@ import CheckIcon from "@heroicons/react/20/solid/CheckIcon";
 import { useState } from "react";
 import Modal from "@/components/Modal";
 import { QuestionMarkCircleIcon } from "@heroicons/react/20/solid";
+import useFeatureDescriptions from "@/hooks/useFeatureDescriptions";
 
 export type Feature = {
   key: string;
@@ -102,6 +103,7 @@ export const features: Feature[] = [
 
 export default function Header() {
   const [showFeatureInfoModal, setShowFeatureInfoModal] = useState(false);
+
   return (
     <div className="relative bg-[#ECEBE8] notdark:bg-zinc-900 w-full ">
       <div className="absolute inset-0 w-screen">
@@ -363,8 +365,11 @@ export default function Header() {
 }
 
 function FeatureItem({ feature }: { feature: Feature }) {
+  const { data: descriptionsData } = useFeatureDescriptions();
+  const descriptions = descriptionsData || ({} as Record<string, string>);
   const { key, name, color, description } = feature;
   const [showModal, setShowModal] = useState(false);
+
   return (
     <>
       <button
@@ -378,7 +383,7 @@ function FeatureItem({ feature }: { feature: Feature }) {
         <QuestionMarkCircleIcon className="group-hover:opacity-100 opacity-0 w-0 transition-all ml-2 h-5 group-hover:w-5" />
       </button>
 
-      {description && showModal && (
+      {(descriptions[key] || description) && showModal && (
         <Modal open={showModal} setOpen={setShowModal}>
           <div className="mt-3 text-center sm:mt-5">
             <Dialog.Title
@@ -388,7 +393,9 @@ function FeatureItem({ feature }: { feature: Feature }) {
               {name}
             </Dialog.Title>
             <div className="mt-2">
-              <p className="text-sm text-gray-500">{description}</p>
+              <p className="text-sm text-gray-500">
+                {descriptions[key] || description}
+              </p>
             </div>
           </div>
         </Modal>
