@@ -378,7 +378,7 @@ function FeatureItem({ feature }: { feature: Feature }) {
         key={key}
         className={`inline-flex items-center rounded px-2 py-0.5 text-xs md:text-md md:rounded-md md:px-4 md:py-2 font-medium ${color} group`}
         onClick={() => setShowModal(true)}
-        title={`${name} - ${description}`}
+        title={`${name} - ${descriptions[key] || description}`}
       >
         {name}{" "}
         <QuestionMarkCircleIcon className="group-hover:opacity-100 opacity-0 w-0 transition-all ml-2 h-5 group-hover:w-5" />
