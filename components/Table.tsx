@@ -59,7 +59,7 @@ export default function Table() {
       <div className="mt-8 flex flex-col items-center w-full">
         <div className="-my-2 overflow-x-auto  sm:max-w-full sm:px-8 w-full max-w-[90vw] ">
           <div className="inline-block min-w-full py-2 align-middle px-1">
-            <div className="overflow-x-hidden overflow-y-auto shadow ring-1 ring-black ring-opacity-5 rounded-lg max-h-[80vh]">
+            <div className="overflow-x-hidden overflow-y-auto shadow ring-1 ring-black ring-opacity-5 rounded-lg max-h-[80vh] min-h-[50rem]">
               <table className="min-w-full divide-y divide-gray-300 relative z-10">
                 <thead className="bg-gray-50 notdark:bg-gray-900 sticky top-0 z-10 rounded-t-lg">
                   <tr>
@@ -178,7 +178,7 @@ export default function Table() {
                                   verified={params.feature_verified}
                                 />
                               </div>
-                              <p className="mt-2 flex gap-x-2 items-center">
+                              <div className="mt-2 flex gap-x-2 items-center">
                                 {features
                                   .filter(
                                     (f) =>
@@ -192,12 +192,13 @@ export default function Table() {
                                       feature.key in params &&
                                       !!(params as any)[feature.key] && (
                                         <FeatureItem
+                                          key={feature.key}
                                           feature={feature}
                                           params={params}
                                         />
                                       )
                                   )}
-                              </p>
+                              </div>
                             </div>
                           </div>
                         </td>
@@ -252,25 +253,32 @@ export default function Table() {
                       className="sticky bottom-0 z-10 px-3 py-4 text-sm bg-[#ECEBE8]"
                     >
                       <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-x-2">
-                          <span className="text-xs">
-                            <b>*</b> Net rewards are based on the last 24 hours
-                            of total rewards from servicing relays from{" "}
-                            <a
-                              href="https://POKTscan.com"
-                              rel="nofollow"
-                              target={"_blank"}
-                            >
-                              POKTscan.com
-                            </a>{" "}
-                            using the last 7 day avg. POKT/USD price of{" "}
-                            <span className="font-bold">
-                              $
-                              {pocketPrice?.pokt7dAvg.toLocaleString() ?? "N/A"}
-                            </span>
-                            . Rewards from validators are not included in this
-                            calculation.
-                          </span>
+                        <div className="flex flex-col gap-x-2 text-xs">
+                          <p className="">
+                            <b>*Net rewards are based on:</b>
+                          </p>
+                          <ul className="list-disc list-inside">
+                            <li>
+                              The last 24 hours of total gross rewards from
+                              servicing relays from{" "}
+                              <a
+                                href="https://POKTscan.com"
+                                rel="nofollow"
+                                target={"_blank"}
+                              >
+                                POKTscan.com
+                              </a>
+                              .
+                            </li>
+                            <li>
+                              The last 7 day average POKT/USD price of $
+                              {pocketPrice?.pokt7dAvg.toLocaleString()}.{" "}
+                            </li>
+                            <li>
+                              Rewards from validators are not included in this
+                              calculation.{" "}
+                            </li>
+                          </ul>
                         </div>
                       </div>
                     </td>
@@ -309,9 +317,9 @@ function SimpleCheck({ enabled }: { enabled: boolean }) {
           width="54"
           height="54"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
+          colorInterpolationFilters="sRGB"
         >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feFlood floodOpacity="0" result="BackgroundImageFix" />
           <feColorMatrix
             in="SourceAlpha"
             type="matrix"
@@ -347,7 +355,7 @@ function SimpleCheck({ enabled }: { enabled: boolean }) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="16" cy="16" r="15" stroke="#FF5D02" stroke-width="2" />
+      <circle cx="16" cy="16" r="15" stroke="#FF5D02" strokeWidth="2" />
       <path
         d="M15.9998 17.4L11.0998 22.3C10.9165 22.4833 10.6831 22.575 10.3998 22.575C10.1165 22.575 9.88314 22.4833 9.6998 22.3C9.51647 22.1167 9.4248 21.8833 9.4248 21.6C9.4248 21.3167 9.51647 21.0833 9.6998 20.9L14.5998 16L9.6998 11.1C9.51647 10.9167 9.4248 10.6833 9.4248 10.4C9.4248 10.1167 9.51647 9.88332 9.6998 9.69999C9.88314 9.51665 10.1165 9.42499 10.3998 9.42499C10.6831 9.42499 10.9165 9.51665 11.0998 9.69999L15.9998 14.6L20.8998 9.69999C21.0831 9.51665 21.3165 9.42499 21.5998 9.42499C21.8831 9.42499 22.1165 9.51665 22.2998 9.69999C22.4831 9.88332 22.5748 10.1167 22.5748 10.4C22.5748 10.6833 22.4831 10.9167 22.2998 11.1L17.3998 16L22.2998 20.9C22.4831 21.0833 22.5748 21.3167 22.5748 21.6C22.5748 21.8833 22.4831 22.1167 22.2998 22.3C22.1165 22.4833 21.8831 22.575 21.5998 22.575C21.3165 22.575 21.0831 22.4833 20.8998 22.3L15.9998 17.4Z"
         fill="#FF5D02"

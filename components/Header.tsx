@@ -352,7 +352,7 @@ export default function Header() {
                       ].includes(f.key)
                   )
                   .map((feature) => (
-                    <FeatureItem feature={feature} />
+                    <FeatureItem key={feature.key} feature={feature} />
                   ))}
               </ul>
             </div>
