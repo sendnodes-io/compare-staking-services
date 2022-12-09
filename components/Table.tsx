@@ -11,9 +11,11 @@ import { Dialog } from "@headlessui/react";
 import { NodeParams } from "@/hooks/useNodeRunnerParams";
 import QuestionMarkCircleIcon from "@heroicons/react/24/outline/QuestionMarkCircleIcon";
 import useFeatureDescriptions from "@/hooks/useFeatureDescriptions";
+import usePoktPrice from "@/hooks/usePoktPrice";
 
 export default function Table() {
   const { data, isLoading, error } = useCalculateNodeRunnerData();
+  const { data: pocketPrice } = usePoktPrice();
 
   if (error) {
     return (
@@ -243,6 +245,34 @@ export default function Table() {
                       </tr>
                     ))}
                 </tbody>
+                <tfoot>
+                  <tr>
+                    <td colSpan={11} className="px-3 py-4 text-sm">
+                      <div className="flex justify-between items-center">
+                        <div className="flex items-center gap-x-2">
+                          <span className="text-xs font-medium">
+                            <b>*</b> Net rewards are based on the last 24 hours
+                            of total rewards from servicing relays from{" "}
+                            <a
+                              href="https://POKTscan.com"
+                              rel="nofollow"
+                              target={"_blank"}
+                            >
+                              POKTscan.com
+                            </a>{" "}
+                            using the last 7 day avg. POKT/USD price of{" "}
+                            <span className="font-bold">
+                              $
+                              {pocketPrice?.pokt7dAvg.toLocaleString() ?? "N/A"}
+                            </span>
+                            . Rewards from validators are not included in this
+                            calculation.
+                          </span>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tfoot>
               </table>
             </div>
           </div>
