@@ -84,7 +84,7 @@ export default function Table() {
                         title="Last 24h avg. Net POKT Rewards
                         per 15K POKT Staked"
                       >
-                        Last 24h avg. Net POKT Rewards <br />
+                        <b>*</b> Last 24h avg. Net POKT Rewards <br />
                         per 15K POKT Staked
                       </span>
                     </th>
