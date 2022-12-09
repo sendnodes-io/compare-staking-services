@@ -78,16 +78,24 @@ export default function Table() {
                       scope="col"
                       className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-[#3A9C90] notdark:text-[#3A9C90]"
                     >
-                      <span title="24h Avg. Net POKT Rewards per 15,000 POKT">
-                        24h Avg. Net POKT Rewards per 15,000 POKT
+                      <span
+                        title="Last 24h avg. Net POKT Rewards
+                        per 15K POKT Staked"
+                      >
+                        Last 24h avg. Net POKT Rewards <br />
+                        per 15K POKT Staked
                       </span>
                     </th>
                     <th
                       scope="col"
                       className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold "
                     >
-                      <span title="24h Avg. Gross POKT Rewards per 15,000 POKT">
-                        24h Avg. Gross POKT Rewards per 15,000 POKT
+                      <span
+                        title="Last 24h avg. Gross POKT Rewards
+                        per 15K POKT Staked"
+                      >
+                        Last 24h avg. Gross POKT Rewards <br />
+                        per 15K POKT Staked
                       </span>
                     </th>
 

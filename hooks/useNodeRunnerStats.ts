@@ -9,7 +9,7 @@ export interface NodeStat {
 }
 
 export default function useNodeRunnerStats() {
-  const apiUrl = "https://pokt-stats.sendnodes.io/v2/runners-perf";
+  const apiUrl = "https://pokt-stats.sendnodes.io/v1/runners-perf";
   const request = { method: "GET" };
   const { data, error } = useSWR<NodeStat[], unknown>(
     [apiUrl, request],
