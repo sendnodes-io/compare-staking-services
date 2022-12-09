@@ -247,10 +247,13 @@ export default function Table() {
                 </tbody>
                 <tfoot>
                   <tr>
-                    <td colSpan={11} className="px-3 py-4 text-sm">
+                    <td
+                      colSpan={11}
+                      className="sticky bottom-0 z-10 px-3 py-4 text-sm bg-[#ECEBE8]"
+                    >
                       <div className="flex justify-between items-center">
                         <div className="flex items-center gap-x-2">
-                          <span className="text-xs font-medium">
+                          <span className="text-xs">
                             <b>*</b> Net rewards are based on the last 24 hours
                             of total rewards from servicing relays from{" "}
                             <a
