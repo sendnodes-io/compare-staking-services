@@ -81,11 +81,11 @@ const faqs = [
       <>
         <p>
           Gross rewards are the rewards that the staking service provider earns
-          from their nodes.
+          from their nodes before fees.
         </p>
         <p>
           Net rewards are the rewards that the staking service provider actually
-          pays out to the staker per tranche.
+          pays out to the staker per tranche after fees.
         </p>
       </>
     ),
