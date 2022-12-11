@@ -24,7 +24,7 @@ const Home: NextPage = () => {
         <meta property="og:url" content="https://comparestakingservices.com/" />
         <meta
           property="og:image"
-          content="https://comparestakingservices.com/logo-dual-line.svg"
+          content="https://comparestakingservices.com/og_image.jpg"
         />
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
