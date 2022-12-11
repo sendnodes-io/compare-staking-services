@@ -105,7 +105,7 @@ export default function Header() {
   const [showFeatureInfoModal, setShowFeatureInfoModal] = useState(false);
 
   return (
-    <div className="relative bg-[#ECEBE8] notdark:bg-zinc-900 w-full ">
+    <div className="relative  bg-[#ECEBE8] notdark:bg-zinc-900 w-full">
       <div className="absolute inset-0 w-screen">
         {/* <div className="absolute inset-x-0 top-[-10rem] z-20 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
           <svg
@@ -146,7 +146,7 @@ export default function Header() {
       </div>
 
       <div className="z-30 relative min-h-[100vh] flex flex-col">
-        <div className="bg-zinc-100 notdark:bg-zinc-700 rounded-b-xl shadow-lg">
+        <div className="bg-gradient-to-b from-[#252525] to-black rounded-b-xl shadow-lg">
           <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-between items-center sm:gap-x-12 gap-y-4 py-4">
             <a
               href="/"
@@ -259,7 +259,7 @@ export default function Header() {
               </h1>
             </a>
 
-            <div className="flex gap-x-2 mr-2 sm:mr-4">
+            <div className="flex gap-x-2 mr-2 sm:mr-4 text-white ">
               <span className="sm:inline-block hidden">Chat with us </span>
               <a
                 href={process.env.NEXT_PUBLIC_TELEGRAM_URL!}
