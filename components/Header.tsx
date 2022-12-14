@@ -102,6 +102,11 @@ export const features: Feature[] = [
 ];
 
 export default function Header() {
+  const [showDisclaimer, setShowDisclaimer] = useState(
+    globalThis.localStorage?.getItem("showDisclaimer") === "false"
+      ? false
+      : true
+  );
   const [showFeatureInfoModal, setShowFeatureInfoModal] = useState(false);
 
   return (
@@ -293,7 +298,37 @@ export default function Header() {
                 A comparison of Pocket Network staking services. This list
                 breaks down the services by their staking rewards, staking fees,
                 and staking minimums.
+                <a
+                  href="#"
+                  className="text-blue-600 underline"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShowDisclaimer(true);
+                  }}
+                >
+                  ⚠️ Disclaimer: Use at your own risk.
+                </a>
               </p>
+              <Modal
+                open={showDisclaimer}
+                setOpen={(open: boolean) => {
+                  localStorage.setItem("showDisclaimer", open.toString());
+                  setShowDisclaimer(open);
+                }}
+              >
+                {/* disclaimer */}
+                <div className="bg-amber-100 rounded-md p-4 mb-4">
+                  <h3 className="text-lg font-bold">⚠️ Warning:</h3>
+                  <p className="text-sm">
+                    Use at your own risk. The appearance of third party
+                    descriptions and hyperlinks on this site does not constitute
+                    an endorsement, guarantee, warranty, or recommendation by
+                    SendNodes, Pocket Network, Inc., Pocket Network Foundation,
+                    or the Pocket DAO. Do conduct your own due diligence before
+                    deciding to use any third party services.
+                  </p>
+                </div>
+              </Modal>
             </div>
             <div className="md:w-1/2 mx-auto flex-shrink px-4">
               <h3 className="mx-auto text-lg sm:text-xl my-2 font-bold">
