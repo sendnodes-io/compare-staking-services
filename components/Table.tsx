@@ -296,14 +296,14 @@ export default function Table() {
                               Rewards from validators are not included in this
                               calculation.{" "}
                             </li>
-                            <li>
+                            {/* <li>
                               15k Node Net = [(Daily Gross per 15k - (daily fix
                               fee / 7 day avg pokt price)] * Rev share
                             </li>
                             <li>
                               60k Node Net = [(Daily Gross per 15k (4) - (daily
                               fix fee / 7 day avg pokt price)] * (4)Rev share
-                            </li>
+                            </li> */}
                           </ul>
                         </div>
                       </div>
