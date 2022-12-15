@@ -1,4 +1,4 @@
-import { floor } from "lodash";
+import floor from "lodash.floor";
 
 const defaultSymbols = ["", "K", "M", "B", "T", "P", "E"];
 
