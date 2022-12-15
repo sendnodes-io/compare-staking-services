@@ -72,7 +72,7 @@ export default function Table() {
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-left text-sm font-bold "
+                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-left text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       <span className="ml-12">Name</span>
                     </th>
@@ -91,7 +91,7 @@ export default function Table() {
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold "
+                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       <span
                         title="Last 24h avg. Gross POKT Rewards
@@ -104,38 +104,38 @@ export default function Table() {
 
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold "
+                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       Minimum Staking Amount (POKT)
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold "
+                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       Monthly Fee (USD)
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold "
+                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       Commission (POKT) % per Tranche
                     </th>
 
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold "
+                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       No KYC
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold "
+                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       Dedicated Infrastructure
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold "
+                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       Insurance
                     </th>
@@ -226,39 +226,39 @@ export default function Table() {
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black  text-[#3A9C90] notdark:text-[#3A9C90]">
                           {net.toFixed(2).toLocaleString() ?? "N/A"}
                         </td>
-                        <td className="whitespace-nowrap text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black ">
+                        <td className="whitespace-nowrap text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
                           {stats?.avg_last_24_hours
                             .toFixed(2)
                             .toLocaleString() ?? "N/A"}
                         </td>
-                        <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black ">
+                        <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
                           {params.min_stake?.toLocaleString()}
                         </td>
-                        <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black ">
+                        <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
                           {params.monthly_fee !== undefined &&
                             `\$${params.monthly_fee?.toLocaleString()}`}
                           {params.monthly_fee === undefined && "N/A"}
                         </td>
-                        <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black ">
+                        <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
                           {params.reward_share !== undefined &&
                             `${params.reward_share}%`}
                           {params.reward_share === undefined && "N/A"}
                         </td>
 
-                        <td className="whitespace-nowrap  text-left px-3 py-4 text-md lg:text-lg xl:text-xl font-black ">
+                        <td className="whitespace-nowrap  text-left px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
                           <p className="mt-2 flex gap-x-2 justify-center items-center">
                             <SimpleCheck enabled={!params.kyc} />
                           </p>
                         </td>
 
-                        <td className="whitespace-nowrap  text-left px-3 py-4 text-md lg:text-lg xl:text-xl font-black ">
+                        <td className="whitespace-nowrap  text-left px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
                           <p className="mt-2 flex gap-x-2 justify-center items-center">
                             <SimpleCheck
                               enabled={!!params.feature_dedicated_infra}
                             />
                           </p>
                         </td>
-                        <td className="whitespace-nowrap  text-left px-3 py-4 text-md lg:text-lg xl:text-xl font-black ">
+                        <td className="whitespace-nowrap  text-left px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
                           <p className="mt-2 flex gap-x-2 justify-center items-center">
                             <SimpleCheck enabled={params.feature_insurance} />
                           </p>
