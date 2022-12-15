@@ -207,16 +207,18 @@ export default function Table() {
                                       )
                                   )}
                               </div>
-                              <div
-                                className="group font-bold text-sm mt-2 "
-                                title={"Total Staked POKT"}
-                              >
-                                {" "}
-                                {formatTokenAmount(stats?.tokens)} POKT{" "}
-                                <span className="opacity-0 inline-block group-hover:opacity-100 transition-opacity">
-                                  Staked
-                                </span>
-                              </div>
+                              {Boolean(stats?.tokens) && (
+                                <div
+                                  className="group font-bold text-sm mt-2 "
+                                  title={"Total Staked POKT"}
+                                >
+                                  {" "}
+                                  {formatTokenAmount(stats?.tokens)} POKT{" "}
+                                  <span className="opacity-0 inline-block group-hover:opacity-100 transition-opacity">
+                                    Staked
+                                  </span>
+                                </div>
+                              )}
                             </div>
                           </div>
                         </td>
