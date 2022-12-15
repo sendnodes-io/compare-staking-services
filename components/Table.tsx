@@ -12,6 +12,7 @@ import { NodeParams } from "@/hooks/useNodeRunnerParams";
 import QuestionMarkCircleIcon from "@heroicons/react/24/outline/QuestionMarkCircleIcon";
 import useFeatureDescriptions from "@/hooks/useFeatureDescriptions";
 import usePoktPrice from "@/hooks/usePoktPrice";
+import formatTokenAmount from "../lib/utils/format-token-amount";
 
 export default function Table() {
   const { data, isLoading, error } = useCalculateNodeRunnerData();
@@ -172,8 +173,15 @@ export default function Table() {
                               )}
                             </div>
                             <div className="">
-                              <div className="font-medium flex items-center capitalize">
-                                {params.name}
+                              <div className="flex items-center ">
+                                <a
+                                  href={params.url}
+                                  target="_blank"
+                                  rel="nofollow"
+                                  className="font-black capitalize lg:text-lg xl:text-xl"
+                                >
+                                  {params.name}
+                                </a>
                                 <VerifiedBadge
                                   verified={params.feature_verified}
                                 />
@@ -199,46 +207,56 @@ export default function Table() {
                                       )
                                   )}
                               </div>
+                              <div
+                                className="group font-bold text-sm mt-2 "
+                                title={"Total Staked POKT"}
+                              >
+                                {" "}
+                                {formatTokenAmount(stats?.tokens)} POKT{" "}
+                                <span className="opacity-0 inline-block group-hover:opacity-100 transition-opacity">
+                                  Staked
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </td>
 
-                        <td className="whitespace-nowrap  text-center px-3 py-4 text-sm ">
+                        <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black  text-[#3A9C90] notdark:text-[#3A9C90]">
                           {net.toFixed(2).toLocaleString() ?? "N/A"}
                         </td>
-                        <td className="whitespace-nowrap text-center px-3 py-4 text-sm ">
+                        <td className="whitespace-nowrap text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black ">
                           {stats?.avg_last_24_hours
                             .toFixed(2)
                             .toLocaleString() ?? "N/A"}
                         </td>
-                        <td className="whitespace-nowrap  text-center px-3 py-4 text-sm ">
+                        <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black ">
                           {params.min_stake?.toLocaleString()}
                         </td>
-                        <td className="whitespace-nowrap  text-center px-3 py-4 text-sm ">
+                        <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black ">
                           {params.monthly_fee !== undefined &&
                             `\$${params.monthly_fee?.toLocaleString()}`}
                           {params.monthly_fee === undefined && "N/A"}
                         </td>
-                        <td className="whitespace-nowrap  text-center px-3 py-4 text-sm ">
+                        <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black ">
                           {params.reward_share !== undefined &&
                             `${params.reward_share}%`}
                           {params.reward_share === undefined && "N/A"}
                         </td>
 
-                        <td className="whitespace-nowrap  text-left px-3 py-4 text-sm ">
+                        <td className="whitespace-nowrap  text-left px-3 py-4 text-md lg:text-lg xl:text-xl font-black ">
                           <p className="mt-2 flex gap-x-2 justify-center items-center">
                             <SimpleCheck enabled={!params.kyc} />
                           </p>
                         </td>
 
-                        <td className="whitespace-nowrap  text-left px-3 py-4 text-sm ">
+                        <td className="whitespace-nowrap  text-left px-3 py-4 text-md lg:text-lg xl:text-xl font-black ">
                           <p className="mt-2 flex gap-x-2 justify-center items-center">
                             <SimpleCheck
                               enabled={!!params.feature_dedicated_infra}
                             />
                           </p>
                         </td>
-                        <td className="whitespace-nowrap  text-left px-3 py-4 text-sm ">
+                        <td className="whitespace-nowrap  text-left px-3 py-4 text-md lg:text-lg xl:text-xl font-black ">
                           <p className="mt-2 flex gap-x-2 justify-center items-center">
                             <SimpleCheck enabled={params.feature_insurance} />
                           </p>
@@ -389,13 +407,16 @@ function FeatureItem({
         <button
           type="button"
           key={key}
-          onClick={() => setShowModal(true)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setShowModal(true);
+          }}
           className={` inline-flex items-center justify-center rounded-full h-5 w-5 text-[0.5rem] font-bold ${color}`}
           title={name}
         >
           {initials}
         </button>
-        <div className="absolute bottom-0 flex-col items-center hidden mb-4 group-hover:flex ">
+        <div className="absolute bottom-0 flex-col items-center hidden mb-4 group-hover:flex font-semibold ">
           <span
             className={`relative z-10 p-2 text-xs leading-none whitespace-no-wrap rounded-md shadow-lg ${color}`}
           >
@@ -431,11 +452,14 @@ function VerifiedBadge({ verified }: { verified?: string }) {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
-      <div className="flex-inline cursor-pointer">
+      <div className="font-semibold flex-inline cursor-pointer">
         <div className="relative flex flex-col items-center group cursor-pointer ml-1">
           <button
             type="button"
-            onClick={() => setShowModal(true)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowModal(true);
+            }}
             className={` inline-flex items-center justify-center rounded-full h-5 w-5 text-[0.5rem] font-bold`}
             title={verified ? verified : "Unverified"}
           >

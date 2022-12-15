@@ -2,7 +2,7 @@ import type { NodeParams } from "@/hooks/useNodeRunnerParams";
 import Table from "./Table";
 import { Dialog } from "@headlessui/react";
 import CheckIcon from "@heroicons/react/20/solid/CheckIcon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "@/components/Modal";
 import { QuestionMarkCircleIcon } from "@heroicons/react/20/solid";
 import useFeatureDescriptions from "@/hooks/useFeatureDescriptions";
@@ -102,12 +102,16 @@ export const features: Feature[] = [
 ];
 
 export default function Header() {
-  const [showDisclaimer, setShowDisclaimer] = useState(
-    globalThis.localStorage?.getItem("showDisclaimer") === "false"
-      ? false
-      : true
-  );
+  const [showDisclaimer, setShowDisclaimer] = useState(false);
   const [showFeatureInfoModal, setShowFeatureInfoModal] = useState(false);
+
+  useEffect(() => {
+    setShowDisclaimer(
+      globalThis.localStorage?.getItem("showDisclaimer") === "false"
+        ? false
+        : true
+    );
+  }, []);
 
   return (
     <div className="relative  bg-[#ECEBE8] notdark:bg-zinc-900 w-full">
@@ -297,7 +301,7 @@ export default function Header() {
               <p className=" md:text-xl pb-4">
                 A comparison of Pocket Network staking services. This list
                 breaks down the services by their staking rewards, staking fees,
-                and staking minimums.
+                and staking minimums. <br />
                 <a
                   href="#"
                   className="text-blue-600 underline"
@@ -411,12 +415,12 @@ function FeatureItem({ feature }: { feature: Feature }) {
       <button
         type="button"
         key={key}
-        className={`inline-flex items-center rounded px-2 py-0.5 text-xs md:text-md md:rounded-md md:px-4 md:py-2 font-medium ${color} group`}
+        className={`inline-flex items-center rounded px-2 py-0.5 text-xs md:text-md md:rounded-md md:px-4 md:py-2 font-medium ${color} group relative`}
         onClick={() => setShowModal(true)}
         title={`${name} - ${descriptions[key] || description}`}
       >
         {name}{" "}
-        <QuestionMarkCircleIcon className="group-hover:opacity-100 opacity-0 w-0 transition-all ml-2 h-5 group-hover:w-5" />
+        <QuestionMarkCircleIcon className="group-hover:opacity-100 opacity-0 w-0 transition-all ml-2 h-5 group-hover:w-5 absolute -right-4 group-hover:-right-2" />
       </button>
 
       {(descriptions[key] || description) && showModal && (
