@@ -168,7 +168,7 @@ export default function Header() {
                   viewBox="0 0 367 43"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-4/5 max-w-xs h-auto"
+                  className="w-4/5 md:w-96 max-w-xs md:max-w-sm h-auto"
                 >
                   <path
                     fillRule="evenodd"
@@ -287,8 +287,8 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="flex-1 flex-grow items-center justify-between w-full py-6 max-w-[1920px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between md:divide-x-2 divide-solid md:divide-neutral-400 max-w-7xl mx-auto py-4 md:py-6 px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col flex-1 flex-grow items-center  w-full max-w-[1920px] mx-auto">
+          <div className="flex flex-col md:flex-row justify-between md:divide-x-2 divide-solid md:divide-neutral-400 max-w-7xl mx-auto py-6 md:py-8 px-4 sm:px-6 lg:px-8">
             <div className="md:w-1/2 mx-auto  flex-shrink px-4">
               <h2 className="text-lg sm:text-xl my-2 font-bold">
                 <img

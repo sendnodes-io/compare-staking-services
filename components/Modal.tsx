@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/24/outline";
 
-const emojis = ["👩‍🏫", "👩‍🏫", "👩‍🎓", "🧑‍🏫", "🧑‍🎓"];
+const emojis = ["👩‍🏫", "👩‍🏫", "👩‍🎓", "🧑‍🏫", "🧑‍🎓", "✅"];
 const confirmations = [
   "Got It!",
   "Understood",
@@ -22,6 +22,11 @@ export default function Modal({
   setOpen: (open: boolean) => void;
   children: React.ReactNode;
 }) {
+  const [emoji] = useState(emojis[Math.floor(Math.random() * emojis.length)]);
+  const [confirmation] = useState(
+    confirmations[Math.floor(Math.random() * confirmations.length)]
+  );
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog as="div" className="relative z-50" onClose={setOpen}>
@@ -53,15 +58,11 @@ export default function Modal({
                 <div className="mt-5 sm:mt-6">
                   <button
                     type="button"
-                    className="inline-flex w-full justify-center rounded-md border border-transparent bg-secondary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 sm:text-sm"
+                    className="inline-flex w-full justify-center items-center rounded-md border border-transparent bg-secondary px-4 py-2 font-medium text-white shadow-sm hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 "
                     onClick={() => setOpen(false)}
                   >
-                    {emojis[Math.floor(Math.random() * emojis.length)]}{" "}
-                    {
-                      confirmations[
-                        Math.floor(Math.random() * confirmations.length)
-                      ]
-                    }
+                    <span className="text-2xl mr-1 inline-block">{emoji}</span>{" "}
+                    {confirmation}
                   </button>
                 </div>
               </Dialog.Panel>

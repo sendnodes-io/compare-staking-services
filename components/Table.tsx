@@ -17,7 +17,7 @@ import formatTokenAmount from "../lib/utils/format-token-amount";
 export default function Table() {
   const { data, isLoading, error } = useCalculateNodeRunnerData();
   const { data: pocketPrice } = usePoktPrice();
-
+  // const [showFeatureInfoModal, setShowFeatureInfoModal] = useState(false);
   if (error) {
     return (
       <div className="rounded-md bg-yellow-50 p-8 max-w-xl mx-auto mt-8">
@@ -57,85 +57,130 @@ export default function Table() {
 
   return (
     <div className="px-4 sm:px-0 w-full">
-      <div className="mt-8 flex flex-col items-center w-full">
+      <div className="flex flex-col items-center w-full">
         <div className="-my-2 overflow-x-auto  sm:max-w-full sm:px-8 w-full max-w-[90vw] ">
           <div className="inline-block min-w-full py-2 align-middle px-1">
             <div className="overflow-x-hidden overflow-y-auto shadow ring-1 ring-black ring-opacity-5 rounded-lg max-h-[80vh] min-h-[50rem]">
-              <table className="min-w-full divide-y divide-gray-300 relative z-10">
+              <table className="divide-y divide-gray-300 relative z-10  min-w-full">
                 <thead className="bg-gray-50 notdark:bg-gray-900 sticky top-0 z-10 rounded-t-lg">
                   <tr>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-left text-sm font-bold "
+                      className="sticky w-10 top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-left text-sm font-bold "
                     >
                       &nbsp;
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-left text-sm font-bold text-neutral-500 notdark:text-neutral-400"
+                      className="sticky w-44 top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-left text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       <span className="ml-12">Name</span>
                     </th>
 
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-[#3A9C90] notdark:text-[#3A9C90]"
+                      className="sticky top-0 w-64 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-[#3A9C90] notdark:text-[#3A9C90]"
                     >
+                      {/* Last 24h avg.
+                      <br />
+                      Net POKT Rewards{" "}
+                      <button
+                        type="button"
+                        onClick={() => setShowFeatureInfoModal(true)}
+                        title="Click me for help!"
+                        className="group"
+                      >
+                        <QuestionMarkCircleIcon className="inline-block align-middle mb-1 h-5 w-5 animate-bounce " />{" "}
+                      </button>
+                      <Modal
+                        open={showFeatureInfoModal}
+                        setOpen={setShowFeatureInfoModal}
+                      >
+                        <div className="mt-3 text-center sm:mt-5">
+                          <Dialog.Title
+                            as="h3"
+                            className="text-lg font-medium leading-6 text-gray-900"
+                          >
+                            Last 24h avg.
+                            <br />
+                            Net POKT Rewards
+                          </Dialog.Title>
+                          <div className="mt-2">
+                            <p className="text-sm text-gray-500">
+                              Wherever you see this icon,{" "}
+                              <QuestionMarkCircleIcon className="inline-block align-middle mb-1 h-5 w-5" />
+                              , click it to learn more! You can always join our
+                              Telegram channel{" "}
+                              <a
+                                href={process.env.NEXT_PUBLIC_TELEGRAM_URL!}
+                                className="text-blue-600 underline"
+                                target={"_blank"}
+                              >
+                                CompareStakingServices
+                              </a>{" "}
+                              to chat with us!
+                            </p>
+                          </div>
+                        </div>
+                      </Modal> */}
                       <span
                         title="Last 24h avg. Net POKT Rewards
                         per 15K POKT Staked"
                       >
-                        <b>*</b> Last 24h avg. Net POKT Rewards <br />
+                        <b>*</b> Last 24h avg.
+                        <br />
+                        Net POKT Rewards <br />
                         per 15K POKT Staked
                       </span>
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
+                      className="sticky top-0 w-52 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       <span
                         title="Last 24h avg. Gross POKT Rewards
                         per 15K POKT Staked"
                       >
-                        Last 24h avg. Gross POKT Rewards <br />
+                        Last 24h avg.
+                        <br /> Gross POKT Rewards <br />
                         per 15K POKT Staked
                       </span>
                     </th>
 
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
+                      className="sticky top-0 w-52 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       Minimum Staking Amount (POKT)
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
+                      className="sticky top-0 w-52 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       Monthly Fee (USD)
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
+                      className="sticky top-0 w-52 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       Commission (POKT) % per Tranche
                     </th>
 
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
+                      className="sticky top-0 w-36 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       No KYC
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
+                      className="sticky top-0 w-36 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       Dedicated Infrastructure
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
+                      className="sticky top-0 w-36 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       Insurance
                     </th>
