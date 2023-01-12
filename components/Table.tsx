@@ -74,7 +74,13 @@ export default function Table() {
                       scope="col"
                       className="sticky w-44 top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-left text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
-                      <span className="ml-12">Name</span>
+                      <span >Name</span>
+                    </th>
+                    <th
+                      scope="col"
+                      className="sticky w-44 top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-left text-sm font-bold text-neutral-500 notdark:text-neutral-400"
+                    >
+                      <span>Features</span>
                     </th>
 
                     <th
@@ -206,7 +212,7 @@ export default function Table() {
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm ">
                           <div className="flex items-center justify-start gap-x-2">
-                            <div className="h-full w-12 flex-shrink-0 items-center">
+                            {/* <div className="h-full w-12 flex-shrink-0 items-center">
                               {!!params.logo_url && (
                                 <div className="h-12 w-12 bg-neutral-500 rounded-full flex justify-center items-center">
                                   <img
@@ -216,7 +222,7 @@ export default function Table() {
                                   />
                                 </div>
                               )}
-                            </div>
+                            </div> */}
                             <div className="">
                               <div className="flex items-center ">
                                 <a
@@ -231,7 +237,24 @@ export default function Table() {
                                   verified={params.feature_verified}
                                 />
                               </div>
-                              <div className="mt-2 flex gap-x-2 items-center">
+                              {Boolean(stats?.tokens) && (
+                                <div
+                                  className="group font-bold text-sm mt-2 "
+                                  title={"Total Staked POKT"}
+                                >
+                                  {" "}
+                                  {formatTokenAmount(stats?.tokens)} POKT{" "}
+                                  <span className="opacity-0 inline-block group-hover:opacity-100 transition-opacity">
+                                    Staked
+                                  </span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        </td>
+
+                        <td className="whitespace-nowrap px-3 py-4 text-sm  ">
+                          <div className="mt-2 flex gap-x-2 items-center">
                                 {features
                                   .filter(
                                     (f) =>
@@ -252,22 +275,7 @@ export default function Table() {
                                       )
                                   )}
                               </div>
-                              {Boolean(stats?.tokens) && (
-                                <div
-                                  className="group font-bold text-sm mt-2 "
-                                  title={"Total Staked POKT"}
-                                >
-                                  {" "}
-                                  {formatTokenAmount(stats?.tokens)} POKT{" "}
-                                  <span className="opacity-0 inline-block group-hover:opacity-100 transition-opacity">
-                                    Staked
-                                  </span>
-                                </div>
-                              )}
-                            </div>
-                          </div>
                         </td>
-
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black  text-[#3A9C90] notdark:text-[#3A9C90]">
                           {net.toFixed(2).toLocaleString() ?? "N/A"}
                         </td>
@@ -458,19 +466,19 @@ function FeatureItem({
             e.stopPropagation();
             setShowModal(true);
           }}
-          className={` inline-flex items-center justify-center rounded-full h-5 w-5 text-[0.5rem] font-bold ${color}`}
+          className={` inline-flex items-center justify-center rounded-full h-8 w-8 text-md font-bold ${color}`}
           title={name}
         >
           {initials}
         </button>
-        <div className="absolute bottom-0 flex-col items-center hidden mb-4 group-hover:flex font-semibold ">
+        <div className="absolute bottom-0 flex-col items-center hidden mb-8 group-hover:flex font-semibold ">
           <span
             className={`relative z-10 p-2 text-xs leading-none whitespace-no-wrap rounded-md shadow-lg ${color}`}
           >
             {format && format(params)}
             {!format && name}
           </span>
-          <div className={`w-3 h-3 -mt-2 rotate-45 ${color}`}></div>
+          <div className={`w-4 h-4 -mt-2 rotate-45 ${color}`}></div>
         </div>
       </div>
 
