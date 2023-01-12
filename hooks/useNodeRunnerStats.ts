@@ -6,6 +6,7 @@ export interface NodeStat {
   avg_last_48_hours: number;
   avg_last_6_hours: number;
   runner_domain: string;
+  tokens: number;
 }
 
 export default function useNodeRunnerStats() {

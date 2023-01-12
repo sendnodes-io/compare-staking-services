@@ -1,6 +1,6 @@
 {
   "name": "compare-staking-services",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Compare staking services - https://comparestakingservices.com",
   "author": {
     "name": "SendNodes, Inc.",
@@ -16,12 +16,14 @@
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
     "@iconify/react": "^4.0.0",
+    "lodash.floor": "^4.0.4",
     "next": "latest",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "swr": "^1.3.0"
   },
   "devDependencies": {
+    "@types/lodash.floor": "^4.0.7",
     "@types/node": "18.11.3",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",

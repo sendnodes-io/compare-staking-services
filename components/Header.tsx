@@ -2,7 +2,7 @@ import type { NodeParams } from "@/hooks/useNodeRunnerParams";
 import Table from "./Table";
 import { Dialog } from "@headlessui/react";
 import CheckIcon from "@heroicons/react/20/solid/CheckIcon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "@/components/Modal";
 import { QuestionMarkCircleIcon } from "@heroicons/react/20/solid";
 import useFeatureDescriptions from "@/hooks/useFeatureDescriptions";
@@ -102,7 +102,16 @@ export const features: Feature[] = [
 ];
 
 export default function Header() {
+  const [showDisclaimer, setShowDisclaimer] = useState(false);
   const [showFeatureInfoModal, setShowFeatureInfoModal] = useState(false);
+
+  useEffect(() => {
+    setShowDisclaimer(
+      globalThis.localStorage?.getItem("showDisclaimer") === "false"
+        ? false
+        : true
+    );
+  }, []);
 
   return (
     <div className="relative  bg-[#ECEBE8] notdark:bg-zinc-900 w-full">
@@ -159,7 +168,7 @@ export default function Header() {
                   viewBox="0 0 367 43"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-4/5 max-w-xs h-auto"
+                  className="w-4/5 md:w-96 max-w-xs md:max-w-sm h-auto"
                 >
                   <path
                     fillRule="evenodd"
@@ -278,8 +287,8 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="flex-1 flex-grow items-center justify-between w-full py-6 max-w-[1920px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between md:divide-x-2 divide-solid md:divide-neutral-400 max-w-7xl mx-auto py-4 md:py-6 px-4 sm:px-6 lg:px-8">
+        <div className="flex flex-col flex-1 flex-grow items-center  w-full max-w-[1920px] mx-auto">
+          <div className="flex flex-col md:flex-row justify-between md:divide-x-2 divide-solid md:divide-neutral-400 max-w-7xl mx-auto py-6 md:py-8 px-4 sm:px-6 lg:px-8">
             <div className="md:w-1/2 mx-auto  flex-shrink px-4">
               <h2 className="text-lg sm:text-xl my-2 font-bold">
                 <img
@@ -292,8 +301,38 @@ export default function Header() {
               <p className=" md:text-xl pb-4">
                 A comparison of Pocket Network staking services. This list
                 breaks down the services by their staking rewards, staking fees,
-                and staking minimums.
+                and staking minimums. <br />
+                <a
+                  href="#"
+                  className="text-blue-600 underline"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setShowDisclaimer(true);
+                  }}
+                >
+                  ⚠️ Disclaimer: Use at your own risk.
+                </a>
               </p>
+              <Modal
+                open={showDisclaimer}
+                setOpen={(open: boolean) => {
+                  localStorage.setItem("showDisclaimer", open.toString());
+                  setShowDisclaimer(open);
+                }}
+              >
+                {/* disclaimer */}
+                <div className="bg-amber-100 rounded-md p-4 mb-4">
+                  <h3 className="text-lg font-bold">⚠️ Warning:</h3>
+                  <p className="text-sm">
+                    Use at your own risk. The appearance of third party
+                    descriptions and hyperlinks on this site does not constitute
+                    an endorsement, guarantee, warranty, or recommendation by
+                    SendNodes, Pocket Network, Inc., Pocket Network Foundation,
+                    or the Pocket DAO. Do conduct your own due diligence before
+                    deciding to use any third party services.
+                  </p>
+                </div>
+              </Modal>
             </div>
             <div className="md:w-1/2 mx-auto flex-shrink px-4">
               <h3 className="mx-auto text-lg sm:text-xl my-2 font-bold">
@@ -376,12 +415,12 @@ function FeatureItem({ feature }: { feature: Feature }) {
       <button
         type="button"
         key={key}
-        className={`inline-flex items-center rounded px-2 py-0.5 text-xs md:text-md md:rounded-md md:px-4 md:py-2 font-medium ${color} group`}
+        className={`inline-flex items-center rounded px-2 py-0.5 text-xs md:text-md md:rounded-md md:px-4 md:py-2 font-medium ${color} group relative`}
         onClick={() => setShowModal(true)}
         title={`${name} - ${descriptions[key] || description}`}
       >
         {name}{" "}
-        <QuestionMarkCircleIcon className="group-hover:opacity-100 opacity-0 w-0 transition-all ml-2 h-5 group-hover:w-5" />
+        <QuestionMarkCircleIcon className="group-hover:opacity-100 opacity-0 w-0 transition-all ml-2 h-5 group-hover:w-5 absolute -right-4 group-hover:-right-2" />
       </button>
 
       {(descriptions[key] || description) && showModal && (

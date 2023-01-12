@@ -12,11 +12,12 @@ import { NodeParams } from "@/hooks/useNodeRunnerParams";
 import QuestionMarkCircleIcon from "@heroicons/react/24/outline/QuestionMarkCircleIcon";
 import useFeatureDescriptions from "@/hooks/useFeatureDescriptions";
 import usePoktPrice from "@/hooks/usePoktPrice";
+import formatTokenAmount from "../lib/utils/format-token-amount";
 
 export default function Table() {
   const { data, isLoading, error } = useCalculateNodeRunnerData();
   const { data: pocketPrice } = usePoktPrice();
-
+  // const [showFeatureInfoModal, setShowFeatureInfoModal] = useState(false);
   if (error) {
     return (
       <div className="rounded-md bg-yellow-50 p-8 max-w-xl mx-auto mt-8">
@@ -56,85 +57,130 @@ export default function Table() {
 
   return (
     <div className="px-4 sm:px-0 w-full">
-      <div className="mt-8 flex flex-col items-center w-full">
+      <div className="flex flex-col items-center w-full">
         <div className="-my-2 overflow-x-auto  sm:max-w-full sm:px-8 w-full max-w-[90vw] ">
           <div className="inline-block min-w-full py-2 align-middle px-1">
             <div className="overflow-x-hidden overflow-y-auto shadow ring-1 ring-black ring-opacity-5 rounded-lg max-h-[80vh] min-h-[50rem]">
-              <table className="min-w-full divide-y divide-gray-300 relative z-10">
+              <table className="divide-y divide-gray-300 relative z-10  min-w-full">
                 <thead className="bg-gray-50 notdark:bg-gray-900 sticky top-0 z-10 rounded-t-lg">
                   <tr>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-left text-sm font-bold "
+                      className="sticky w-10 top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-left text-sm font-bold "
                     >
                       &nbsp;
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-left text-sm font-bold "
+                      className="sticky w-44 top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-left text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       <span className="ml-12">Name</span>
                     </th>
 
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-[#3A9C90] notdark:text-[#3A9C90]"
+                      className="sticky top-0 w-64 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-[#3A9C90] notdark:text-[#3A9C90]"
                     >
+                      {/* Last 24h avg.
+                      <br />
+                      Net POKT Rewards{" "}
+                      <button
+                        type="button"
+                        onClick={() => setShowFeatureInfoModal(true)}
+                        title="Click me for help!"
+                        className="group"
+                      >
+                        <QuestionMarkCircleIcon className="inline-block align-middle mb-1 h-5 w-5 animate-bounce " />{" "}
+                      </button>
+                      <Modal
+                        open={showFeatureInfoModal}
+                        setOpen={setShowFeatureInfoModal}
+                      >
+                        <div className="mt-3 text-center sm:mt-5">
+                          <Dialog.Title
+                            as="h3"
+                            className="text-lg font-medium leading-6 text-gray-900"
+                          >
+                            Last 24h avg.
+                            <br />
+                            Net POKT Rewards
+                          </Dialog.Title>
+                          <div className="mt-2">
+                            <p className="text-sm text-gray-500">
+                              Wherever you see this icon,{" "}
+                              <QuestionMarkCircleIcon className="inline-block align-middle mb-1 h-5 w-5" />
+                              , click it to learn more! You can always join our
+                              Telegram channel{" "}
+                              <a
+                                href={process.env.NEXT_PUBLIC_TELEGRAM_URL!}
+                                className="text-blue-600 underline"
+                                target={"_blank"}
+                              >
+                                CompareStakingServices
+                              </a>{" "}
+                              to chat with us!
+                            </p>
+                          </div>
+                        </div>
+                      </Modal> */}
                       <span
                         title="Last 24h avg. Net POKT Rewards
                         per 15K POKT Staked"
                       >
-                        <b>*</b> Last 24h avg. Net POKT Rewards <br />
+                        <b>*</b> Last 24h avg.
+                        <br />
+                        Net POKT Rewards <br />
                         per 15K POKT Staked
                       </span>
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold "
+                      className="sticky top-0 w-52 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       <span
                         title="Last 24h avg. Gross POKT Rewards
                         per 15K POKT Staked"
                       >
-                        Last 24h avg. Gross POKT Rewards <br />
+                        Last 24h avg.
+                        <br /> Gross POKT Rewards <br />
                         per 15K POKT Staked
                       </span>
                     </th>
 
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold "
+                      className="sticky top-0 w-52 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       Minimum Staking Amount (POKT)
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold "
+                      className="sticky top-0 w-52 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       Monthly Fee (USD)
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold "
+                      className="sticky top-0 w-52 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       Commission (POKT) % per Tranche
                     </th>
 
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold "
+                      className="sticky top-0 w-36 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       No KYC
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold "
+                      className="sticky top-0 w-36 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       Dedicated Infrastructure
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold "
+                      className="sticky top-0 w-36 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       Insurance
                     </th>
@@ -172,8 +218,15 @@ export default function Table() {
                               )}
                             </div>
                             <div className="">
-                              <div className="font-medium flex items-center capitalize">
-                                {params.name}
+                              <div className="flex items-center ">
+                                <a
+                                  href={params.url}
+                                  target="_blank"
+                                  rel="nofollow"
+                                  className="font-black capitalize lg:text-lg xl:text-xl"
+                                >
+                                  {params.name}
+                                </a>
                                 <VerifiedBadge
                                   verified={params.feature_verified}
                                 />
@@ -199,46 +252,58 @@ export default function Table() {
                                       )
                                   )}
                               </div>
+                              {Boolean(stats?.tokens) && (
+                                <div
+                                  className="group font-bold text-sm mt-2 "
+                                  title={"Total Staked POKT"}
+                                >
+                                  {" "}
+                                  {formatTokenAmount(stats?.tokens)} POKT{" "}
+                                  <span className="opacity-0 inline-block group-hover:opacity-100 transition-opacity">
+                                    Staked
+                                  </span>
+                                </div>
+                              )}
                             </div>
                           </div>
                         </td>
 
-                        <td className="whitespace-nowrap  text-center px-3 py-4 text-sm ">
+                        <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black  text-[#3A9C90] notdark:text-[#3A9C90]">
                           {net.toFixed(2).toLocaleString() ?? "N/A"}
                         </td>
-                        <td className="whitespace-nowrap text-center px-3 py-4 text-sm ">
+                        <td className="whitespace-nowrap text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
                           {stats?.avg_last_24_hours
                             .toFixed(2)
                             .toLocaleString() ?? "N/A"}
                         </td>
-                        <td className="whitespace-nowrap  text-center px-3 py-4 text-sm ">
+                        <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
                           {params.min_stake?.toLocaleString()}
                         </td>
-                        <td className="whitespace-nowrap  text-center px-3 py-4 text-sm ">
+                        <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
                           {params.monthly_fee !== undefined &&
                             `\$${params.monthly_fee?.toLocaleString()}`}
                           {params.monthly_fee === undefined && "N/A"}
                         </td>
-                        <td className="whitespace-nowrap  text-center px-3 py-4 text-sm ">
+                        <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
                           {params.reward_share !== undefined &&
                             `${params.reward_share}%`}
                           {params.reward_share === undefined && "N/A"}
                         </td>
 
-                        <td className="whitespace-nowrap  text-left px-3 py-4 text-sm ">
+                        <td className="whitespace-nowrap  text-left px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
                           <p className="mt-2 flex gap-x-2 justify-center items-center">
                             <SimpleCheck enabled={!params.kyc} />
                           </p>
                         </td>
 
-                        <td className="whitespace-nowrap  text-left px-3 py-4 text-sm ">
+                        <td className="whitespace-nowrap  text-left px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
                           <p className="mt-2 flex gap-x-2 justify-center items-center">
                             <SimpleCheck
                               enabled={!!params.feature_dedicated_infra}
                             />
                           </p>
                         </td>
-                        <td className="whitespace-nowrap  text-left px-3 py-4 text-sm ">
+                        <td className="whitespace-nowrap  text-left px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
                           <p className="mt-2 flex gap-x-2 justify-center items-center">
                             <SimpleCheck enabled={params.feature_insurance} />
                           </p>
@@ -278,6 +343,14 @@ export default function Table() {
                               Rewards from validators are not included in this
                               calculation.{" "}
                             </li>
+                            {/* <li>
+                              15k Node Net = [(Daily Gross per 15k - (daily fix
+                              fee / 7 day avg pokt price)] * Rev share
+                            </li>
+                            <li>
+                              60k Node Net = [(Daily Gross per 15k (4) - (daily
+                              fix fee / 7 day avg pokt price)] * (4)Rev share
+                            </li> */}
                           </ul>
                         </div>
                       </div>
@@ -381,13 +454,16 @@ function FeatureItem({
         <button
           type="button"
           key={key}
-          onClick={() => setShowModal(true)}
+          onClick={(e) => {
+            e.stopPropagation();
+            setShowModal(true);
+          }}
           className={` inline-flex items-center justify-center rounded-full h-5 w-5 text-[0.5rem] font-bold ${color}`}
           title={name}
         >
           {initials}
         </button>
-        <div className="absolute bottom-0 flex-col items-center hidden mb-4 group-hover:flex ">
+        <div className="absolute bottom-0 flex-col items-center hidden mb-4 group-hover:flex font-semibold ">
           <span
             className={`relative z-10 p-2 text-xs leading-none whitespace-no-wrap rounded-md shadow-lg ${color}`}
           >
@@ -423,11 +499,14 @@ function VerifiedBadge({ verified }: { verified?: string }) {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
-      <div className="flex-inline cursor-pointer">
+      <div className="font-semibold flex-inline cursor-pointer">
         <div className="relative flex flex-col items-center group cursor-pointer ml-1">
           <button
             type="button"
-            onClick={() => setShowModal(true)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowModal(true);
+            }}
             className={` inline-flex items-center justify-center rounded-full h-5 w-5 text-[0.5rem] font-bold`}
             title={verified ? verified : "Unverified"}
           >
