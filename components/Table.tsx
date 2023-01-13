@@ -192,7 +192,7 @@ export default function Table() {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200 ">
+                <tbody className="">
                   {data
                     .sort((a, b) => b.net - a.net)
                     .map(({ net, params, stats }, idx) => (
