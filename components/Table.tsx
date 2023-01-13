@@ -74,7 +74,7 @@ export default function Table() {
                       scope="col"
                       className="sticky w-44 top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-left text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
-                      <span >Node Runners</span>
+                      <span >Staking Service</span>
                     </th>
                     <th
                       scope="col"
