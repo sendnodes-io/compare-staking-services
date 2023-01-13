@@ -74,7 +74,7 @@ export default function Table() {
                       scope="col"
                       className="sticky w-44 top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-left text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
-                      <span >Name</span>
+                      <span >Node-Runner</span>
                     </th>
                     <th
                       scope="col"
@@ -198,7 +198,7 @@ export default function Table() {
                     .map(({ net, params, stats }, idx) => (
                       <tr
                         key={`tr-${JSON.stringify(params)}`}
-                        className="odd:bg-white even:bg-[#FAFAF7] notdark:odd:bg-zinc-800 notdark:even:bg-neutral-900"
+                        className="odd:bg-white even:bg-[#FAFAF7] notdark:odd:bg-zinc-800 notdark:even:bg-neutral-900 divide-x divide-gray-200 "
                       >
                         <td className="bg-inherit whitespace-nowrap px-3 py-4 text-sm ">
                           <a href={params.url} target="_blank" rel="nofollow">
