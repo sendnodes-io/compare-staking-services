@@ -21,13 +21,22 @@ export default function useNodeRunnerStats() {
       });
 
       if (!response.ok) {
+        try {
+          const error = await response.json();
+          throw new Error(
+            `Failed to fetch user node stats: ${error.message ?? error}`,
+          );
+        } catch (e) {
+          // do nothing
+        }
+
         throw new Error(
-          "Failed to fetch user node stats: " + response.statusText
+          `Failed to fetch user node stats: ${response.statusText}`,
         );
       } else {
         return response.json();
       }
-    }
+    },
   );
 
   return {
