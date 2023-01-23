@@ -1,6 +1,6 @@
 {
   "name": "compare-staking-services",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Compare staking services - https://comparestakingservices.com",
   "author": {
     "name": "SendNodes, Inc.",
@@ -8,9 +8,9 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "dev": "NEXT_PUBLIC_APP_VERSION=$(node -pe 'require(\"./package.json\").version') next dev",
+    "build": "NEXT_PUBLIC_APP_VERSION=$(node -pe 'require(\"./package.json\").version') next build",
+    "start": "NEXT_PUBLIC_APP_VERSION=$(node -pe 'require(\"./package.json\").version') next start"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.4",

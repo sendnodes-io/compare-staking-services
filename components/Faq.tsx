@@ -20,7 +20,13 @@ const faqs = [
     question: "Who made this?",
     answer: (
       <>
-        <p>The same people behind SendNodes and SendWallet.</p>
+        <p>The same people behind SendNodes and SendWallet. You can review the source code here:</p>
+        <ul className="list list-disc list-inside">
+          <li><a target={"_blank"} rel="nopenner noreferrer"
+              href="https://github.com/sendnodes-io/compare-staking-services">Compare Staking Services</a></li>
+          <li><a target={"_blank"} rel="nopenner noreferrer"
+              href="https://github.com/sendnodes-io/performance-monitoring">Performance Metrics</a></li>
+        </ul>
       </>
     ),
   },
@@ -81,7 +87,7 @@ const faqs = [
       <>
         <p>
           Gross rewards are the rewards that the staking service provider earns
-          from their nodes before fees.
+          from their nodes servicing relays before fees.
         </p>
         <p>
           Net rewards are the rewards that the staking service provider actually
@@ -101,7 +107,7 @@ const faqs = [
         </p>
       </>
     ),
-  },
+  }
   // More questions...
 ];
 
