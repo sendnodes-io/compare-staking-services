@@ -122,7 +122,7 @@ export default function Table() {
                                 This is an estimate of the net POKT rewards you
                                 would receive if you staked 15K POKT with this
                                 staking service for 7 days. This is calculated
-                                by taking the 24 hour gross rewards average of
+                                by taking the 24 hour gross rewards average for
                                 the last 7 days and multiplying it by 7.
                                 <br />
                                 <a
