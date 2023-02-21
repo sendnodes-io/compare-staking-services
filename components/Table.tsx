@@ -103,7 +103,7 @@ export default function Table() {
                           <br />
                           Net POKT Rewards <br />
                           per 15K POKT Staked{" "}
-                          <QuestionMarkCircleIcon className="absolute top-0 right-0 align-middle mb-1 h-5 w-5 animate-bounce " />{" "}
+                          <QuestionMarkCircleIcon className="absolute top-0 right-0 align-middle mb-1 h-5 w-5 " />{" "}
                         </button>
                         <Modal
                           open={show7dNetInfoModal}
@@ -120,10 +120,10 @@ export default function Table() {
                             <div className="mt-2">
                               <p className="text-sm text-gray-500">
                                 This is an estimate of the net POKT rewards you
-                                would receive if you staked 15K POKT with this
-                                staking service for 7 days. This is calculated
-                                by taking the 24 hour gross rewards average for
-                                the last 7 days and multiplying it by 7.
+                                would receive if you stake 15K POKT with this
+                                staking service for 7 days. The estimate is
+                                calculated by taking the average gross rewards
+                                earned in a 24 hour period over the last 7 days.
                                 <br />
                                 <a
                                   href="https://metabase.sendnodes.io/public/dashboard/a3987b25-02b3-4db9-ab13-476b53a6ffb4"

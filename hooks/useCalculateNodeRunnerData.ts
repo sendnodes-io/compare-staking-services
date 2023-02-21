@@ -19,8 +19,9 @@ export default function useCalculateNodeRunnerData() {
   const params = useNodeRunnerParams();
   const price = usePoktPrice();
 
-  const isLoading = stats.isLoading || params.isLoading || price.isLoading;
-  const error = stats.error || params.error || price.error;
+  const isLoading =
+    stats.isLoading || statsV2.isLoading || params.isLoading || price.isLoading;
+  const error = stats.error || statsV2.error || params.error || price.error;
 
   return useMemo(() => {
     const data: NodeData[] = [];
@@ -61,7 +62,7 @@ export default function useCalculateNodeRunnerData() {
         }
         data.push({
           net: param.net_rewards,
-          net7d: param.net_rewards, // 🤷 7d net rewards is not available
+          net7d: param.net_rewards * 7, // assume 7d net rewards is 7x avg 24 hours for last 7 days
           stats: stat,
           params: param,
         });
