@@ -112,7 +112,7 @@ export default function Footer() {
 
         <p className="mt-8 text-center text-base text-gray-400">
           <span className="text-4xl">👷‍♀️</span> Built By &copy;{" "}
-          {new Date().getFullYear()} SendNodes, Inc. All rights reserved.
+          {new Date().getFullYear()} SendNodes, Inc. All rights reserved. Current version: {process.env.NEXT_PUBLIC_APP_VERSION}
         </p>
       </div>
     </footer>

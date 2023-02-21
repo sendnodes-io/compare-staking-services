@@ -1,5 +1,7 @@
 <img src="public/logo-dual.svg" width="760" alt="Compare Staking Services" />
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/897dabb2-b9e7-4149-b3ca-7803250bc0c3/deploy-status)](https://app.netlify.com/sites/compare-node-runners/deploys)
+
 # Compare Staking Services
 
 Pocket Network Staking Services
