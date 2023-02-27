@@ -58,7 +58,7 @@ export default function useCalculateNodeRunnerData() {
           stat.avg_last_24_hours = param.gross_rewards;
         }
         if (statsV2 && param.gross_rewards) {
-          statsV2["avg_serviced_per_15k"] = param.gross_rewards; // 🤷 7d net rewards is not available
+          statsV2["avg_serviced_per_15k"] = param.gross_rewards * 7; // 🤷 7d net rewards is not available
         }
         data.push({
           net: param.net_rewards,
