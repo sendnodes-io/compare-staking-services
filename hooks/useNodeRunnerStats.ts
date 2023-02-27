@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useSWR from "swr";
 
 export interface NodeStat {
-  "7d_avg_last_24_hours": number;
+  avg_serviced_per_15k: number;
   avg_last_24_hours: number;
   avg_last_48_hours: number;
   avg_last_6_hours: number;

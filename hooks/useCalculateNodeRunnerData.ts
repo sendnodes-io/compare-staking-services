@@ -58,7 +58,7 @@ export default function useCalculateNodeRunnerData() {
           stat.avg_last_24_hours = param.gross_rewards;
         }
         if (statsV2 && param.gross_rewards) {
-          statsV2["7d_avg_last_24_hours"] = param.gross_rewards; // 🤷 7d net rewards is not available
+          statsV2["avg_serviced_per_15k"] = param.gross_rewards; // 🤷 7d net rewards is not available
         }
         data.push({
           net: param.net_rewards,
@@ -68,7 +68,7 @@ export default function useCalculateNodeRunnerData() {
         });
       } else if (stat && statsV2) {
         let net = stat.avg_last_24_hours;
-        let net7d = statsV2["7d_avg_last_24_hours"];
+        let net7d = statsV2["avg_serviced_per_15k"];
         if (param.monthly_fee) {
           let dailyFeeUsd = (param.monthly_fee * 12) / 365;
           if (
@@ -80,7 +80,7 @@ export default function useCalculateNodeRunnerData() {
           }
           const dailyFeePokt = dailyFeeUsd / price.data.pokt7dAvg;
           net = stat.avg_last_24_hours - dailyFeePokt;
-          net7d = statsV2["7d_avg_last_24_hours"] - dailyFeePokt;
+          net7d = net7d - dailyFeePokt * 7;
         }
         if (param.reward_share) {
           net = net * (1 - param.reward_share / 100);
@@ -88,7 +88,7 @@ export default function useCalculateNodeRunnerData() {
         }
         const n: NodeData = {
           net: net,
-          net7d: net7d * 7, // assume 7d net rewards is 7x avg 24 hours for last 7 days
+          net7d: net7d,
           stats: stat,
           params: param,
         };
