@@ -13,11 +13,13 @@ import QuestionMarkCircleIcon from "@heroicons/react/24/outline/QuestionMarkCirc
 import useFeatureDescriptions from "@/hooks/useFeatureDescriptions";
 import usePoktPrice from "@/hooks/usePoktPrice";
 import formatTokenAmount from "../lib/utils/format-token-amount";
+import { LinkIcon, TableCellsIcon } from "@heroicons/react/24/outline";
 
 export default function Table() {
   const { data, isLoading, error } = useCalculateNodeRunnerData();
   const { data: pocketPrice } = usePoktPrice();
   // const [showFeatureInfoModal, setShowFeatureInfoModal] = useState(false);
+  const [show7dNetInfoModal, setShow7dNetInfoModal] = useState(false);
   if (error) {
     return (
       <div className="rounded-md bg-yellow-50 p-8 max-w-xl mx-auto mt-8">
@@ -74,7 +76,7 @@ export default function Table() {
                       scope="col"
                       className="sticky w-44 top-0 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-left text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
-                      <span >Staking Service</span>
+                      <span>Staking Service</span>
                     </th>
                     <th
                       scope="col"
@@ -82,10 +84,65 @@ export default function Table() {
                     >
                       <span>Key Features</span>
                     </th>
-
                     <th
                       scope="col"
                       className="sticky top-0 w-64 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-[#3A9C90] notdark:text-[#3A9C90]"
+                    >
+                      <span
+                        className="inline align-middle"
+                        title="Last 7d Est. Net POKT Rewards
+                        per 15K POKT Staked"
+                      >
+                        <button
+                          type="button"
+                          onClick={() => setShow7dNetInfoModal(true)}
+                          title="Click me for help!"
+                          className="group relative"
+                        >
+                          <b>*</b> Last 7d <br />
+                          Net POKT Rewards <br />
+                          per 15K POKT Staked{" "}
+                          <QuestionMarkCircleIcon className="absolute -top-4 -right-4 align-middle mb-1 h-5 w-5 " />{" "}
+                        </button>
+                        <Modal
+                          open={show7dNetInfoModal}
+                          setOpen={setShow7dNetInfoModal}
+                        >
+                          <div className="mt-3 text-center sm:mt-5">
+                            <Dialog.Title
+                              as="h3"
+                              className="text-lg font-medium leading-6 text-gray-900"
+                            >
+                              Last 7d Net POKT Rewards per 15K POKT Staked
+                            </Dialog.Title>
+                            <div className="mt-2">
+                              <p className="text-sm text-gray-500">
+                                This is an estimate of the net POKT rewards you
+                                would receive if you stake 15K POKT with this
+                                staking service for 7 days. The estimate is
+                                calculated by taking the total servicer rewards
+                                earned over the last 7 days divided by the
+                                average number of 15,000 POKT staked for
+                                servicing.
+                                <br />
+                                <a
+                                  href="https://pokt-stats.sendnodes.io/v2/runners-perf"
+                                  target="_blank"
+                                  rel="noreferrer noopener"
+                                  className="underline text-blue-500"
+                                >
+                                  See the raw data. 🤓{" "}
+                                  <TableCellsIcon className="inline-block align-middle mb-1 h-5 w-5 " />
+                                </a>
+                              </p>
+                            </div>
+                          </div>
+                        </Modal>
+                      </span>
+                    </th>
+                    <th
+                      scope="col"
+                      className="sticky top-0 w-64 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold"
                     >
                       {/* Last 24h avg.
                       <br />
@@ -178,12 +235,12 @@ export default function Table() {
                     >
                       No KYC
                     </th>
-                    <th
+                    {/* <th
                       scope="col"
                       className="sticky top-0 w-36 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       Dedicated Infrastructure
-                    </th>
+                    </th> */}
                     <th
                       scope="col"
                       className="sticky top-0 w-36 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
@@ -194,8 +251,8 @@ export default function Table() {
                 </thead>
                 <tbody className="">
                   {data
-                    .sort((a, b) => b.net - a.net)
-                    .map(({ net, params, stats }, idx) => (
+                    .sort((a, b) => b.net7d - a.net7d)
+                    .map(({ net, net7d, params, stats }, idx) => (
                       <tr
                         key={`tr-${JSON.stringify(params)}`}
                         className="odd:bg-white even:bg-[#FAFAF7] notdark:odd:bg-zinc-800 notdark:even:bg-neutral-900 divide-x divide-gray-200 "
@@ -255,28 +312,31 @@ export default function Table() {
 
                         <td className="whitespace-nowrap px-3 py-4 text-sm  ">
                           <div className="mt-2 flex gap-x-2 items-center">
-                                {features
-                                  .filter(
-                                    (f) =>
-                                      ![
-                                        "feature_dedicated_infra",
-                                        "feature_insurance",
-                                      ].includes(f.key)
+                            {features
+                              .filter(
+                                (f) =>
+                                  ![
+                                    "feature_dedicated_infra",
+                                    "feature_insurance",
+                                  ].includes(f.key)
+                              )
+                              .map(
+                                (feature) =>
+                                  feature.key in params &&
+                                  !!(params as any)[feature.key] && (
+                                    <FeatureItem
+                                      key={feature.key}
+                                      feature={feature}
+                                      params={params}
+                                    />
                                   )
-                                  .map(
-                                    (feature) =>
-                                      feature.key in params &&
-                                      !!(params as any)[feature.key] && (
-                                        <FeatureItem
-                                          key={feature.key}
-                                          feature={feature}
-                                          params={params}
-                                        />
-                                      )
-                                  )}
-                              </div>
+                              )}
+                          </div>
                         </td>
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black  text-[#3A9C90] notdark:text-[#3A9C90]">
+                          {net7d.toFixed(2).toLocaleString() ?? "N/A"}
+                        </td>
+                        <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black ">
                           {net.toFixed(2).toLocaleString() ?? "N/A"}
                         </td>
                         <td className="whitespace-nowrap text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
@@ -304,13 +364,13 @@ export default function Table() {
                           </p>
                         </td>
 
-                        <td className="whitespace-nowrap  text-left px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
+                        {/* <td className="whitespace-nowrap  text-left px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
                           <p className="mt-2 flex gap-x-2 justify-center items-center">
                             <SimpleCheck
                               enabled={!!params.feature_dedicated_infra}
                             />
                           </p>
-                        </td>
+                        </td> */}
                         <td className="whitespace-nowrap  text-left px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
                           <p className="mt-2 flex gap-x-2 justify-center items-center">
                             <SimpleCheck enabled={params.feature_insurance} />
