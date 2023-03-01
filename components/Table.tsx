@@ -1,8 +1,12 @@
-import useCalculateNodeRunnerData from "../hooks/useCalculateNodeRunnerData";
+import useCalculateNodeRunnerData, {
+  NodeData,
+} from "../hooks/useCalculateNodeRunnerData";
 import {
   ExclamationTriangleIcon,
   ArrowTopRightOnSquareIcon,
   CheckBadgeIcon,
+  ChevronDownIcon,
+  ChevronUpIcon,
 } from "@heroicons/react/20/solid";
 import { Feature, features } from "./Header";
 import { useState } from "react";
@@ -14,12 +18,32 @@ import useFeatureDescriptions from "@/hooks/useFeatureDescriptions";
 import usePoktPrice from "@/hooks/usePoktPrice";
 import formatTokenAmount from "../lib/utils/format-token-amount";
 import { LinkIcon, TableCellsIcon } from "@heroicons/react/24/outline";
+import { NodeStat } from "@/hooks/useNodeRunnerStats";
+import clsx from "clsx";
+
+enum SortField {
+  NET7D = "net7d",
+  NET24 = "net",
+  GROSS24 = "gross",
+}
+
+type NodeDataKeys = keyof NodeData;
+
+enum SortDirection {
+  ASC = "asc",
+  DESC = "desc",
+}
 
 export default function Table() {
   const { data, isLoading, error } = useCalculateNodeRunnerData();
   const { data: pocketPrice } = usePoktPrice();
   // const [showFeatureInfoModal, setShowFeatureInfoModal] = useState(false);
   const [show7dNetInfoModal, setShow7dNetInfoModal] = useState(false);
+  const [sortBy, setSortBy] = useState<NodeDataKeys>(SortField.NET24);
+  const [sortDirection, setSortDirection] = useState<SortDirection>(
+    SortDirection.DESC
+  );
+
   if (error) {
     return (
       <div className="rounded-md bg-yellow-50 p-8 max-w-xl mx-auto mt-8">
@@ -86,7 +110,13 @@ export default function Table() {
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 w-64 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold  text-[#3A9C90] notdark:text-[#3A9C90]"
+                      className={clsx(
+                        "sticky top-0 w-64 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold",
+                        {
+                          "text-[#3A9C90] notdark:text-[#3A9C90]":
+                            sortBy === SortField.NET24,
+                        }
+                      )}
                     >
                       {/* Last 24h avg.
                       <br />
@@ -138,11 +168,24 @@ export default function Table() {
                         <br />
                         Net POKT Rewards <br />
                         per 15K POKT Staked
+                        <SortButton
+                          sortDirection={sortDirection}
+                          setSortDirection={setSortDirection}
+                          currentSortBy={sortBy}
+                          sortBy={SortField.NET24}
+                          setSortBy={setSortBy}
+                        />
                       </span>
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 w-64 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold"
+                      className={clsx(
+                        "sticky top-0 w-64 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold",
+                        {
+                          "text-[#3A9C90] notdark:text-[#3A9C90]":
+                            sortBy === SortField.NET7D,
+                        }
+                      )}
                     >
                       <span
                         className="inline align-middle"
@@ -194,12 +237,25 @@ export default function Table() {
                             </div>
                           </div>
                         </Modal>
+                        <SortButton
+                          sortDirection={sortDirection}
+                          setSortDirection={setSortDirection}
+                          currentSortBy={sortBy}
+                          sortBy={SortField.NET7D}
+                          setSortBy={setSortBy}
+                        />
                       </span>
                     </th>
 
                     <th
                       scope="col"
-                      className="sticky top-0 w-52 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
+                      className={clsx(
+                        "sticky top-0 w-64 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold",
+                        {
+                          "text-[#3A9C90] notdark:text-[#3A9C90]":
+                            sortBy === SortField.GROSS24,
+                        }
+                      )}
                     >
                       <span
                         title="Last 24h avg. Gross POKT Rewards
@@ -209,6 +265,13 @@ export default function Table() {
                         <br /> Gross POKT Rewards <br />
                         per 15K POKT Staked
                       </span>
+                      <SortButton
+                        sortDirection={sortDirection}
+                        setSortDirection={setSortDirection}
+                        currentSortBy={sortBy}
+                        sortBy={SortField.GROSS24}
+                        setSortBy={setSortBy}
+                      />
                     </th>
 
                     <th
@@ -252,7 +315,17 @@ export default function Table() {
                 </thead>
                 <tbody className="">
                   {data
-                    .sort((a, b) => b.net - a.net)
+                    .sort((a: NodeData, b: NodeData) => {
+                      const aVal = a[sortBy]!;
+                      const bVal = b[sortBy]!;
+                      if (aVal > bVal) {
+                        return sortDirection === "asc" ? 1 : -1;
+                      }
+                      if (aVal < bVal) {
+                        return sortDirection === "asc" ? -1 : 1;
+                      }
+                      return 0;
+                    })
                     .map(({ net, net7d, params, stats }, idx) => (
                       <tr
                         key={`tr-${JSON.stringify(params)}`}
@@ -334,13 +407,37 @@ export default function Table() {
                               )}
                           </div>
                         </td>
-                        <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black  text-[#3A9C90] notdark:text-[#3A9C90]">
+                        <td
+                          className={clsx(
+                            "whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black",
+                            {
+                              "text-[#3A9C90] notdark:text-[#3A9C90]":
+                                sortBy === SortField.NET24,
+                            }
+                          )}
+                        >
                           {net.toFixed(2).toLocaleString() ?? "N/A"}
                         </td>
-                        <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black ">
+                        <td
+                          className={clsx(
+                            "whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black",
+                            {
+                              "text-[#3A9C90] notdark:text-[#3A9C90]":
+                                sortBy === SortField.NET7D,
+                            }
+                          )}
+                        >
                           {net7d.toFixed(2).toLocaleString() ?? "N/A"}
                         </td>
-                        <td className="whitespace-nowrap text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
+                        <td
+                          className={clsx(
+                            "whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black",
+                            {
+                              "text-[#3A9C90] notdark:text-[#3A9C90]":
+                                sortBy === SortField.GROSS24,
+                            }
+                          )}
+                        >
                           {stats?.avg_last_24_hours
                             .toFixed(2)
                             .toLocaleString() ?? "N/A"}
@@ -675,5 +772,55 @@ function VerifiedBadge({ verified }: { verified?: string }) {
         </Modal>
       </div>
     </>
+  );
+}
+
+type SortButtonProps = {
+  sortDirection: SortDirection;
+  setSortDirection: (sortDirection: SortDirection) => void;
+  currentSortBy: NodeDataKeys;
+  sortBy: NodeDataKeys;
+  setSortBy: (sortBy: NodeDataKeys) => void;
+};
+
+const sortNiceName = {
+  [SortField.NET24]: "Estimated 24h Net",
+  [SortField.NET7D]: "Estimated 7d Net",
+  [SortField.GROSS24]: "Gross 24h Servicer Rewards",
+  stats: "Stats",
+  params: "Params",
+};
+
+function SortButton({
+  sortDirection,
+  setSortDirection,
+  currentSortBy,
+  sortBy,
+  setSortBy,
+}: SortButtonProps) {
+  const classNames = clsx({
+    "inline-block align-middle mb-1 h-6 w-6": true,
+  });
+
+  return (
+    <button
+      title={`Sort by ${sortNiceName[sortBy]}`}
+      type="button"
+      onClick={() => {
+        setSortBy(sortBy);
+        if (currentSortBy === sortBy)
+          setSortDirection(
+            sortDirection === SortDirection.ASC
+              ? SortDirection.DESC
+              : SortDirection.ASC
+          );
+      }}
+    >
+      {sortDirection === SortDirection.ASC ? (
+        <ChevronUpIcon className={classNames} />
+      ) : (
+        <ChevronDownIcon className={classNames} />
+      )}
+    </button>
   );
 }

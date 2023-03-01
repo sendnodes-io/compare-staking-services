@@ -16,6 +16,7 @@
     "@headlessui/react": "^1.7.4",
     "@heroicons/react": "^2.0.13",
     "@iconify/react": "^4.0.0",
+    "clsx": "^1.2.1",
     "lodash.floor": "^4.0.4",
     "next": "latest",
     "react": "18.2.0",

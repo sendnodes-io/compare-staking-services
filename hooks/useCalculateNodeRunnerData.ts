@@ -6,12 +6,13 @@ import useNodeRunnerParams, { NodeParams } from "./useNodeRunnerParams";
 import usePoktPrice from "./usePoktPrice";
 import { useMemo } from "react";
 
-export interface NodeData {
+export type NodeData = {
   net: number;
   net7d: number;
+  gross?: number;
   stats?: NodeStat;
   params: NodeParams;
-}
+};
 
 export default function useCalculateNodeRunnerData() {
   const stats = useNodeRunnerStats();
@@ -61,6 +62,7 @@ export default function useCalculateNodeRunnerData() {
           statsV2["avg_serviced_per_15k"] = param.gross_rewards * 7; // 🤷 7d net rewards is not available
         }
         data.push({
+          gross: param.gross_rewards,
           net: param.net_rewards,
           net7d: param.net_rewards * 7, // assume 7d net rewards is 7x avg 24 hours for last 7 days
           stats: stat,
@@ -87,6 +89,7 @@ export default function useCalculateNodeRunnerData() {
           net7d = net7d * (1 - param.reward_share / 100);
         }
         const n: NodeData = {
+          gross: stat.avg_last_24_hours,
           net: net,
           net7d: net7d,
           stats: stat,
