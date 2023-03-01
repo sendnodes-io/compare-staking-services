@@ -86,63 +86,7 @@ export default function Table() {
                     </th>
                     <th
                       scope="col"
-                      className="sticky top-0 w-64 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-[#3A9C90] notdark:text-[#3A9C90]"
-                    >
-                      <span
-                        className="inline align-middle"
-                        title="Last 7d Est. Net POKT Rewards
-                        per 15K POKT Staked"
-                      >
-                        <button
-                          type="button"
-                          onClick={() => setShow7dNetInfoModal(true)}
-                          title="Click me for help!"
-                          className="group relative"
-                        >
-                          <b>*</b> Last 7d <br />
-                          Net POKT Rewards <br />
-                          per 15K POKT Staked{" "}
-                          <QuestionMarkCircleIcon className="absolute -top-4 -right-4 align-middle mb-1 h-5 w-5 " />{" "}
-                        </button>
-                        <Modal
-                          open={show7dNetInfoModal}
-                          setOpen={setShow7dNetInfoModal}
-                        >
-                          <div className="mt-3 text-center sm:mt-5">
-                            <Dialog.Title
-                              as="h3"
-                              className="text-lg font-medium leading-6 text-gray-900"
-                            >
-                              Last 7d Net POKT Rewards per 15K POKT Staked
-                            </Dialog.Title>
-                            <div className="mt-2">
-                              <p className="text-sm text-gray-500">
-                                This is an estimate of the net POKT rewards you
-                                would receive if you stake 15K POKT with this
-                                staking service for 7 days. The estimate is
-                                calculated by taking the total servicer rewards
-                                earned over the last 7 days divided by the
-                                average number of 15,000 POKT staked for
-                                servicing.
-                                <br />
-                                <a
-                                  href="https://pokt-stats.sendnodes.io/v2/runners-perf"
-                                  target="_blank"
-                                  rel="noreferrer noopener"
-                                  className="underline text-blue-500"
-                                >
-                                  See the raw data. 🤓{" "}
-                                  <TableCellsIcon className="inline-block align-middle mb-1 h-5 w-5 " />
-                                </a>
-                              </p>
-                            </div>
-                          </div>
-                        </Modal>
-                      </span>
-                    </th>
-                    <th
-                      scope="col"
-                      className="sticky top-0 w-64 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold"
+                      className="sticky top-0 w-64 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold  text-[#3A9C90] notdark:text-[#3A9C90]"
                     >
                       {/* Last 24h avg.
                       <br />
@@ -198,6 +142,63 @@ export default function Table() {
                     </th>
                     <th
                       scope="col"
+                      className="sticky top-0 w-64 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold"
+                    >
+                      <span
+                        className="inline align-middle"
+                        title="Last 7d Est. Net POKT Rewards
+                        per 15K POKT Staked"
+                      >
+                        <button
+                          type="button"
+                          onClick={() => setShow7dNetInfoModal(true)}
+                          title="Click me for help!"
+                          className="group relative"
+                        >
+                          <b>*</b> Last 7d <br />
+                          Net POKT Rewards <br />
+                          per 15K POKT Staked{" "}
+                          <QuestionMarkCircleIcon className="absolute -top-4 -right-4 align-middle mb-1 h-5 w-5 " />{" "}
+                        </button>
+                        <Modal
+                          open={show7dNetInfoModal}
+                          setOpen={setShow7dNetInfoModal}
+                        >
+                          <div className="mt-3 text-center sm:mt-5">
+                            <Dialog.Title
+                              as="h3"
+                              className="text-lg font-medium leading-6 text-gray-900"
+                            >
+                              Last 7d Net POKT Rewards per 15K POKT Staked
+                            </Dialog.Title>
+                            <div className="mt-2">
+                              <p className="text-sm text-gray-500">
+                                This is an estimate of the net POKT rewards you
+                                would receive if you stake 15K POKT with this
+                                staking service for 7 days. The estimate is
+                                calculated by taking the total servicer rewards
+                                earned over the last 7 days divided by the
+                                average number of 15,000 POKT staked for
+                                servicing.
+                                <br />
+                                <a
+                                  href="https://pokt-stats.sendnodes.io/v2/runners-perf"
+                                  target="_blank"
+                                  rel="noreferrer noopener"
+                                  className="underline text-blue-500"
+                                >
+                                  See the raw data. 🤓{" "}
+                                  <TableCellsIcon className="inline-block align-middle mb-1 h-5 w-5 " />
+                                </a>
+                              </p>
+                            </div>
+                          </div>
+                        </Modal>
+                      </span>
+                    </th>
+
+                    <th
+                      scope="col"
                       className="sticky top-0 w-52 z-10 py-3.5 sm:py-5 pl-4 pr-3 text-center text-sm font-bold text-neutral-500 notdark:text-neutral-400"
                     >
                       <span
@@ -251,7 +252,7 @@ export default function Table() {
                 </thead>
                 <tbody className="">
                   {data
-                    .sort((a, b) => b.net7d - a.net7d)
+                    .sort((a, b) => b.net - a.net)
                     .map(({ net, net7d, params, stats }, idx) => (
                       <tr
                         key={`tr-${JSON.stringify(params)}`}
@@ -334,10 +335,10 @@ export default function Table() {
                           </div>
                         </td>
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black  text-[#3A9C90] notdark:text-[#3A9C90]">
-                          {net7d.toFixed(2).toLocaleString() ?? "N/A"}
+                          {net.toFixed(2).toLocaleString() ?? "N/A"}
                         </td>
                         <td className="whitespace-nowrap  text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-black ">
-                          {net.toFixed(2).toLocaleString() ?? "N/A"}
+                          {net7d.toFixed(2).toLocaleString() ?? "N/A"}
                         </td>
                         <td className="whitespace-nowrap text-center px-3 py-4 text-md lg:text-lg xl:text-xl font-base text-neutral-500 ">
                           {stats?.avg_last_24_hours
@@ -388,12 +389,11 @@ export default function Table() {
                       <div className="flex justify-between items-center">
                         <div className="flex flex-col gap-x-2 text-xs">
                           <p className="">
-                            <b>*Net rewards are based on:</b>
+                            <b>*Estimated Net rewards are based on:</b>
                           </p>
                           <ul className="list-disc list-inside">
                             <li>
-                              The last 24 hours of total gross rewards from
-                              servicing relays from{" "}
+                              The total gross rewards from servicing relays from{" "}
                               <a
                                 href="https://POKTscan.com"
                                 rel="nofollow"
@@ -406,6 +406,9 @@ export default function Table() {
                             <li>
                               The last 7 day average POKT/USD price of $
                               {pocketPrice?.pokt7dAvg.toLocaleString()}.{" "}
+                            </li>
+                            <li>
+                              The current pricing model of the staking service.
                             </li>
                             <li>
                               Rewards from validators are not included in this
